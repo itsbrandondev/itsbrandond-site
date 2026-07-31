@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Brandon Davenport";
+const description =
+	"Tech evangelist who ships. AI and data tooling at Hgraph, elected member of the Hiero Technical Steering Committee, and creator of the Hashgraph Enthusiasts Show.";
+---
+
+<BaseLayout title={title} description={description}>
+	<section class="bd-home">
+		<p>
+			I'm a tech evangelist who ships. For over ten years I've worked both
+			sides: architecting systems with engineers, then getting on stage, on
+			camera, and on the timeline to make people want in. At <a
+				href="https://hgraph.com"
+				target="_blank"
+				rel="noopener noreferrer">Hgraph</a
+			>, I led the AI and data tooling, including a
+			<a
+				href="https://docs.hgraph.com/mcp-server/setup-chatgpt"
+				target="_blank"
+				rel="noopener noreferrer"
+				>Model Context Protocol server and an AI data agent</a
+			> that surface Hedera Stats' ecosystem metrics through natural-language query,
+			and most recently wrote
+			<a
+				href="https://hgraph.com/blog/hgraph-in-2026-the-full-stack-onchain-data-platform"
+				target="_blank"
+				rel="noopener noreferrer">the company's 2026 platform recap</a
+			>. I'm an elected member of the
+			<a href="https://hiero.org/tsc" target="_blank" rel="noopener noreferrer"
+				>Hiero Technical Steering Committee</a
+			> under the Linux Foundation.
+		</p>
+		<p>
+			On stage, I've moderated panels like
+			<a
+				href="https://www.youtube.com/watch?v=FTXUdQ6dTf8"
+				target="_blank"
+				rel="noopener noreferrer">HederaCon 2025's wallet refresh talk</a
+			>, and for three years I created and hosted the
+			<a
+				href="https://www.youtube.com/watch?v=CpjLibi4jp4"
+				target="_blank"
+				rel="noopener noreferrer">Hashgraph Enthusiasts Show</a
+			>, 146 episodes of interviews with founders and engineers across the
+			ecosystem. I'm the one in the room with leaders: making introductions,
+			running working groups, closing deals. Say hello on
+			<a
+				href="https://linkedin.com/in/itsbrandond"
+				target="_blank"
+				rel="noopener noreferrer">LinkedIn</a
+			>,
+			<a
+				href="https://x.com/itsbrandond"
+				target="_blank"
+				rel="noopener noreferrer">X</a
+			>, or
+			<a
+				href="https://github.com/itsbrandondev"
+				target="_blank"
+				rel="noopener noreferrer">GitHub</a
+			>, drop me a line, or grab time on my calendar.
+		</p>
+		<div class="bd-cta">
+			<a href="mailto:hey@itsbrandond.com">Email me</a>
+			<a href="/meet">Schedule time</a>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.bd-home {
+		max-width: 640px;
+		margin: 0 auto;
+		padding: 4rem 1.5rem;
+		line-height: 1.6;
+		font-size: 1.125rem;
+	}
+	.bd-home p {
+		margin: 0 0 1.5rem 0;
+	}
+	.bd-home a {
+		color: inherit;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+	.bd-home .bd-cta {
+		margin-top: 2.5rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+	.bd-home .bd-cta a {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		border: 1px solid currentColor;
+		border-radius: 999px;
+		text-decoration: none;
+		font-weight: 600;
+	}
+</style>

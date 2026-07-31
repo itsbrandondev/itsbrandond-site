@@ -1,0 +1,114 @@
+---
+import "../styles/global.css";
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL("/og-image.jpg", Astro.site);
+
+const personSchema = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: "Brandon Davenport",
+	url: "https://itsbrandond.com",
+	image: ogImageURL.toString(),
+	sameAs: [
+		"https://linkedin.com/in/itsbrandond",
+		"https://x.com/itsbrandond",
+		"https://github.com/itsbrandondev",
+	],
+	affiliation: {
+		"@type": "Organization",
+		name: "Hgraph",
+		url: "https://hgraph.com",
+	},
+	memberOf: {
+		"@type": "Organization",
+		name: "Hiero Technical Steering Committee",
+		url: "https://hiero.org/tsc",
+	},
+};
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+
+		<link rel="icon" href="/favicon.ico" sizes="any" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:image" content={ogImageURL} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageURL} />
+
+		<meta name="generator" content={Astro.generator} />
+
+		<script is:inline>
+			(function () {
+				var stored = null;
+				try {
+					stored = localStorage.getItem("theme");
+				} catch (e) {
+					/* localStorage unavailable (private mode, etc.); fall back below */
+				}
+				var theme =
+					stored ||
+					(window.matchMedia("(prefers-color-scheme: dark)").matches
+						? "dark"
+						: "light");
+				document.documentElement.setAttribute("data-theme", theme);
+			})();
+		</script>
+
+		<script
+			type="application/ld+json"
+			is:inline
+			set:html={JSON.stringify(personSchema)}
+		/>
+	</head>
+	<body>
+		<button
+			id="theme-toggle"
+			type="button"
+			aria-label="Toggle dark and light mode"
+			class="theme-toggle"
+		>
+			<span class="to-dark">Dark</span><span class="to-light">Light</span>
+		</button>
+		<slot />
+		<script is:inline>
+			(function () {
+				var btn = document.getElementById("theme-toggle");
+				if (!btn) return;
+				btn.addEventListener("click", function () {
+					var root = document.documentElement;
+					var next =
+						root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+					root.setAttribute("data-theme", next);
+					try {
+						localStorage.setItem("theme", next);
+					} catch (e) {
+						/* localStorage unavailable; theme just won't persist */
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>

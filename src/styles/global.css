@@ -1,0 +1,63 @@
+:root {
+	color-scheme: light;
+	--bg: #ffffff;
+	--fg: #111111;
+	--border: #111111;
+}
+
+html[data-theme="dark"] {
+	color-scheme: dark;
+	--bg: #0b0b0b;
+	--fg: #f2f2f2;
+	--border: #f2f2f2;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: var(--bg);
+	color: var(--fg);
+	font-family:
+		-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+		sans-serif;
+}
+
+a {
+	color: inherit;
+}
+
+.theme-toggle {
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	background: transparent;
+	color: var(--fg);
+	border: 1px solid var(--border);
+	border-radius: 999px;
+	padding: 0.4rem 0.9rem;
+	font-size: 0.85rem;
+	font-family: inherit;
+	cursor: pointer;
+}
+
+.theme-toggle .to-light {
+	display: none;
+}
+
+html[data-theme="dark"] .theme-toggle .to-dark {
+	display: none;
+}
+
+html[data-theme="dark"] .theme-toggle .to-light {
+	display: inline;
+}
