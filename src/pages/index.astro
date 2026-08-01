@@ -7,96 +7,131 @@ const description =
 ---
 
 <BaseLayout title={title} description={description}>
-	<section class="bd-home">
+	<section class="intro">
+		<!--
+			Placeholder only. It reserves the exact final box so dropping the real
+			photo in causes no layout shift. Replace with <Image /> from
+			astro:assets, keeping the same 4:5 ratio.
+		-->
+		<div class="headshot" role="presentation"></div>
 		<p>
 			I'm a tech evangelist who ships. For over ten years I've worked both
 			sides: architecting systems with engineers, then getting on stage, on
-			camera, and on the timeline to make people want in. At <a
+			camera, and on the timeline to make people want in.
+		</p>
+	</section>
+
+	<section class="prose">
+		<p>
+			These days I advise <a
 				href="https://hgraph.com"
 				target="_blank"
 				rel="noopener noreferrer">Hgraph</a
-			>, I led the AI and data tooling, including a
+			> on AI product and go-to-market. Before that I built their AI and data tooling
+			with the team: a{" "}
 			<a
 				href="https://docs.hgraph.com/mcp-server/setup-chatgpt"
 				target="_blank"
 				rel="noopener noreferrer"
 				>Model Context Protocol server and an AI data agent</a
-			> that surface Hedera Stats' ecosystem metrics through natural-language query,
-			and most recently wrote
-			<a
-				href="https://hgraph.com/blog/hgraph-in-2026-the-full-stack-onchain-data-platform"
-				target="_blank"
-				rel="noopener noreferrer">the company's 2026 platform recap</a
-			>. I'm an elected member of the
+			> that answer plain-English questions about Hedera Stats' ecosystem metrics.
+			I'm an elected member of the{" "}
 			<a href="https://hiero.org/tsc" target="_blank" rel="noopener noreferrer"
 				>Hiero Technical Steering Committee</a
-			> under the Linux Foundation.
+			> under the Linux Foundation. And I <a href="/live-show"
+				>stream live on X</a
+			>, building in public.
 		</p>
 		<p>
-			On stage, I've moderated panels like
+			I got here by making things: brands, software, music, events. That's where
+			the eye came from, and it still decides what's worth shipping, which
+			matters more now that anyone can generate something that isn't. It's also
+			why the standard I authored,{" "}
 			<a
-				href="https://www.youtube.com/watch?v=FTXUdQ6dTf8"
+				href="https://hips.hedera.com/hip/hip-920"
 				target="_blank"
-				rel="noopener noreferrer">HederaCon 2025's wallet refresh talk</a
-			>, and for three years I created and hosted the
+				rel="noopener noreferrer">HIP-920</a
+			>, is about music metadata, and why before this I created and hosted the{
+				" "
+			}
 			<a
 				href="https://www.youtube.com/watch?v=CpjLibi4jp4"
 				target="_blank"
 				rel="noopener noreferrer">Hashgraph Enthusiasts Show</a
-			>, 146 episodes of interviews with founders and engineers across the
-			ecosystem. I'm the one in the room with leaders: making introductions,
-			running working groups, closing deals. Say hello on
-			<a
-				href="https://linkedin.com/in/itsbrandond"
-				target="_blank"
-				rel="noopener noreferrer">LinkedIn</a
-			>,
-			<a
-				href="https://x.com/itsbrandond"
-				target="_blank"
-				rel="noopener noreferrer">X</a
-			>, or
-			<a
-				href="https://github.com/itsbrandondev"
-				target="_blank"
-				rel="noopener noreferrer">GitHub</a
-			>, drop me a line, or grab time on my calendar.
+			> for three years and 146 episodes. I'm the one in the room with leaders: making
+			introductions, running working groups, closing deals.
 		</p>
-		<div class="bd-cta">
-			<a href="mailto:hey@itsbrandond.com">Email me</a>
-			<a href="/meet">Schedule time</a>
-		</div>
+	</section>
+
+	<section class="cta">
+		<p><a href="/live-show">Watch the live show</a></p>
+		<p>
+			<a href="mailto:hey@itsbrandond.com?subject=Add%20me%20to%20your%20list"
+				>Get an email when I ship something</a
+			>
+		</p>
+	</section>
+
+	<section class="cooking">
+		<h2>Currently cooking</h2>
+		<ul>
+			<li>A live show on X, building and reacting in public.</li>
+			<li>Advisory work, currently with Hgraph.</li>
+			<li>Something new I'm not talking about yet.</li>
+			<li>
+				Conversations about what's next, if you're building something big.
+			</li>
+		</ul>
 	</section>
 </BaseLayout>
 
 <style>
-	.bd-home {
-		max-width: 640px;
-		margin: 0 auto;
-		padding: 4rem 1.5rem;
-		line-height: 1.6;
-		font-size: 1.125rem;
-	}
-	.bd-home p {
-		margin: 0 0 1.5rem 0;
-	}
-	.bd-home a {
-		color: inherit;
-		text-decoration: underline;
-		text-underline-offset: 2px;
-	}
-	.bd-home .bd-cta {
-		margin-top: 2.5rem;
+	.intro {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1rem;
+		align-items: flex-start;
+		gap: 1.5rem;
 	}
-	.bd-home .bd-cta a {
-		display: inline-block;
-		padding: 0.75rem 1.5rem;
-		border: 1px solid currentColor;
-		border-radius: 999px;
-		text-decoration: none;
+
+	.intro p {
+		flex: 1 1 16rem;
+		margin: 0;
+	}
+
+	/* Fixed 4:5 box, so the real headshot drops in with no reflow. */
+	.headshot {
+		flex: 0 0 auto;
+		width: 8rem;
+		aspect-ratio: 4 / 5;
+		background: var(--rule);
+	}
+
+	.prose p {
+		margin: 1.5rem 0 0;
+	}
+
+	.cta {
+		margin-top: 2.5rem;
+	}
+
+	.cta p {
+		margin: 0 0 0.5rem;
+	}
+
+	.cooking {
+		margin-top: 3rem;
+	}
+
+	.cooking h2 {
+		font-size: 1rem;
 		font-weight: 600;
+		margin: 0 0 0.75rem;
+	}
+
+	.cooking ul {
+		margin: 0;
+		padding-left: 1.1rem;
+		display: grid;
+		gap: 0.35rem;
 	}
 </style>

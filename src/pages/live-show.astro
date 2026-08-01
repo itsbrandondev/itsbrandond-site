@@ -1,0 +1,205 @@
+---
+import { Image } from "astro:assets";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+	broadcastUrl,
+	embedUrl,
+	formatDate,
+	latestStream,
+	streams,
+} from "../data/streams";
+
+const title = "Live show | Brandon Davenport";
+const description =
+	"A live show on X: building in public, reacting to technology news, and working through problems on camera. Watch the latest replay and browse past streams.";
+
+// Public archive of every stream's replay.
+const driveFolder =
+	"https://drive.google.com/drive/folders/1VzhErjofI_CTBxdyUZxZ74nels7kL62f";
+
+// VideoObject requires name, thumbnailUrl and uploadDate; duration and
+// embedUrl are the recommended extras. Google retired podcast rich results,
+// so there is deliberately no PodcastSeries here.
+const videoSchema = streams.map((stream) => ({
+	"@context": "https://schema.org",
+	"@type": "VideoObject",
+	name: stream.title,
+	description: `Live stream by Brandon Davenport on ${formatDate(stream.date)}.`,
+	thumbnailUrl: new URL(stream.thumbnail.src, Astro.site).toString(),
+	uploadDate: stream.date,
+	duration: stream.durationIso,
+	url: broadcastUrl(stream.id),
+	embedUrl: embedUrl(stream.id),
+}));
+---
+
+<BaseLayout title={title} description={description}>
+	<section class="latest">
+		<h1>Live show</h1>
+		<div class="player">
+			<iframe
+				src={embedUrl(latestStream.id)}
+				title={`Replay: ${latestStream.title}`}
+				allowfullscreen
+				loading="lazy"></iframe>
+		</div>
+		<p class="latest-meta">
+			{latestStream.title}<br />
+			<time datetime={latestStream.date}>{formatDate(latestStream.date)}</time>
+			{" "}&middot; {latestStream.duration} &middot;{" "}
+			<a href={broadcastUrl(latestStream.id)}>Watch on X</a>
+		</p>
+	</section>
+
+	<section class="about">
+		<h2>About the show</h2>
+		<p>
+			I share my screen and work in public: explaining what I'm building,
+			reacting to the day's technology news, digging into things that don't add
+			up, and taking questions from chat. Camera on, mostly solo, minimally
+			produced. Every stream stays up as a replay.
+		</p>
+	</section>
+
+	<section class="archive">
+		<h2>Past streams</h2>
+		<ul>
+			{
+				streams.map((stream) => (
+					<li>
+						<a href={broadcastUrl(stream.id)}>
+							<Image
+								src={stream.thumbnail}
+								alt=""
+								width={160}
+								height={90}
+								loading="lazy"
+							/>
+							<span>
+								<span class="stream-title">{stream.title}</span>
+								<span class="stream-meta">
+									<time datetime={stream.date}>{formatDate(stream.date)}</time>
+									{" · "}
+									{stream.duration}
+								</span>
+							</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+		<p>
+			Recordings also live in <a href={driveFolder}>a public Drive folder</a>.
+		</p>
+	</section>
+
+	<section class="cta">
+		<p>
+			<a href="mailto:hey@itsbrandond.com?subject=Add%20me%20to%20your%20list"
+				>Get an email when I go live</a
+			>
+		</p>
+	</section>
+
+	<script
+		type="application/ld+json"
+		is:inline
+		set:html={JSON.stringify(videoSchema)}
+	/>
+</BaseLayout>
+
+<style>
+	h1 {
+		font-size: 1.5rem;
+		margin: 0 0 1.25rem;
+	}
+
+	h2 {
+		font-size: 1rem;
+		font-weight: 600;
+		margin: 0 0 0.75rem;
+	}
+
+	/* 16:9 box the player fills, so it is correct from 320px up. */
+	.player {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		background: var(--rule);
+	}
+
+	.player iframe {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+
+	.latest-meta {
+		margin: 0.75rem 0 0;
+		font-size: 0.9375rem;
+	}
+
+	.about,
+	.archive,
+	.cta {
+		margin-top: 3rem;
+	}
+
+	.archive ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	.archive a {
+		display: flex;
+		gap: 1rem;
+		align-items: flex-start;
+		text-decoration: none;
+	}
+
+	.archive img {
+		flex: 0 0 auto;
+		width: 10rem;
+		height: auto;
+		background: var(--rule);
+	}
+
+	.stream-title {
+		display: block;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	.stream-meta {
+		display: block;
+		margin-top: 0.25rem;
+		color: var(--muted);
+		font-size: 0.9375rem;
+	}
+
+	/* Stack the still above the text on narrow screens. */
+	@media (max-width: 30rem) {
+		.archive a {
+			display: block;
+		}
+
+		.archive img {
+			width: 100%;
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	.archive p {
+		margin: 2rem 0 0;
+		font-size: 0.9375rem;
+	}
+
+	.cta p {
+		margin: 0;
+	}
+</style>

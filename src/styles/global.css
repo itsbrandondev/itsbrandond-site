@@ -2,14 +2,10 @@
 	color-scheme: light;
 	--bg: #ffffff;
 	--fg: #111111;
-	--border: #111111;
-}
-
-html[data-theme="dark"] {
-	color-scheme: dark;
-	--bg: #0b0b0b;
-	--fg: #f2f2f2;
-	--border: #f2f2f2;
+	--muted: #5a5a5a;
+	--rule: #e2e2e2;
+	--measure: 34rem;
+	--gutter: 1.5rem;
 }
 
 *,
@@ -30,34 +26,106 @@ body {
 	font-family:
 		-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
 		sans-serif;
+	font-size: 1.0625rem;
+	line-height: 1.6;
 }
 
 a {
 	color: inherit;
+	text-underline-offset: 2px;
 }
 
-.theme-toggle {
-	position: fixed;
-	top: 1rem;
-	right: 1rem;
-	background: transparent;
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Visible only once focused, so keyboard users can jump the nav. */
+.skip-link {
+	position: absolute;
+	left: -9999px;
+	top: 0;
+	background: var(--bg);
+	padding: 0.5rem 0.75rem;
+}
+
+.skip-link:focus {
+	left: 0;
+	z-index: 2;
+}
+
+/* Shared page rail. Header, main and footer all sit on the same measure. */
+.site-header,
+.site-footer,
+main > * {
+	max-width: var(--measure);
+	margin-inline: auto;
+	padding-inline: var(--gutter);
+}
+
+.site-header {
+	padding-block: 2rem 3rem;
+}
+
+.site-header ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.25rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.site-footer {
+	padding-block: 4rem 2rem;
+	color: var(--muted);
+	font-size: 0.9375rem;
+}
+
+.site-footer p {
+	margin: 0;
+	border-top: 1px solid var(--rule);
+	padding-top: 1.5rem;
+}
+
+/*
+ * Contact panel. With JS this is opened via showModal(); without JS the
+ * :target rule below reveals it in flow, so the links stay reachable.
+ * Both paths share this styling. See BaseLayout.astro.
+ */
+#contact {
+	max-width: var(--measure);
+	border: 1px solid var(--fg);
+	background: var(--bg);
 	color: var(--fg);
-	border: 1px solid var(--border);
-	border-radius: 999px;
-	padding: 0.4rem 0.9rem;
-	font-size: 0.85rem;
-	font-family: inherit;
-	cursor: pointer;
+	padding: 1.5rem;
 }
 
-.theme-toggle .to-light {
-	display: none;
+#contact:target {
+	display: block;
+	margin: 0 auto 3rem;
 }
 
-html[data-theme="dark"] .theme-toggle .to-dark {
-	display: none;
+#contact h2 {
+	margin: 0 0 1rem;
+	font-size: 1.125rem;
 }
 
-html[data-theme="dark"] .theme-toggle .to-light {
-	display: inline;
+#contact ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: grid;
+	gap: 0.5rem;
+}
+
+#contact::backdrop {
+	background: rgb(0 0 0 / 45%);
+}
+
+.contact-close {
+	display: inline-block;
+	margin-top: 1.25rem;
+	color: var(--muted);
+	font-size: 0.9375rem;
 }

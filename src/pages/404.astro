@@ -3,27 +3,30 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-	title="Page not found — Brandon Davenport"
+	title="Page not found | Brandon Davenport"
 	description="This page doesn't exist."
 >
 	<section class="not-found">
 		<h1>Page not found</h1>
-		<p><a href="/">Back home</a></p>
+		<p>
+			That page isn't here. Try the <a href="/">homepage</a> or the <a
+				href="/live-show">live show</a
+			>.
+		</p>
 	</section>
 </BaseLayout>
 
 <style>
 	.not-found {
-		max-width: 640px;
-		margin: 0 auto;
-		padding: 6rem 1.5rem;
-		text-align: center;
+		padding-block: 2rem 4rem;
 	}
+
 	.not-found h1 {
 		font-size: 1.5rem;
-		margin-bottom: 1rem;
+		margin: 0 0 1rem;
 	}
-	.not-found a {
-		color: inherit;
+
+	.not-found p {
+		margin: 0;
 	}
 </style>
