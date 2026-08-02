@@ -4,9 +4,15 @@ import "../styles/global.css";
 interface Props {
 	title: string;
 	description: string;
+	/**
+	 * Set only on the actual profile page (the homepage), which wraps the
+	 * Person schema in ProfilePage. Bump the date whenever that page's
+	 * content changes. Other pages get the bare Person schema.
+	 */
+	profileDateModified?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, profileDateModified } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL("/og-image.jpg", Astro.site);
@@ -35,6 +41,15 @@ const personSchema = {
 		url: "https://hiero.org/tsc",
 	},
 };
+
+const schema = profileDateModified
+	? {
+			"@context": "https://schema.org",
+			"@type": "ProfilePage",
+			dateModified: profileDateModified,
+			mainEntity: personSchema,
+		}
+	: personSchema;
 ---
 
 <!doctype html>
@@ -65,7 +80,7 @@ const personSchema = {
 		<script
 			type="application/ld+json"
 			is:inline
-			set:html={JSON.stringify(personSchema)}
+			set:html={JSON.stringify(schema)}
 		/>
 	</head>
 	<body>

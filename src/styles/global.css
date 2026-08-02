@@ -40,6 +40,19 @@ img {
 	height: auto;
 }
 
+/* Off-screen but present for screen readers and the accessibility tree. */
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
 /* Visible only once focused, so keyboard users can jump the nav. */
 .skip-link {
 	position: absolute;

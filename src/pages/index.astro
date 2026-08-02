@@ -4,9 +4,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const title = "Brandon Davenport";
 const description =
 	"Tech evangelist who ships. AI and data tooling at Hgraph, elected member of the Hiero Technical Steering Committee, and creator of the Hashgraph Enthusiasts Show.";
+
+// Bump alongside any content edit to this page; feeds ProfilePage's dateModified.
+const profileDateModified = "2026-08-01";
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+	title={title}
+	description={description}
+	profileDateModified={profileDateModified}
+>
+	<h1 class="visually-hidden">Brandon Davenport</h1>
 	<section class="intro">
 		<!--
 			Placeholder only. It reserves the exact final box so dropping the real
