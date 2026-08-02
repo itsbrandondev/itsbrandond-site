@@ -88,10 +88,11 @@ export const formatDate = (iso: string): string =>
 	});
 
 /*
- * Thumbnails: each replay's frame is 1920x1080 with the screen share filling it
- * and the webcam inset at the bottom right. The committed images are that inset
- * cropped out (768x432 at offset 1152,648), so the archive shows the host rather
- * than whatever happened to be on screen. Taking the whole frame instead puts
- * browser tabs, editor output, and once the broadcaster's own end-stream dialog
- * on a public page. Re-crop with the same box when adding a stream.
+ * Thumbnails: the full 1920x1080 replay frame, screen share and webcam inset
+ * both included. Supersedes the 2026-08-01 webcam-only crop (which existed
+ * specifically to keep browser tabs and editor output off the page) per
+ * Brandon's explicit 2026-08-02 call, made after that tradeoff was restated.
+ * Extract with `ffmpeg -ss <t> -i <source mp4> -frames:v 1 <out>.jpg`, a few
+ * minutes into the stream to skip any intro slate; there is no fixed offset
+ * to reuse since the whole frame ships as-is.
  */

@@ -80,6 +80,25 @@ main > * {
 	padding-block: 2rem 3rem;
 }
 
+/*
+ * Wordmark left, nav right. No hamburger: the nav list below already wraps
+ * internally, so at narrow widths this row wraps the whole nav under the
+ * wordmark instead, no JS or media query needed.
+ */
+.site-header-row {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 0.5rem 1.5rem;
+}
+
+.site-home {
+	font-weight: 700;
+	text-decoration: none;
+	color: var(--fg);
+}
+
 .site-header ul {
 	display: flex;
 	flex-wrap: wrap;

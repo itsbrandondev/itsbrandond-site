@@ -1,12 +1,15 @@
 ---
+import { Image } from "astro:assets";
+
 import BaseLayout from "../layouts/BaseLayout.astro";
+import headshot from "../assets/headshot.jpeg";
 
 const title = "Brandon Davenport";
 const description =
 	"Tech evangelist who ships. AI and data tooling at Hgraph, elected member of the Hiero Technical Steering Committee, and creator of the Hashgraph Enthusiasts Show.";
 
 // Bump alongside any content edit to this page; feeds ProfilePage's dateModified.
-const profileDateModified = "2026-08-01";
+const profileDateModified = "2026-08-02";
 ---
 
 <BaseLayout
@@ -16,12 +19,15 @@ const profileDateModified = "2026-08-01";
 >
 	<h1 class="visually-hidden">Brandon Davenport</h1>
 	<section class="intro">
-		<!--
-			Placeholder only. It reserves the exact final box so dropping the real
-			photo in causes no layout shift. Replace with <Image /> from
-			astro:assets, keeping the same 4:5 ratio.
-		-->
-		<div class="headshot" role="presentation"></div>
+		<Image
+			src={headshot}
+			alt="Brandon Davenport"
+			width={320}
+			height={400}
+			fit="cover"
+			position="center"
+			class="headshot"
+		/>
 		<p>
 			I'm a tech evangelist who ships. For over ten years I've worked both
 			sides: architecting systems with engineers, then getting on stage, on
@@ -83,12 +89,10 @@ const profileDateModified = "2026-08-01";
 	<section class="cooking">
 		<h2>Currently cooking</h2>
 		<ul>
-			<li>A live show on X, building and reacting in public.</li>
-			<li>Advisory work, currently with Hgraph.</li>
-			<li>Something new I'm not talking about yet.</li>
-			<li>
-				Conversations about what's next, if you're building something big.
-			</li>
+			<li>Live streaming on X, talking about AI/crypto news and building.</li>
+			<li>For hire consulting work (tell me what you're working on)</li>
+			<li>A secret project that I can't talk about quite yet</li>
+			<li>Advising Hgraph on product and marketing</li>
 		</ul>
 	</section>
 </BaseLayout>
@@ -106,12 +110,11 @@ const profileDateModified = "2026-08-01";
 		margin: 0;
 	}
 
-	/* Fixed 4:5 box, so the real headshot drops in with no reflow. */
+	/* Fixed 4:5 box; fit/position on the <Image /> crop the square source to it. */
 	.headshot {
 		flex: 0 0 auto;
 		width: 8rem;
 		aspect-ratio: 4 / 5;
-		background: var(--rule);
 	}
 
 	.prose p {

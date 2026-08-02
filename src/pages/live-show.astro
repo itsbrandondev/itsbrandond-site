@@ -14,9 +14,8 @@ const title = "Live show | Brandon Davenport";
 const description =
 	"A live show on X: building in public, reacting to technology news, and working through problems on camera. Watch the latest replay and browse past streams.";
 
-// Public archive of every stream's replay.
-const driveFolder =
-	"https://drive.google.com/drive/folders/1VzhErjofI_CTBxdyUZxZ74nels7kL62f";
+// Streams excludes the latest, which gets its own player above this list.
+const pastStreams = streams.slice(1);
 
 // VideoObject requires name, thumbnailUrl and uploadDate; duration and
 // embedUrl are the recommended extras. Google retired podcast rich results,
@@ -32,11 +31,20 @@ const videoSchema = streams.map((stream) => ({
 	url: broadcastUrl(stream.id),
 	embedUrl: embedUrl(stream.id),
 }));
+
+// Drives BaseLayout's og:video / Twitter Player Card tags, scoped to this
+// page only. Same embed URL already rendered as the visible player's src.
+const video = {
+	embedUrl: embedUrl(latestStream.id),
+	width: 1280,
+	height: 720,
+	posterUrl: new URL(latestStream.thumbnail.src, Astro.site).toString(),
+};
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} video={video}>
+	<h1 class="visually-hidden">Recent Live Streams on X</h1>
 	<section class="latest">
-		<h1>Live show</h1>
 		<div class="player">
 			<iframe
 				src={embedUrl(latestStream.id)}
@@ -52,55 +60,59 @@ const videoSchema = streams.map((stream) => ({
 		</p>
 	</section>
 
-	<section class="about">
-		<h2>About the show</h2>
-		<p>
-			I share my screen and work in public: explaining what I'm building,
-			reacting to the day's technology news, digging into things that don't add
-			up, and taking questions from chat. Camera on, mostly solo, minimally
-			produced. Every stream stays up as a replay.
-		</p>
-	</section>
-
-	<section class="archive">
-		<h2>Past streams</h2>
-		<ul>
-			{
-				streams.map((stream) => (
-					<li>
-						<a href={broadcastUrl(stream.id)}>
-							<Image
-								src={stream.thumbnail}
-								alt=""
-								width={160}
-								height={90}
-								loading="lazy"
-							/>
-							<span>
-								<span class="stream-title">{stream.title}</span>
-								<span class="stream-meta">
-									<time datetime={stream.date}>{formatDate(stream.date)}</time>
-									{" · "}
-									{stream.duration}
-								</span>
-							</span>
-						</a>
-					</li>
-				))
-			}
-		</ul>
-		<p>
-			Recordings also live in <a href={driveFolder}>a public Drive folder</a>.
-		</p>
-	</section>
-
 	<section class="cta">
 		<p>
 			<a href="mailto:hey@itsbrandond.com?subject=Add%20me%20to%20your%20list"
-				>Get an email when I go live</a
+				>Get the after-show recap</a
 			>
 		</p>
+		<p>
+			<a href="https://x.com/itsbrandond" rel="me">Follow on X</a>
+		</p>
 	</section>
+
+	<section class="about">
+		<h2>About the show</h2>
+		<p>
+			Live on X (Twitter) explaining what I'm building, reacting to the day's
+			technology news, digging into things that don't add up, and taking
+			questions from chat. We are still building this show together. It is open
+			source, which means anyone can share clips freely.
+		</p>
+	</section>
+
+	{
+		pastStreams.length > 0 && (
+			<section class="archive">
+				<h2>Past streams</h2>
+				<ul>
+					{pastStreams.map((stream) => (
+						<li>
+							<a href={broadcastUrl(stream.id)}>
+								<Image
+									src={stream.thumbnail}
+									alt=""
+									width={160}
+									height={90}
+									loading="lazy"
+								/>
+								<span>
+									<span class="stream-title">{stream.title}</span>
+									<span class="stream-meta">
+										<time datetime={stream.date}>
+											{formatDate(stream.date)}
+										</time>
+										{" · "}
+										{stream.duration}
+									</span>
+								</span>
+							</a>
+						</li>
+					))}
+				</ul>
+			</section>
+		)
+	}
 
 	<script
 		type="application/ld+json"
@@ -110,11 +122,6 @@ const videoSchema = streams.map((stream) => ({
 </BaseLayout>
 
 <style>
-	h1 {
-		font-size: 1.5rem;
-		margin: 0 0 1.25rem;
-	}
-
 	h2 {
 		font-size: 1rem;
 		font-weight: 600;
@@ -194,12 +201,7 @@ const videoSchema = streams.map((stream) => ({
 		}
 	}
 
-	.archive p {
-		margin: 2rem 0 0;
-		font-size: 0.9375rem;
-	}
-
 	.cta p {
-		margin: 0;
+		margin: 0 0 0.5rem;
 	}
 </style>

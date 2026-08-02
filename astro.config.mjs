@@ -6,8 +6,8 @@ import sitemap from "@astrojs/sitemap";
 // meant to reflect when the page itself last changed, not the build date.
 /** @type {Record<string, string>} */
 const lastmod = {
-	"/": "2026-08-01",
-	"/live-show/": "2026-08-01",
+	"/": "2026-08-02",
+	"/live-show/": "2026-08-02",
 };
 
 // https://astro.build/config

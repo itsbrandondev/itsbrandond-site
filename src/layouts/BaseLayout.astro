@@ -10,9 +10,22 @@ interface Props {
 	 * content changes. Other pages get the bare Person schema.
 	 */
 	profileDateModified?: string;
+	/**
+	 * Set only on pages whose primary content is a video (currently
+	 * /live-show). Switches og:type to video.other and adds og:video /
+	 * Twitter Player Card tags pointing at the same embeddable iframe URL
+	 * already rendered as the page's visible player, so there's no separate
+	 * video asset to host or keep in sync.
+	 */
+	video?: {
+		embedUrl: string;
+		width: number;
+		height: number;
+		posterUrl: string;
+	};
 }
 
-const { title, description, profileDateModified } = Astro.props;
+const { title, description, profileDateModified, video } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL("/og-image.jpg", Astro.site);
@@ -65,15 +78,38 @@ const schema = profileDateModified
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content={video ? "video.other" : "website"} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:image" content={ogImageURL} />
-		<meta name="twitter:card" content="summary_large_image" />
+		{
+			video && (
+				<>
+					<meta property="og:video" content={video.embedUrl} />
+					<meta property="og:video:secure_url" content={video.embedUrl} />
+					<meta property="og:video:type" content="text/html" />
+					<meta property="og:video:width" content={String(video.width)} />
+					<meta property="og:video:height" content={String(video.height)} />
+				</>
+			)
+		}
+		<meta
+			name="twitter:card"
+			content={video ? "player" : "summary_large_image"}
+		/>
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={ogImageURL} />
+		<meta name="twitter:image" content={video ? video.posterUrl : ogImageURL} />
+		{
+			video && (
+				<>
+					<meta name="twitter:player" content={video.embedUrl} />
+					<meta name="twitter:player:width" content={String(video.width)} />
+					<meta name="twitter:player:height" content={String(video.height)} />
+				</>
+			)
+		}
 
 		<meta name="generator" content={Astro.generator} />
 
@@ -87,22 +123,31 @@ const schema = profileDateModified
 		<a class="skip-link" href="#main">Skip to content</a>
 
 		<header class="site-header">
-			<nav aria-label="Primary">
-				<ul>
-					<li>
-						<a
-							href="/work"
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label="Work (opens LinkedIn in a new tab)"
-						>
-							Work<span aria-hidden="true">&#8239;&#8599;</span>
-						</a>
-					</li>
-					<li><a href="/live-show">Live show</a></li>
-					<li><a id="contact-open" href="#contact">Contact</a></li>
-				</ul>
-			</nav>
+			<div class="site-header-row">
+				<a
+					href="/"
+					class="site-home"
+					aria-current={Astro.url.pathname === "/" ? "page" : undefined}
+				>
+					itsbrandond
+				</a>
+				<nav aria-label="Primary">
+					<ul>
+						<li>
+							<a
+								href="/work"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="Work (opens LinkedIn in a new tab)"
+							>
+								Work<span aria-hidden="true">&#8239;&#8599;</span>
+							</a>
+						</li>
+						<li><a href="/live-show">Live show</a></li>
+						<li><a id="contact-open" href="#contact">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
 		</header>
 
 		<main id="main">
