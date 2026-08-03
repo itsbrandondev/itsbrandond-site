@@ -8,7 +8,7 @@ import sitemap from "@astrojs/sitemap";
 const lastmod = {
 	"/": "2026-08-02",
 	"/live-show/": "2026-08-02",
-	"/work/": "2026-08-02",
+	"/work/": "2026-08-03",
 };
 
 // https://astro.build/config

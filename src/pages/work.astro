@@ -1,34 +1,126 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { workCategories, workItems } from "../data/work";
+
+const title = "Work | Brandon Davenport";
+const description =
+	"What I've built, shipped, and closed: platform standards, product launches, and deals across the Hedera ecosystem and beyond.";
+
+// Mirrors the rendered copy exactly: no detail here that isn't visible below.
+const workSchema = {
+	"@context": "https://schema.org",
+	"@type": "ItemList",
+	itemListElement: workItems.map((item, index) => ({
+		"@type": "ListItem",
+		position: index + 1,
+		item: {
+			"@type": "CreativeWork",
+			name: item.title,
+			description: item.description,
+			...(item.link ? { url: item.link } : {}),
+		},
+	})),
+};
 ---
 
-<BaseLayout
-	title="Work | Brandon Davenport"
-	description="A proof-of-work page for Brandon Davenport is on the way. In the meantime, see his LinkedIn or the live show."
->
-	<section class="work">
-		<h1>Work</h1>
-		<p>
-			Coming soon: a real look at what I've built and shipped. Until then, <a
-				href="https://linkedin.com/in/itsbrandond"
-				target="_blank"
-				rel="noopener noreferrer">LinkedIn</a
-			> has the play-by-play, or catch me <a href="/live-show">live</a>.
-		</p>
+<BaseLayout title={title} description={description}>
+	<h1>Work</h1>
+	<p class="intro">
+		A fuller look at what I've built, shipped, and closed. I've closed startup
+		and enterprise deals, and grew Hgraph from 0-1. I'm open for consulting
+		work: tell me what you're working on.
+	</p>
+
+	{
+		workCategories.map((category) => (
+			<section class="category">
+				<h2>{category}</h2>
+				<ul>
+					{workItems
+						.filter((item) => item.category === category)
+						.map((item) => (
+							<li>
+								<span class="item-title">
+									{item.link ? (
+										<a
+											href={item.link}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											{item.title}
+										</a>
+									) : (
+										item.title
+									)}
+								</span>
+								<p>{item.description}</p>
+							</li>
+						))}
+				</ul>
+			</section>
+		))
+	}
+
+	<section class="cta">
+		<p><a href="/meet">Book a call</a></p>
 	</section>
+
+	<script
+		type="application/ld+json"
+		is:inline
+		set:html={JSON.stringify(workSchema)}
+	/>
 </BaseLayout>
 
 <style>
-	.work {
-		padding-block: 2rem 4rem;
-	}
-
-	.work h1 {
+	h1 {
 		font-size: 1.5rem;
 		margin: 0 0 1rem;
 	}
 
-	.work p {
+	.intro {
+		margin: 0 0 2.5rem;
+	}
+
+	h2 {
+		font-size: 1rem;
+		font-weight: 600;
+		margin: 0 0 0.75rem;
+	}
+
+	.category + .category {
+		margin-top: 2.5rem;
+	}
+
+	.category ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	.item-title {
+		display: block;
+		font-weight: 600;
+	}
+
+	.category a {
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	.category p {
+		margin: 0.25rem 0 0;
+		color: var(--muted);
+		font-size: 0.9375rem;
+	}
+
+	.cta {
+		margin-top: 3rem;
+	}
+
+	.cta p {
 		margin: 0;
 	}
 </style>
