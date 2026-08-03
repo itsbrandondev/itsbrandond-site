@@ -40,7 +40,7 @@ export const workItems: WorkItem[] = [
 		id: "hiero-tsc",
 		title: "Hiero Technical Steering Committee",
 		description:
-			"Elected member representing developers, end-users, and organizations in shaping Hiero's technical roadmap, under the Linux Foundation.",
+			"Elected member shaping Hiero's technical roadmap, under the Linux Foundation.",
 		category: "Evangelizing & Communicating",
 		link: "https://hiero.org/tsc",
 	},
@@ -137,7 +137,7 @@ export const workItems: WorkItem[] = [
 		id: "hashpack",
 		title: "HashPack",
 		description:
-			"Built custom Grafana analytics dashboards on Hedera Mirror Node data for a leading Hedera wallet.",
+			"Built custom Grafana analytics dashboards on Hgraph's data infrastructure for a leading Hedera wallet.",
 		category: "Building & Shipping",
 		link: "https://hgraph.com/case-studies/hashpack",
 	},
@@ -150,7 +150,7 @@ export const workItems: WorkItem[] = [
 		link: "https://sentx.io/about/partners",
 	},
 	{
-		id: "hashgraph-association",
+		id: "grantee-analytics",
 		title: "Grantee-management analytics",
 		description:
 			"Built an analytics dashboard for grantee management for a Hedera ecosystem foundation.",
