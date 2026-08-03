@@ -133,18 +133,20 @@ const schema = profileDateModified
 				</a>
 				<nav aria-label="Primary">
 					<ul>
+						<li><a href="/work">Work</a></li>
+						<li><a href="/live-show">Live Stream</a></li>
 						<li>
 							<a
-								href="/work"
+								href="https://linkedin.com/in/itsbrandond"
 								target="_blank"
 								rel="noopener noreferrer"
-								aria-label="Work (opens LinkedIn in a new tab)"
+								aria-label="About (opens LinkedIn in a new tab)"
 							>
-								Work<span aria-hidden="true">&#8239;&#8599;</span>
+								About<span aria-hidden="true">&#8239;&#8599;</span>
 							</a>
 						</li>
-						<li><a href="/live-show">Live show</a></li>
 						<li><a id="contact-open" href="#contact">Contact</a></li>
+						<li><a id="follow-open" href="#follow">Follow</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -161,15 +163,27 @@ const schema = profileDateModified
 		<!--
 			Opened with showModal() when JS runs, which supplies the focus trap,
 			the backdrop, Esc-to-close and background inerting for free. Without
-			JS the trigger is a real #contact link and `dialog:target` in
+			JS the trigger is a real #contact/#follow link and `dialog:target` in
 			global.css reveals the panel in flow, so the links are never a dead
 			button. Keep both paths working.
 		-->
-		<dialog id="contact" aria-labelledby="contact-title">
+		<dialog id="contact" class="modal" aria-labelledby="contact-title">
 			<h2 id="contact-title">Get in touch</h2>
 			<ul>
 				<li><a href="/meet">Book a call</a></li>
 				<li><a href="mailto:hey@itsbrandond.com?subject=Hello">Email me</a></li>
+			</ul>
+			<!--
+				Targets #main rather than "#": a real destination keeps it a valid
+				link, and navigating away from #contact is exactly what un-targets
+				the panel in the no-JS path. With JS, the handler closes it instead.
+			-->
+			<a id="contact-close" class="modal-close" href="#main">Close</a>
+		</dialog>
+
+		<dialog id="follow" class="modal" aria-labelledby="follow-title">
+			<h2 id="follow-title">Follow along</h2>
+			<ul>
 				<li>
 					<a href="https://x.com/itsbrandond" rel="me">X</a>
 				</li>
@@ -180,19 +194,14 @@ const schema = profileDateModified
 					<a href="https://github.com/itsbrandondev" rel="me">GitHub</a>
 				</li>
 			</ul>
-			<!--
-				Targets #main rather than "#": a real destination keeps it a valid
-				link, and navigating away from #contact is exactly what un-targets
-				the panel in the no-JS path. With JS, the handler closes it instead.
-			-->
-			<a id="contact-close" class="contact-close" href="#main">Close</a>
+			<a id="follow-close" class="modal-close" href="#main">Close</a>
 		</dialog>
 
 		<script is:inline>
-			(function () {
-				var dialog = document.getElementById("contact");
-				var open = document.getElementById("contact-open");
-				var close = document.getElementById("contact-close");
+			function wireDialog(dialogId, openId, closeId) {
+				var dialog = document.getElementById(dialogId);
+				var open = document.getElementById(openId);
+				var close = document.getElementById(closeId);
 				if (!dialog || !open || !close || !dialog.showModal) return;
 
 				open.addEventListener("click", function (event) {
@@ -213,7 +222,10 @@ const schema = profileDateModified
 				dialog.addEventListener("close", function () {
 					open.focus();
 				});
-			})();
+			}
+
+			wireDialog("contact", "contact-open", "contact-close");
+			wireDialog("follow", "follow-open", "follow-close");
 		</script>
 	</body>
 </html>

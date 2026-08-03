@@ -28,8 +28,8 @@ jobs:
       # are excluded via .lycheeignore, in the order they appear there:
       #   1. hips.hedera.com (the /standard redirect target) returns HTTP 403 to
       #      bot-like requests, a false alarm confirmed fine in a real browser.
-      #   2. /meet and /work are Cloudflare edge redirects declared in
-      #      public/_redirects, so no file for them is ever emitted into dist/.
+      #   2. /meet is a Cloudflare edge redirect declared in public/_redirects,
+      #      so no file for it is ever emitted into dist/.
       #   3. The whole https://itsbrandond.com/ origin. Canonical tags, the
       #      sitemap and llms.txt all point at the production domain, which
       #      still serves the old site and 404s these paths until the domain is

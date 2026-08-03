@@ -10,7 +10,7 @@ import {
 	streams,
 } from "../data/streams";
 
-const title = "Live show | Brandon Davenport";
+const title = "Live Stream | Brandon Davenport";
 const description =
 	"A live show on X: building in public, reacting to technology news, and working through problems on camera. Watch the latest replay and browse past streams.";
 
@@ -71,16 +71,6 @@ const video = {
 		</p>
 	</section>
 
-	<section class="about">
-		<h2>About the show</h2>
-		<p>
-			Live on X (Twitter) explaining what I'm building, reacting to the day's
-			technology news, digging into things that don't add up, and taking
-			questions from chat. We are still building this show together. It is open
-			source, which means anyone can share clips freely.
-		</p>
-	</section>
-
 	{
 		pastStreams.length > 0 && (
 			<section class="archive">
@@ -113,6 +103,16 @@ const video = {
 			</section>
 		)
 	}
+
+	<section class="about">
+		<h2>About the show</h2>
+		<p>
+			Live on X (Twitter) explaining what I'm building, reacting to the day's
+			technology news, digging into things that don't add up, and taking
+			questions from chat. We are still building this show together. It is open
+			source, which means anyone can share clips freely.
+		</p>
+	</section>
 
 	<script
 		type="application/ld+json"

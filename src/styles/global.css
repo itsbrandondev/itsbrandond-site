@@ -121,11 +121,11 @@ main > * {
 }
 
 /*
- * Contact panel. With JS this is opened via showModal(); without JS the
- * :target rule below reveals it in flow, so the links stay reachable.
- * Both paths share this styling. See BaseLayout.astro.
+ * Contact/Follow panels. With JS these are opened via showModal(); without
+ * JS the :target rule below reveals the targeted one in flow, so the links
+ * stay reachable. Both paths share this styling. See BaseLayout.astro.
  */
-#contact {
+.modal {
 	max-width: var(--measure);
 	border: 1px solid var(--fg);
 	background: var(--bg);
@@ -133,17 +133,17 @@ main > * {
 	padding: 1.5rem;
 }
 
-#contact:target {
+.modal:target {
 	display: block;
 	margin: 0 auto 3rem;
 }
 
-#contact h2 {
+.modal h2 {
 	margin: 0 0 1rem;
 	font-size: 1.125rem;
 }
 
-#contact ul {
+.modal ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -151,11 +151,11 @@ main > * {
 	gap: 0.5rem;
 }
 
-#contact::backdrop {
+.modal::backdrop {
 	background: rgb(0 0 0 / 45%);
 }
 
-.contact-close {
+.modal-close {
 	display: inline-block;
 	margin-top: 1.25rem;
 	color: var(--muted);
