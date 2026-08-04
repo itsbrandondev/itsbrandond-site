@@ -10,7 +10,7 @@ Brandon Davenport works both sides of technology and audience: architecting syst
 - [Hgraph](https://hgraph.com): advises on AI product and go-to-market. Previously built the AI and data tooling with the team, including a [Model Context Protocol server and an AI data agent](https://docs.hgraph.com/mcp-server/setup-chatgpt) that answer plain-English questions about Hedera Stats' ecosystem metrics.
 - [Hgraph's 2026 platform recap](https://hgraph.com/blog/hgraph-in-2026-the-full-stack-onchain-data-platform): most recently authored piece.
 - [Hiero Technical Steering Committee](https://hiero.org/tsc): elected member, under the Linux Foundation.
-- [HIP-920](https://hips.hedera.com/hip/hip-920): authored standard for NFT music metadata.
+- [HIP-920](https://hips.hedera.com/hip/hip-920): authored Informational-track proposal for NFT music metadata that reached Active status.
 
 ## Live show
 
@@ -22,7 +22,7 @@ Brandon Davenport works both sides of technology and audience: architecting syst
 - [HederaCon 2025's wallet refresh talk](https://www.youtube.com/watch?v=FTXUdQ6dTf8): moderated panel.
 - [Hashgraph Enthusiasts Show](https://www.youtube.com/watch?v=CpjLibi4jp4): created and hosted for three years, 146 episodes interviewing founders and engineers across the ecosystem.
 
-## Contact
+## Connect
 
 - [LinkedIn](https://linkedin.com/in/itsbrandond)
 - [X](https://x.com/itsbrandond)

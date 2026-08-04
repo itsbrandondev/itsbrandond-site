@@ -121,9 +121,9 @@ main > * {
 }
 
 /*
- * Contact/Follow panels. With JS these are opened via showModal(); without
- * JS the :target rule below reveals the targeted one in flow, so the links
- * stay reachable. Both paths share this styling. See BaseLayout.astro.
+ * Connect panel. With JS it's opened via showModal(); without JS the
+ * :target rule below reveals it in flow, so the link stays reachable.
+ * Both paths share this styling. See BaseLayout.astro.
  */
 .modal {
 	max-width: var(--measure);
