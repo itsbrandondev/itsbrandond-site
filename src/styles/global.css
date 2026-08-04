@@ -1,9 +1,9 @@
 :root {
-	color-scheme: light;
-	--bg: #ffffff;
-	--fg: #111111;
-	--muted: #5a5a5a;
-	--rule: #e2e2e2;
+	color-scheme: dark;
+	--bg: #000000;
+	--fg: #ffffff;
+	--muted: #a5a5a5;
+	--rule: #2e2e2e;
 	--measure: 34rem;
 	--gutter: 1.5rem;
 }
