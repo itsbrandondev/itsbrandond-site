@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import WorkListItem from "../components/WorkListItem.astro";
 import { workCategories, workItems } from "../data/work";
 
 const title = "Work | Brandon Davenport";
@@ -42,25 +43,7 @@ const workSchema = {
 					{workItems
 						.filter((item) => item.category === category)
 						.map((item) => (
-							<li>
-								<span class="item-title">{item.title}</span>
-								<p>{item.description}</p>
-								{item.links?.length ? (
-									<ul class="item-links">
-										{item.links.map((link) => (
-											<li>
-												<a
-													href={link.url}
-													target="_blank"
-													rel="noopener noreferrer"
-												>
-													{link.label}
-												</a>
-											</li>
-										))}
-									</ul>
-								) : null}
-							</li>
+							<WorkListItem item={item} />
 						))}
 				</ul>
 			</section>
@@ -79,27 +62,16 @@ const workSchema = {
 </BaseLayout>
 
 <style>
-	h1 {
-		font-size: 1.5rem;
-		margin-block: 0 1rem;
-	}
-
 	.intro {
-		margin-block: 0 1.5rem;
+		margin-block: 0 var(--space-5);
 	}
 
 	.cta-top {
-		margin-block: 0 2.5rem;
-	}
-
-	h2 {
-		font-size: 1rem;
-		font-weight: 600;
-		margin: 0 0 0.75rem;
+		margin-block: 0 var(--space-6);
 	}
 
 	.category + .category {
-		margin-top: 2.5rem;
+		margin-top: var(--space-6);
 	}
 
 	.category > ul {
@@ -107,40 +79,24 @@ const workSchema = {
 		padding: 0;
 		list-style: none;
 		display: grid;
-		gap: 1.25rem;
-	}
-
-	.item-title {
-		display: block;
-		font-weight: 600;
-	}
-
-	.category a {
-		text-decoration: underline;
-		text-underline-offset: 2px;
-	}
-
-	.category p {
-		margin: 0.25rem 0 0;
-		color: var(--muted);
-		font-size: 0.9375rem;
-	}
-
-	.item-links {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0 1rem;
-		margin: 0.375rem 0 0;
-		padding: 0;
-		list-style: none;
-		font-size: 0.9375rem;
+		gap: var(--space-5);
 	}
 
 	.cta {
-		margin-top: 3rem;
+		margin-top: var(--space-7);
 	}
 
 	.cta p {
 		margin: 0;
+	}
+
+	@media (min-width: 64rem) {
+		.category {
+			max-width: var(--measure-wide);
+		}
+
+		.category > ul {
+			grid-template-columns: repeat(2, 1fr);
+		}
 	}
 </style>

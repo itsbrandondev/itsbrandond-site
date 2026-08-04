@@ -23,9 +23,11 @@ interface Props {
 		height: number;
 		posterUrl: string;
 	};
+	/** Set on pages excluded from the public surface, e.g. /elements/. */
+	noindex?: boolean;
 }
 
-const { title, description, profileDateModified, video } = Astro.props;
+const { title, description, profileDateModified, video, noindex } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL("/og-image.jpg", Astro.site);
@@ -73,6 +75,7 @@ const schema = profileDateModified
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonicalURL} />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
 
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

@@ -1,0 +1,75 @@
+---
+import { Image } from "astro:assets";
+
+import type { Stream } from "../data/streams";
+import { broadcastUrl, formatDate } from "../data/streams";
+
+interface Props {
+	stream: Stream;
+}
+
+const { stream } = Astro.props;
+---
+
+<li>
+	<a href={broadcastUrl(stream.id)}>
+		<Image
+			src={stream.thumbnail}
+			alt=""
+			width={160}
+			height={90}
+			loading="lazy"
+		/>
+		<span>
+			<span class="stream-title">{stream.title}</span>
+			<span class="stream-meta">
+				<time datetime={stream.date}>
+					{formatDate(stream.date)}
+				</time>
+				{" · "}
+				{stream.duration}
+			</span>
+		</span>
+	</a>
+</li>
+
+<style>
+	a {
+		display: flex;
+		gap: 1rem;
+		align-items: flex-start;
+		text-decoration: none;
+	}
+
+	img {
+		flex: 0 0 auto;
+		width: 10rem;
+		height: auto;
+		background: var(--rule);
+	}
+
+	.stream-title {
+		display: block;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	.stream-meta {
+		display: block;
+		margin-top: 0.25rem;
+		color: var(--muted);
+		font-size: 0.9375rem;
+	}
+
+	/* Stack the still above the text on narrow screens. */
+	@media (max-width: 30rem) {
+		a {
+			display: block;
+		}
+
+		img {
+			width: 100%;
+			margin-bottom: 0.5rem;
+		}
+	}
+</style>

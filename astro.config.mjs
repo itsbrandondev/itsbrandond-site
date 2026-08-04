@@ -16,6 +16,7 @@ export default defineConfig({
 	site: "https://itsbrandond.com",
 	integrations: [
 		sitemap({
+			filter: (page) => new URL(page).pathname !== "/elements/",
 			serialize(item) {
 				const date = lastmod[new URL(item.url).pathname];
 				return date ? { ...item, lastmod: date } : item;

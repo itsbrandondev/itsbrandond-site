@@ -1,7 +1,7 @@
 ---
-import { Image } from "astro:assets";
-
 import BaseLayout from "../layouts/BaseLayout.astro";
+import StreamPlayer from "../components/StreamPlayer.astro";
+import StreamThumbnail from "../components/StreamThumbnail.astro";
 import {
 	broadcastUrl,
 	embedUrl,
@@ -44,21 +44,7 @@ const video = {
 
 <BaseLayout title={title} description={description} video={video}>
 	<h1 class="visually-hidden">Recent Live Streams on X</h1>
-	<section class="latest">
-		<div class="player">
-			<iframe
-				src={embedUrl(latestStream.id)}
-				title={`Replay: ${latestStream.title}`}
-				allowfullscreen
-				loading="lazy"></iframe>
-		</div>
-		<p class="latest-meta">
-			{latestStream.title}<br />
-			<time datetime={latestStream.date}>{formatDate(latestStream.date)}</time>
-			{" "}&middot; {latestStream.duration} &middot;{" "}
-			<a href={broadcastUrl(latestStream.id)}>Watch on X</a>
-		</p>
-	</section>
+	<StreamPlayer stream={latestStream} />
 
 	<section class="cta">
 		<p>
@@ -77,27 +63,7 @@ const video = {
 				<h2>Past streams</h2>
 				<ul>
 					{pastStreams.map((stream) => (
-						<li>
-							<a href={broadcastUrl(stream.id)}>
-								<Image
-									src={stream.thumbnail}
-									alt=""
-									width={160}
-									height={90}
-									loading="lazy"
-								/>
-								<span>
-									<span class="stream-title">{stream.title}</span>
-									<span class="stream-meta">
-										<time datetime={stream.date}>
-											{formatDate(stream.date)}
-										</time>
-										{" · "}
-										{stream.duration}
-									</span>
-								</span>
-							</a>
-						</li>
+						<StreamThumbnail stream={stream} />
 					))}
 				</ul>
 			</section>
@@ -122,36 +88,10 @@ const video = {
 </BaseLayout>
 
 <style>
-	h2 {
-		font-size: 1rem;
-		font-weight: 600;
-		margin: 0 0 0.75rem;
-	}
-
-	/* 16:9 box the player fills, so it is correct from 320px up. */
-	.player {
-		position: relative;
-		aspect-ratio: 16 / 9;
-		background: var(--rule);
-	}
-
-	.player iframe {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		border: 0;
-	}
-
-	.latest-meta {
-		margin: 0.75rem 0 0;
-		font-size: 0.9375rem;
-	}
-
 	.about,
 	.archive,
 	.cta {
-		margin-top: 3rem;
+		margin-top: var(--space-7);
 	}
 
 	.archive ul {
@@ -159,49 +99,26 @@ const video = {
 		padding: 0;
 		list-style: none;
 		display: grid;
-		gap: 1.25rem;
-	}
-
-	.archive a {
-		display: flex;
-		gap: 1rem;
-		align-items: flex-start;
-		text-decoration: none;
-	}
-
-	.archive img {
-		flex: 0 0 auto;
-		width: 10rem;
-		height: auto;
-		background: var(--rule);
-	}
-
-	.stream-title {
-		display: block;
-		text-decoration: underline;
-		text-underline-offset: 2px;
-	}
-
-	.stream-meta {
-		display: block;
-		margin-top: 0.25rem;
-		color: var(--muted);
-		font-size: 0.9375rem;
-	}
-
-	/* Stack the still above the text on narrow screens. */
-	@media (max-width: 30rem) {
-		.archive a {
-			display: block;
-		}
-
-		.archive img {
-			width: 100%;
-			margin-bottom: 0.5rem;
-		}
+		gap: var(--space-5);
 	}
 
 	.cta p {
-		margin: 0 0 0.5rem;
+		margin: 0 0 var(--space-2);
+	}
+
+	@media (min-width: 48rem) {
+		.archive ul {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.archive {
+			max-width: var(--measure-wide);
+		}
+
+		.archive ul {
+			grid-template-columns: repeat(3, 1fr);
+		}
 	}
 </style>
