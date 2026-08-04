@@ -64,7 +64,7 @@ export const workItems: WorkItem[] = [
 		id: "hiero-tsc",
 		title: "Hiero Technical Steering Committee",
 		description:
-			"Elected member shaping Hiero's technical roadmap, under the Linux Foundation.",
+			"Elected member of this committee, shaping Hiero's technical roadmap under the Linux Foundation.",
 		category: "Evangelizing & Communicating",
 		links: [
 			{ label: "View", url: "https://hiero.org/tsc" },
@@ -79,7 +79,7 @@ export const workItems: WorkItem[] = [
 		id: "hip-920",
 		title: "HIP-920: NFT Music Metadata JSON Schema",
 		description:
-			"Sole author of this Hedera Improvement Proposal, an Informational-track standard with Active status.",
+			"Sole author of this Hedera Improvement Proposal, an Informational-track submission that reached Active status.",
 		category: "Evangelizing & Communicating",
 		links: [
 			{ label: "Read HIP-920", url: "https://hips.hedera.com/hip/hip-920" },
@@ -89,7 +89,7 @@ export const workItems: WorkItem[] = [
 		id: "hip-412",
 		title: "HIP-412: NFT Token Metadata JSON Schema v2",
 		description:
-			"Working-group member; pioneered the multi-file files array concept within it.",
+			"Working-group member on this Hedera Improvement Proposal; pioneered the multi-file files array concept it introduced.",
 		category: "Evangelizing & Communicating",
 		links: [
 			{ label: "Read HIP-412", url: "https://hips.hedera.com/hip/hip-412" },
@@ -99,7 +99,7 @@ export const workItems: WorkItem[] = [
 		id: "working-group-leadership",
 		title: "DAO, NFT, and DeFi Alliance working groups",
 		description:
-			"Founding member of the Hashgraph DAO Working Group, helped lead the NFT Working Group, and was elected to lead the Hashgraph DeFi Alliance.",
+			"Founding member of the Hashgraph DAO Working Group, helped lead the NFT Working Group, and was later elected to lead the Hashgraph DeFi Alliance itself.",
 		category: "Evangelizing & Communicating",
 		links: [
 			{
@@ -113,7 +113,7 @@ export const workItems: WorkItem[] = [
 		id: "published-bylines",
 		title: "Published bylines",
 		description:
-			"Authored Hgraph's flagship \"Hgraph in 2026\" platform recap, its Mirror Nodes explainer, and its Hedera Stats launch post, plus an earlier byline on Hedera's own blog from the Doerksen & Davenport era.",
+			"Authored Hgraph's \"Hgraph in 2026\" recap, its Mirror Nodes explainer, and its Hedera Stats launch post, plus an earlier byline on Hedera's blog from the Doerksen & Davenport era.",
 		category: "Evangelizing & Communicating",
 		links: [
 			{
@@ -138,7 +138,7 @@ export const workItems: WorkItem[] = [
 		id: "project-acacia",
 		title: "Project Acacia / AP+",
 		description:
-			"Made the introduction and drove the promotion for Hgraph's interoperability work with Australian Payments Plus on the Reserve Bank of Australia's Project Acacia.",
+			"Made the introduction and drove the promotion for Hgraph's interoperability work with Australian Payments Plus on the Reserve Bank of Australia and DFCRC's Project Acacia.",
 		category: "Evangelizing & Communicating",
 		links: [
 			{
@@ -203,7 +203,7 @@ export const workItems: WorkItem[] = [
 		id: "mcp-server",
 		title: "MCP server for Hedera network data",
 		description:
-			"Built a Model Context Protocol server exposing Hedera Stats' ecosystem metrics to AI assistants like ChatGPT via plain-English query.",
+			"Built a Model Context Protocol server that exposes Hedera Stats' ecosystem metrics to AI assistants like ChatGPT, queryable in plain English.",
 		category: "Building & Shipping",
 		links: [
 			{
@@ -238,14 +238,14 @@ export const workItems: WorkItem[] = [
 		title:
 			"Cross-chain bridge architecture, demoed for an institutional client",
 		description:
-			"Compliance-preserving bridge spanning EVM and Solana (LayerZero and Axelar) with SumSub KYC/AML, architected and demoed for a US RWA/mortgage-tokenization firm.",
+			"Compliance-preserving bridge spanning EVM and Solana (LayerZero and Axelar) with SumSub KYC/AML, architected and demoed for a US firm in RWA/mortgage tokenization.",
 		category: "Building & Shipping",
 	},
 	{
 		id: "erc-token-indexer",
 		title: "ERC Token Data Indexer",
 		description:
-			"A GraphQL endpoint for token metadata and balances; its data serves rwa.xyz.",
+			"Built a GraphQL endpoint for token metadata and balances, now powering rwa.xyz's live data feed.",
 		category: "Building & Shipping",
 		links: [
 			{
@@ -298,7 +298,7 @@ export const workItems: WorkItem[] = [
 		id: "grantee-analytics",
 		title: "Grant analytics for a Hedera ecosystem foundation",
 		description:
-			"Built an analytics dashboard for grantee management for a Hedera ecosystem foundation.",
+			"Built a grantee-management analytics dashboard for a Hedera ecosystem foundation's grant program.",
 		category: "Building & Shipping",
 	},
 	{
@@ -318,7 +318,7 @@ export const workItems: WorkItem[] = [
 		id: "pricing-model",
 		title: "API pricing model and account dashboard launch",
 		description:
-			"Modeled Hgraph's API pricing and account dashboard launch, with CEO buy-in.",
+			"Modeled Hgraph's API pricing and account-dashboard launch, securing buy-in from the CEO.",
 		category: "Building & Shipping",
 		links: [
 			{
@@ -333,7 +333,7 @@ export const workItems: WorkItem[] = [
 		id: "noolands-music-video",
 		title: "Music video: Loosey Goosey",
 		description:
-			"Multi-instrumentalist in his indie/alt-rock band The Noolands, active 2014-2020.",
+			"Active 2014-2020 as multi-instrumentalist in his indie/alt-rock band The Noolands.",
 		category: "Creative",
 		links: [
 			{ label: "Watch", url: "https://www.youtube.com/watch?v=VijbGxCZ4f8" },
@@ -373,7 +373,7 @@ export const workItems: WorkItem[] = [
 		id: "sunflow-solar-brand",
 		title: "Brand identity and website build for a solar-energy company",
 		description:
-			"Built brand identity, website, and CRM as Marketing Specialist at SunFlow Solar, including one of the region's most successful radio ad campaigns.",
+			"As Marketing Specialist at SunFlow Solar, built brand identity, website, and CRM, including one of the region's most successful radio ad campaigns.",
 		category: "Creative",
 	},
 	{
@@ -387,7 +387,7 @@ export const workItems: WorkItem[] = [
 		id: "print-branding-client",
 		title: "Branding and print design for a commercial printing client",
 		description:
-			"Brand identity and print design work from the Doerksen & Davenport era.",
+			"Brand identity and print design work for a commercial printing client, from the Doerksen & Davenport era.",
 		category: "Creative",
 	},
 ];
