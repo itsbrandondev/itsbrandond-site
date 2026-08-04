@@ -330,25 +330,30 @@ export const workItems: WorkItem[] = [
 
 	// Creative
 	{
-		id: "noolands-music-video",
-		title: "Music video: Loosey Goosey",
+		id: "music",
+		title: "Music",
 		description:
-			"Active 2014-2020 as multi-instrumentalist in his indie/alt-rock band The Noolands.",
+			"Multi-instrumentalist, video production, and editing across a run of music releases and videos, 2014-2020.",
 		category: "Creative",
 		links: [
-			{ label: "Watch", url: "https://www.youtube.com/watch?v=VijbGxCZ4f8" },
+			{
+				label: "Watch: Loosey Goosey",
+				url: "https://www.youtube.com/watch?v=VijbGxCZ4f8",
+			},
+			{
+				label: "Watch: Record Man",
+				url: "https://www.youtube.com/watch?v=9RCBUr4dE6Q",
+			},
+			{
+				label: "Watch: Like Me Now",
+				url: "https://www.youtube.com/watch?v=eaxEpTeY03g",
+			},
 			{ label: "Bandcamp", url: "https://thenoolands.bandcamp.com/" },
 			{ label: "SoundCloud", url: "https://soundcloud.com/thenoolands" },
-		],
-	},
-	{
-		id: "cudbear-music-video",
-		title: "Music video: Like Me Now",
-		description:
-			"Produced and shot this music video for grunge-rock band Cudbear's debut EP single.",
-		category: "Creative",
-		links: [
-			{ label: "Watch", url: "https://www.youtube.com/watch?v=eaxEpTeY03g" },
+			{
+				label: "Apple Music",
+				url: "https://music.apple.com/ca/artist/the-noolands/1081070203",
+			},
 		],
 	},
 	{
