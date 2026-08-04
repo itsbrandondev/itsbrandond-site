@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import NotFoundContent from "../components/NotFoundContent.astro";
 import WorkListItem from "../components/WorkListItem.astro";
 import StreamPlayer from "../components/StreamPlayer.astro";
 import StreamThumbnail from "../components/StreamThumbnail.astro";
@@ -70,12 +71,7 @@ const pastStreams = (streams[1] ? [streams[1], streams[2]] : [streams[0]])
 
 	<section class="not-found">
 		<h2>404 content</h2>
-		<h1>Page not found</h1>
-		<p>
-			That page isn't here. Try the <a href="/">homepage</a> or the <a
-				href="/live-show">live show</a
-			>.
-		</p>
+		<NotFoundContent />
 	</section>
 
 	<section>
@@ -142,12 +138,25 @@ const pastStreams = (streams[1] ? [streams[1], streams[2]] : [streams[0]])
 		gap: var(--space-1);
 	}
 
-	.not-found {
-		padding-block: var(--space-6) var(--space-8);
+	/*
+	 * Bridges the Headings section's caption-then-specimen order, which
+	 * inverts the site's usual heading-then-caption flow: h1/h2 own no top
+	 * margin and .meta owns no bottom margin, so nothing spaces them apart
+	 * without this. Matches h1's own bottom-margin value for symmetry.
+	 */
+	.meta + h1,
+	.meta + h2,
+	.meta + .modal {
+		margin-top: var(--space-4);
 	}
 
-	.not-found p {
-		margin: 0;
+	/*
+	 * Restores an intentional gap between adjacent bare <p> (e.g. the two
+	 * cta-link specimens), now that global.css resets <p> margin to 0.
+	 * Matches .meta's own top-margin value, the site's caption-gap distance.
+	 */
+	section p + p {
+		margin-top: var(--space-3);
 	}
 
 	.specimen-list {

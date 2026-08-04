@@ -74,6 +74,10 @@ h2 {
 	margin: 0 0 var(--space-3);
 }
 
+p {
+	margin: 0;
+}
+
 /* Font/color inherit, no button chrome: a link that also works as <button>. */
 .cta-link {
 	font: inherit;
@@ -210,4 +214,9 @@ main > * {
 	margin-top: var(--space-4);
 	color: var(--muted);
 	font-size: var(--text-sm);
+}
+
+/* Shared by /404 and the /elements 404-preview specimen. */
+.not-found {
+	padding-block: var(--space-6) var(--space-8);
 }

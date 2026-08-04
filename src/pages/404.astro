@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import NotFoundContent from "../components/NotFoundContent.astro";
 ---
 
 <BaseLayout
@@ -7,21 +8,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	description="This page doesn't exist."
 >
 	<section class="not-found">
-		<h1>Page not found</h1>
-		<p>
-			That page isn't here. Try the <a href="/">homepage</a> or the <a
-				href="/live-show">live show</a
-			>.
-		</p>
+		<NotFoundContent />
 	</section>
 </BaseLayout>
-
-<style>
-	.not-found {
-		padding-block: var(--space-6) var(--space-8);
-	}
-
-	.not-found p {
-		margin: 0;
-	}
-</style>
