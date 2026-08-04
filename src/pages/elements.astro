@@ -10,13 +10,21 @@ const title = "Elements | Brandon Davenport";
 const description =
 	"Internal UI inventory: every font, spacing, and layout pattern the site uses, in one place. Not part of the public site.";
 
-// One specimen with links, one without, so both WorkListItem branches render.
-const itemWithLinks =
-	workItems.find((item) => item.links?.length) ?? workItems[0];
-const itemWithoutLinks =
-	workItems.find((item) => !item.links?.length) ?? workItems[0];
+// A spread of link counts (0, 1, a few, many) so the WorkListItem grid
+// reads with real variety instead of one link and none.
+const workSpecimenIds = [
+	"cross-chain-bridge", // no links
+	"hedera-wallet-connect", // 1 link
+	"hederacon-2025", // 2 links
+	"hashgraph-enthusiasts-show", // 4 links
+];
+const workSpecimens = workSpecimenIds.map(
+	(id) => workItems.find((item) => item.id === id) ?? workItems[0],
+);
 
-const pastStream = streams[1] ?? streams[0];
+const pastStreams = (streams[1] ? [streams[1], streams[2]] : [streams[0]])
+	.filter(Boolean)
+	.slice(0, 2);
 ---
 
 <BaseLayout title={title} description={description} noindex={true}>
@@ -31,14 +39,14 @@ const pastStream = streams[1] ?? streams[0];
 		<p>
 			Body prose reads at the base type size. It links inline to the <a
 				href="/work">work page</a
-			>, and out to
+			>, and out to{" "}
 			<a
 				href="https://linkedin.com/in/itsbrandond"
 				target="_blank"
 				rel="noopener noreferrer"
 			>
 				LinkedIn<span aria-hidden="true">&#8239;&#8599;</span></a
-			>
+			>{" "}
 			the same way the header's About link does.
 		</p>
 		<p class="meta">
@@ -73,8 +81,7 @@ const pastStream = streams[1] ?? streams[0];
 	<section>
 		<h2>Work list item</h2>
 		<ul class="specimen-list">
-			<WorkListItem item={itemWithLinks} />
-			<WorkListItem item={itemWithoutLinks} />
+			{workSpecimens.map((item) => <WorkListItem item={item} />)}
 		</ul>
 	</section>
 
@@ -86,8 +93,30 @@ const pastStream = streams[1] ?? streams[0];
 	<section>
 		<h2>Stream thumbnail</h2>
 		<ul class="specimen-list">
-			<StreamThumbnail stream={pastStream} />
+			{pastStreams.map((stream) => <StreamThumbnail stream={stream} />)}
 		</ul>
+	</section>
+
+	<section>
+		<h2>Headings</h2>
+		<p class="meta">
+			Visible page h1, used on <code>/work</code>, <code>/elements</code>, and{
+				" "
+			}
+			<code>/404</code>. The homepage and <code>/live-show</code> use a{" "}
+			<code>.visually-hidden</code> h1 instead, so it carries no visible size to demonstrate
+			here.
+		</p>
+		<h1>A visible page h1</h1>
+		<p class="meta">Section h2, used everywhere.</p>
+		<h2>A section h2</h2>
+		<p class="meta">
+			The Connect dialog's <code>.modal h2</code>, same size as above with a
+			larger bottom margin.
+		</p>
+		<div class="modal">
+			<h2>A modal h2</h2>
+		</div>
 	</section>
 </BaseLayout>
 
