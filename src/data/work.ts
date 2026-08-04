@@ -29,16 +29,31 @@ export const workItems: WorkItem[] = [
 		category: "Evangelizing & Communicating",
 		links: [
 			{ label: "Watch", url: "https://www.youtube.com/watch?v=CpjLibi4jp4" },
+			{
+				label: "Listen on Spotify",
+				url: "https://open.spotify.com/show/7in044o6gPSjXWZjlfH6z1",
+			},
+			{
+				label: "Listen on Apple Podcasts",
+				url: "https://podcasts.apple.com/us/podcast/hashgraph-enthusiasts/id1670778871",
+			},
 		],
 	},
 	{
 		id: "hederacon-2025",
 		title: "HederaCon 2025",
 		description:
-			"Moderated sessions in front of 600+ attendees, including the wallet refresh panel.",
+			"Moderated sessions in front of 600+ attendees, including the wallet refresh panel, and appeared as a panelist reflecting on the Hedera ecosystem's journey.",
 		category: "Evangelizing & Communicating",
 		links: [
-			{ label: "Watch", url: "https://www.youtube.com/watch?v=FTXUdQ6dTf8" },
+			{
+				label: "Watch: moderated panel",
+				url: "https://www.youtube.com/watch?v=FTXUdQ6dTf8",
+			},
+			{
+				label: "Watch: panelist session",
+				url: "https://www.youtube.com/watch?v=ZIyXFW5mkXg",
+			},
 		],
 	},
 	{
@@ -47,7 +62,14 @@ export const workItems: WorkItem[] = [
 		description:
 			"Elected member shaping Hiero's technical roadmap, under the Linux Foundation.",
 		category: "Evangelizing & Communicating",
-		links: [{ label: "View", url: "https://hiero.org/tsc" }],
+		links: [
+			{ label: "View", url: "https://hiero.org/tsc" },
+			{ label: "GitHub org", url: "https://github.com/hiero-ledger" },
+			{
+				label: "Community calendar",
+				url: "https://zoom-lfx.platform.linuxfoundation.org/meetings/hiero?view=week",
+			},
+		],
 	},
 	{
 		id: "hip-920",
@@ -119,6 +141,10 @@ export const workItems: WorkItem[] = [
 				label: "Read the announcement",
 				url: "https://hgraph.com/blog/hgraph-interoperability-solution-australian-payments-plus-project-acacia",
 			},
+			{
+				label: "Utila's announcement",
+				url: "https://www.linkedin.com/posts/utila-has-been-chosen-as-the-wallet-infrastructure-share-7435254367328321536-2y10/",
+			},
 		],
 	},
 	{
@@ -157,6 +183,14 @@ export const workItems: WorkItem[] = [
 				label: "View the post",
 				url: "https://x.com/hgraph/status/1980691710247137466",
 			},
+			{
+				label: "Brand launch post",
+				url: "https://www.linkedin.com/posts/itsbrandond_a-good-day-to-build-at-hgraph-share-7363560799820279808-Oho2/",
+			},
+			{
+				label: "AI Data Agent launch",
+				url: "https://www.linkedin.com/posts/hgraph-ai-data-agent-now-live-instantly-ugcPost-7407793205288595456-v9ii/",
+			},
 		],
 	},
 
@@ -172,6 +206,10 @@ export const workItems: WorkItem[] = [
 				label: "Docs",
 				url: "https://docs.hgraph.com/mcp-server/setup-chatgpt",
 			},
+			{
+				label: "Setup video",
+				url: "https://www.linkedin.com/posts/itsbrandond_heres-how-to-set-up-the-hgraph-mcp-server-ugcPost-7395234602602201088-xPz2/",
+			},
 		],
 	},
 	{
@@ -184,6 +222,10 @@ export const workItems: WorkItem[] = [
 			{
 				label: "Docs",
 				url: "https://docs.hgraph.com/mcp-server/setup-chatgpt",
+			},
+			{
+				label: "Announcement on X",
+				url: "https://x.com/itsbrandond/status/2002351777728114819",
 			},
 		],
 	},
@@ -249,7 +291,7 @@ export const workItems: WorkItem[] = [
 	},
 	{
 		id: "grantee-analytics",
-		title: "Grant-management analytics for a Hedera ecosystem foundation",
+		title: "Grant analytics for a Hedera ecosystem foundation",
 		description:
 			"Built an analytics dashboard for grantee management for a Hedera ecosystem foundation.",
 		category: "Building & Shipping",
@@ -290,7 +332,27 @@ export const workItems: WorkItem[] = [
 		category: "Creative",
 		links: [
 			{ label: "Watch", url: "https://www.youtube.com/watch?v=VijbGxCZ4f8" },
+			{ label: "Bandcamp", url: "https://thenoolands.bandcamp.com/" },
+			{ label: "SoundCloud", url: "https://soundcloud.com/thenoolands" },
 		],
+	},
+	{
+		id: "cudbear-music-video",
+		title: "Music video: Like Me Now",
+		description:
+			"Produced and shot this music video for grunge-rock band Cudbear's debut EP single.",
+		category: "Creative",
+		links: [
+			{ label: "Watch", url: "https://www.youtube.com/watch?v=eaxEpTeY03g" },
+		],
+	},
+	{
+		id: "design-portfolio",
+		title: "Brand and web design portfolio",
+		description:
+			"Selected brand identity, web design, and print work spanning agency and in-house roles, pre-dating Hgraph.",
+		category: "Creative",
+		links: [{ label: "Dribbble", url: "https://dribbble.com/itsbrandond" }],
 	},
 	{
 		id: "dd-hello-future",
