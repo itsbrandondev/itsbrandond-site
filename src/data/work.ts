@@ -333,7 +333,7 @@ export const workItems: WorkItem[] = [
 		id: "music",
 		title: "Music",
 		description:
-			"Multi-instrumentalist, video production, and editing across a run of music releases and videos, 2014-2020.",
+			"Multi-instrumentalist in his indie/alt-rock band, active 2014-2020.",
 		category: "Creative",
 		links: [
 			{
@@ -344,15 +344,28 @@ export const workItems: WorkItem[] = [
 				label: "Watch: Record Man",
 				url: "https://www.youtube.com/watch?v=9RCBUr4dE6Q",
 			},
-			{
-				label: "Watch: Like Me Now",
-				url: "https://www.youtube.com/watch?v=eaxEpTeY03g",
-			},
 			{ label: "Bandcamp", url: "https://thenoolands.bandcamp.com/" },
 			{ label: "SoundCloud", url: "https://soundcloud.com/thenoolands" },
 			{
 				label: "Apple Music",
 				url: "https://music.apple.com/ca/artist/the-noolands/1081070203",
+			},
+		],
+	},
+	{
+		id: "video-work",
+		title: "Video work",
+		description:
+			"Filmed and edited a band's music video and a bootleg iPhone commercial that topped 290,000 views.",
+		category: "Creative",
+		links: [
+			{
+				label: "Watch: Like Me Now",
+				url: "https://www.youtube.com/watch?v=eaxEpTeY03g",
+			},
+			{
+				label: "Watch: iPhone 4 Fan Ad",
+				url: "https://www.youtube.com/watch?v=Ir3K0MSz_Y0",
 			},
 		],
 	},
@@ -387,6 +400,9 @@ export const workItems: WorkItem[] = [
 		description:
 			"Produced promotional video content for Squarespace's marketing team, including a social-widget launch campaign.",
 		category: "Creative",
+		links: [
+			{ label: "Watch", url: "https://www.youtube.com/watch?v=onP77Hewyf4" },
+		],
 	},
 	{
 		id: "print-branding-client",
