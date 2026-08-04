@@ -30,6 +30,10 @@ export const workItems: WorkItem[] = [
 		links: [
 			{ label: "Watch", url: "https://www.youtube.com/watch?v=CpjLibi4jp4" },
 			{
+				label: "Watch: full playlist",
+				url: "https://youtube.com/playlist?list=PL7yWNDNn79AIjNvS4pWtaeMmSCCOd3I75&si=t_sDXbAwuXfZMSLC",
+			},
+			{
 				label: "Listen on Spotify",
 				url: "https://open.spotify.com/show/7in044o6gPSjXWZjlfH6z1",
 			},
@@ -283,9 +287,10 @@ export const workItems: WorkItem[] = [
 	},
 	{
 		id: "sentx",
-		title: "Wallet-auth and security hardening for a digital-asset marketplace",
+		title:
+			"Brand redesign and McLaren NFT-claim integration for a digital-asset marketplace",
 		description:
-			"Coordinated wallet-auth (Privy) and backend security hardening for SentX.",
+			"Redesigned SentX's logo, brand, and NFT marketplace frontend, then led the integration for McLaren's NFT claims.",
 		category: "Building & Shipping",
 		links: [{ label: "sentx.io", url: "https://sentx.io/about/partners" }],
 	},
