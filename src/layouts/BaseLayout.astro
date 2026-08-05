@@ -135,7 +135,7 @@ const schema = profileDateModified
 					itsbrandond
 				</a>
 				<nav aria-label="Primary">
-					<ul>
+					<ul class="list-reset">
 						<li><a href="/work">Work</a></li>
 						<li><a href="/live-show">Live Stream</a></li>
 						<li>
@@ -158,20 +158,20 @@ const schema = profileDateModified
 			<slot />
 		</main>
 
-		<footer class="site-footer">
+		<footer class="site-footer meta">
 			<p>Brandon Davenport, {year}</p>
 		</footer>
 
 		<!--
 			Opened with showModal() when JS runs, which supplies the focus trap,
 			the backdrop, Esc-to-close and background inerting for free. Without
-			JS the trigger is a real #connect link and `dialog:target` in
-			global.css reveals the panel in flow, so the link is never a dead
-			button. Keep both paths working.
+			JS the trigger is a real #connect link and `.modal:target` in
+			global.css reveals the panel here, in document flow after the
+			footer, so the link is never a dead button. Keep both paths working.
 		-->
 		<dialog id="connect" class="modal" aria-labelledby="connect-title">
 			<h2 id="connect-title">Connect</h2>
-			<ul>
+			<ul class="list-reset">
 				<li><a href="/meet">Book a call</a></li>
 				<li><a href="mailto:hey@itsbrandond.com?subject=Hello">Email me</a></li>
 				<li><a href="https://x.com/itsbrandond" rel="me">X</a></li>
@@ -185,7 +185,7 @@ const schema = profileDateModified
 				link, and navigating away from #connect is exactly what un-targets
 				the panel in the no-JS path. With JS, the handler closes it instead.
 			-->
-			<a id="connect-close" class="modal-close" href="#main">Close</a>
+			<a id="connect-close" class="modal-close meta" href="#main">Close</a>
 		</dialog>
 
 		<script is:inline>

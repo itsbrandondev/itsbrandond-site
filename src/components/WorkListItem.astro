@@ -13,7 +13,7 @@ const { item } = Astro.props;
 	<p>{item.description}</p>
 	{
 		item.links?.length ? (
-			<ul class="item-links">
+			<ul class="item-links list-reset">
 				{item.links.map((link) => (
 					<li>
 						<a href={link.url} target="_blank" rel="noopener noreferrer">
@@ -32,10 +32,14 @@ const { item } = Astro.props;
 		font-weight: var(--weight-semibold);
 	}
 
+	/*
+	 * The description is real content, not metadata, so it reads at the base
+	 * size rather than the small one. It keeps the muted colour for now; that
+	 * is a deliberate half-step, to be settled in the colour pass.
+	 */
 	p {
 		margin: var(--space-1) 0 0;
 		color: var(--muted);
-		font-size: var(--text-sm);
 	}
 
 	a {
@@ -48,8 +52,6 @@ const { item } = Astro.props;
 		flex-wrap: wrap;
 		gap: var(--space-1) var(--space-4);
 		margin: var(--space-2) 0 0;
-		padding: 0;
-		list-style: none;
 		font-size: var(--text-sm);
 	}
 </style>

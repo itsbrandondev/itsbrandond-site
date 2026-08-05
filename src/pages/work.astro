@@ -26,7 +26,7 @@ const workSchema = {
 
 <BaseLayout title={title} description={description}>
 	<h1>Work</h1>
-	<p class="intro">
+	<p class="lede">
 		A fuller look at what I've built, shipped, and closed. I've closed startup
 		and enterprise deals, and grew Hgraph from 0-1. I'm open for consulting
 		work: tell me what you're working on.
@@ -39,7 +39,7 @@ const workSchema = {
 		workCategories.map((category) => (
 			<section class="category">
 				<h2>{category}</h2>
-				<ul>
+				<ul class="list-reset card-grid">
 					{workItems
 						.filter((item) => item.category === category)
 						.map((item) => (
@@ -62,41 +62,24 @@ const workSchema = {
 </BaseLayout>
 
 <style>
-	.intro {
-		margin-block: 0 var(--space-5);
-	}
-
 	.cta-top {
-		margin-block: 0 var(--space-6);
+		margin-block: 0 var(--space-7);
 	}
 
 	.category + .category {
-		margin-top: var(--space-6);
+		margin-top: var(--space-8);
 	}
 
+	/* Work items carry more text than a stream card, so they get a wider floor. */
 	.category > ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		display: grid;
-		gap: var(--space-5);
+		--card-min: 20rem;
 	}
 
 	.cta {
-		margin-top: var(--space-7);
+		margin-top: var(--space-8);
 	}
 
 	.cta p {
 		margin: 0;
-	}
-
-	@media (min-width: 64rem) {
-		.category {
-			max-width: var(--measure-wide);
-		}
-
-		.category > ul {
-			grid-template-columns: repeat(2, 1fr);
-		}
 	}
 </style>

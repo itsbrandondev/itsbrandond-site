@@ -9,7 +9,7 @@ interface Props {
 const { stream } = Astro.props;
 ---
 
-<section class="latest">
+<section>
 	<div class="player">
 		<iframe
 			src={embedUrl(stream.id)}
@@ -17,8 +17,8 @@ const { stream } = Astro.props;
 			allowfullscreen
 			loading="lazy"></iframe>
 	</div>
-	<p class="latest-meta">
-		{stream.title}<br />
+	<p class="latest-title">{stream.title}</p>
+	<p class="latest-meta meta">
 		<time datetime={stream.date}>{formatDate(stream.date)}</time>
 		{" "}&middot; {stream.duration} &middot;{" "}
 		<a href={broadcastUrl(stream.id)}>Watch on X</a>
@@ -41,8 +41,11 @@ const { stream } = Astro.props;
 		border: 0;
 	}
 
-	.latest-meta {
+	.latest-title {
 		margin: var(--space-3) 0 0;
-		font-size: var(--text-sm);
+	}
+
+	.latest-meta {
+		margin: var(--space-1) 0 0;
 	}
 </style>

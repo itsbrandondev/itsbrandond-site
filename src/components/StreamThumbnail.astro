@@ -16,13 +16,14 @@ const { stream } = Astro.props;
 		<Image
 			src={stream.thumbnail}
 			alt=""
-			width={160}
-			height={90}
+			width={432}
+			height={243}
 			loading="lazy"
+			sizes="(min-width: 936px) 288px, (min-width: 632px) 45vw, 100vw"
 		/>
 		<span>
 			<span class="stream-title">{stream.title}</span>
-			<span class="stream-meta">
+			<span class="stream-meta meta">
 				<time datetime={stream.date}>
 					{formatDate(stream.date)}
 				</time>
@@ -34,17 +35,22 @@ const { stream } = Astro.props;
 </li>
 
 <style>
+	/*
+	 * Poster card: still on top, text below, at every size. The card lives in
+	 * a grid track, so its width is set by its container rather than by the
+	 * window, and there is nothing left for a breakpoint to decide.
+	 */
 	a {
-		display: flex;
-		gap: var(--space-4);
-		align-items: flex-start;
+		display: block;
 		text-decoration: none;
 	}
 
 	img {
-		flex: 0 0 auto;
-		width: 10rem;
+		width: 100%;
 		height: auto;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		margin-bottom: var(--space-3);
 		background: var(--rule);
 	}
 
@@ -57,19 +63,5 @@ const { stream } = Astro.props;
 	.stream-meta {
 		display: block;
 		margin-top: var(--space-1);
-		color: var(--muted);
-		font-size: var(--text-sm);
-	}
-
-	/* Stack the still above the text on narrow screens. */
-	@media (max-width: 30rem) {
-		a {
-			display: block;
-		}
-
-		img {
-			width: 100%;
-			margin-bottom: var(--space-2);
-		}
 	}
 </style>

@@ -24,19 +24,24 @@ jobs:
       # resolve against the built output. lychee-action is a composite action
       # running on the runner, so github.workspace is the correct prefix.
       #
-      # Three classes of link cannot be verified against a static directory and
+      # Four classes of link cannot be verified against a static directory and
       # are excluded via .lycheeignore, in the order they appear there:
       #   1. hips.hedera.com (the /standard redirect target) returns HTTP 403 to
       #      bot-like requests, a false alarm confirmed fine in a real browser.
-      #   2. /meet is a Cloudflare edge redirect declared in public/_redirects,
+      #   2. www.npmjs.com (the hedera-wallet-connect package page, linked from
+      #      src/data/work.ts) returns HTTP 403 to automated requests whatever
+      #      user agent they send. Confirmed 2026-08-04 against both a lychee
+      #      and a browser user agent; the page loads fine in a real browser.
+      #   3. /meet is a Cloudflare edge redirect declared in public/_redirects,
       #      so no file for it is ever emitted into dist/.
-      #   3. The whole https://itsbrandond.com/ origin. Canonical tags, the
+      #   4. The whole https://itsbrandond.com/ origin. Canonical tags, the
       #      sitemap and llms.txt all point at the production domain, which
       #      still serves the old site and 404s these paths until the domain is
       #      cut over to this Worker. Scoped to the origin rather than to
       #      individual paths so that adding a page does not re-break CI.
-      #      DELETE THIS ONE once the cutover is verified: after that it would
-      #      silently stop checking every canonical and sitemap URL.
+      #      Tracked as HZN-28: delete this entry once the cutover is verified,
+      #      because until then it silently stops checking every canonical and
+      #      sitemap URL. Still live as of 2026-08-04 (itsbrandond.com/work 404s).
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:

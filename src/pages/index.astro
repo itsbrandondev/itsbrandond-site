@@ -3,13 +3,14 @@ import { Image } from "astro:assets";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 import headshot from "../assets/headshot.jpeg";
+import { lastmod } from "../data/pages";
 
 const title = "Brandon Davenport";
 const description =
 	"Tech evangelist who ships. AI and data tooling at Hgraph, elected member of the Hiero Technical Steering Committee, and creator of the Hashgraph Enthusiasts Show.";
 
-// Bump alongside any content edit to this page; feeds ProfilePage's dateModified.
-const profileDateModified = "2026-08-02";
+// Same fact the sitemap uses; bump it in src/data/pages.ts.
+const profileDateModified = lastmod["/"];
 ---
 
 <BaseLayout
@@ -18,12 +19,12 @@ const profileDateModified = "2026-08-02";
 	profileDateModified={profileDateModified}
 >
 	<h1 class="visually-hidden">Brandon Davenport</h1>
-	<section class="intro">
+	<section class="intro-row">
 		<Image
 			src={headshot}
 			alt="Brandon Davenport"
-			width={320}
-			height={320}
+			width={344}
+			height={344}
 			class="headshot"
 		/>
 		<p>
@@ -86,7 +87,7 @@ const profileDateModified = "2026-08-02";
 
 	<section class="cooking">
 		<h2>Currently cooking</h2>
-		<ul>
+		<ul class="bullet-list">
 			<li>Live streaming on X, talking about AI/crypto news and building.</li>
 			<li>For hire consulting work (tell me what you're working on)</li>
 			<li>A secret project that I can't talk about quite yet</li>
@@ -96,21 +97,26 @@ const profileDateModified = "2026-08-02";
 </BaseLayout>
 
 <style>
-	.intro {
+	/*
+	 * Portrait beside the lede, wrapping to stacked when the row runs out of
+	 * room. 21.5rem + 1.5rem gap + the 34rem prose measure is 57rem, exactly
+	 * the rail's content box, so the row reaches the rail's right edge with no
+	 * dead space and no width query.
+	 */
+	.intro-row {
 		display: flex;
 		flex-wrap: wrap;
-		align-items: flex-start;
+		align-items: center;
 		gap: var(--space-5);
 	}
 
-	.intro p {
+	.intro-row p {
 		flex: 1 1 16rem;
-		margin: 0;
 	}
 
 	.headshot {
 		flex: 0 0 auto;
-		width: 8rem;
+		width: 21.5rem;
 		aspect-ratio: 1 / 1;
 	}
 
@@ -119,7 +125,7 @@ const profileDateModified = "2026-08-02";
 	}
 
 	.cta {
-		margin-top: var(--space-6);
+		margin-top: var(--space-7);
 	}
 
 	.cta p {
@@ -127,13 +133,6 @@ const profileDateModified = "2026-08-02";
 	}
 
 	.cooking {
-		margin-top: var(--space-7);
-	}
-
-	.cooking ul {
-		margin: 0;
-		padding-left: var(--space-4);
-		display: grid;
-		gap: var(--space-1);
+		margin-top: var(--space-8);
 	}
 </style>

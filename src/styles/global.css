@@ -1,8 +1,9 @@
 /*
- * Breakpoints. CSS custom properties can't be referenced inside @media
- * conditions, so these are documented here as the literal constants every
- * @media rule in this codebase cites: --bp-sm 30rem, --bp-md 48rem,
- * --bp-lg 64rem.
+ * Layout is container-relative or intrinsic by default: sizing responds to the
+ * box an element sits in, not to the window. There are deliberately no @media
+ * rules in this codebase. A genuine viewport dependency may add one, but it
+ * must carry a comment saying why the viewport, and not the container, is the
+ * thing being measured.
  */
 
 :root {
@@ -11,11 +12,25 @@
 	--fg: #ffffff;
 	--muted: #a5a5a5;
 	--rule: #2e2e2e;
+
+	/*
+	 * Three separate jobs that were one token until now. --rail is the page
+	 * container, --measure caps prose for readability, --modal-width sizes the
+	 * Connect panel. Collapsing them is what made a page needing a wider rail
+	 * override the prose measure, breaking alignment by (rail - measure) / 2.
+	 */
+	--rail: 60rem;
 	--measure: 34rem;
-	--measure-wide: 60rem;
+	--modal-width: 22rem;
 	--gutter: var(--space-5);
 
-	/* Spacing: 8 fixed steps, 4px-based. */
+	/*
+	 * Spacing: 8 fixed steps, 4px-based. Page rhythm uses three tiers only:
+	 * 64 (--space-8) between sections, 48 (--space-7) between blocks, 24
+	 * (--space-5) between elements. Steps 1-4 stay for intra-element spacing,
+	 * e.g. a label sitting above its value. The scale is a palette: a step
+	 * being unused right now is fine.
+	 */
 	--space-1: 0.25rem;
 	--space-2: 0.5rem;
 	--space-3: 0.75rem;
@@ -26,12 +41,16 @@
 	--space-8: 4rem;
 
 	/* Type: 4 fixed steps. */
-	--text-sm: 0.9375rem;
+	--text-sm: 0.875rem;
 	--text-base: 1.0625rem;
-	--text-md: 1.25rem;
-	--text-lg: 1.75rem;
+	--text-md: 1.375rem;
+	--text-lg: 2rem;
 
-	--weight-regular: 400;
+	/* Leading, tightening as type gets larger. */
+	--leading-tight: 1.15;
+	--leading-snug: 1.3;
+	--leading-body: 1.6;
+
 	--weight-semibold: 600;
 	--weight-bold: 700;
 }
@@ -55,7 +74,7 @@ body {
 		-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
 		sans-serif;
 	font-size: var(--text-base);
-	line-height: 1.6;
+	line-height: var(--leading-body);
 }
 
 a {
@@ -65,11 +84,15 @@ a {
 
 h1 {
 	font-size: var(--text-lg);
+	line-height: var(--leading-tight);
+	text-wrap: balance;
 	margin: 0 0 var(--space-4);
 }
 
 h2 {
 	font-size: var(--text-md);
+	line-height: var(--leading-snug);
+	text-wrap: balance;
 	font-weight: var(--weight-semibold);
 	margin: 0 0 var(--space-3);
 }
@@ -78,16 +101,53 @@ p {
 	margin: 0;
 }
 
-/* Font/color inherit, no button chrome: a link that also works as <button>. */
-.cta-link {
-	font: inherit;
-	color: inherit;
-	background: none;
-	border: 0;
+/* Secondary text: timestamps, durations, counts, footer. Defined once so the
+ * metadata treatment can't drift between the places that use it. */
+.meta {
+	color: var(--muted);
+	font-size: var(--text-sm);
+}
+
+/* Standfirst paragraph under a page h1. */
+.lede {
+	margin-block: 0 var(--space-5);
+}
+
+/* Unstyled list. Callers own their own display and gap. */
+.list-reset {
+	margin: 0;
 	padding: 0;
-	text-decoration: underline;
-	text-underline-offset: 2px;
-	cursor: pointer;
+	list-style: none;
+}
+
+/*
+ * Card grid. Column count is decided by how many --card-min tracks fit the
+ * container, so a card responds to the box it is in and not to the window.
+ * min() stops a track overflowing a container narrower than --card-min.
+ * Callers override --card-min; nothing here is keyed to a breakpoint.
+ */
+.card-grid {
+	--card-min: 17.5rem;
+	display: grid;
+	gap: var(--space-5);
+	grid-template-columns: repeat(
+		auto-fit,
+		minmax(min(var(--card-min), 100%), 1fr)
+	);
+}
+
+/*
+ * Bulleted prose list, laid out intrinsically so it goes multi-column when its
+ * container is wide enough and single-column when it isn't. The 20rem floor
+ * holds it to two columns on a full-width rail: three would leave a stranded
+ * item on the short lists this is used for.
+ */
+.bullet-list {
+	margin: 0;
+	padding-left: var(--space-4);
+	display: grid;
+	gap: var(--space-1) var(--space-5);
+	grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
 }
 
 img {
@@ -122,17 +182,38 @@ img {
 	z-index: 2;
 }
 
-/* Shared page rail. Header, main and footer all sit on the same measure. */
+/*
+ * Shared page rail. Header, main and footer all sit on the same rail, so every
+ * page has exactly one left edge.
+ *
+ * The rail is on `main` itself, not on `main > *`, and that is load-bearing.
+ * With the rail on the children, the prose cap below (specificity 0,0,2) would
+ * outrank it (0,0,1) for any text element that is a direct child of <main>,
+ * leaving that element capped at --measure but still centred by the rail's
+ * margin-inline: auto. A 34rem box centred in the viewport next to 60rem
+ * sections centred in the viewport is the (rail - measure) / 2 misalignment
+ * this whole change exists to remove. Rail on the parent, children in flow.
+ */
 .site-header,
 .site-footer,
-main > * {
-	max-width: var(--measure);
+main {
+	max-width: var(--rail);
 	margin-inline: auto;
 	padding-inline: var(--gutter);
 }
 
+/*
+ * Prose caps at a readable measure and left-aligns against the rail.
+ * Deliberately excludes ul/ol/li: every list here is a card grid whose track
+ * widths are already bounded, and capping them would silently collapse the
+ * multi-column layouts. A prose list should cap its own container instead.
+ */
+main :is(p, h1, h2, h3, blockquote) {
+	max-width: var(--measure);
+}
+
 .site-header {
-	padding-block: var(--space-6) var(--space-7);
+	padding-block: var(--space-7) var(--space-8);
 }
 
 /*
@@ -158,15 +239,10 @@ main > * {
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--space-5);
-	margin: 0;
-	padding: 0;
-	list-style: none;
 }
 
 .site-footer {
-	padding-block: var(--space-8) var(--space-6);
-	color: var(--muted);
-	font-size: var(--text-sm);
+	padding-block: var(--space-8) var(--space-7);
 }
 
 .site-footer p {
@@ -176,20 +252,33 @@ main > * {
 }
 
 /*
- * Connect panel. With JS it's opened via showModal(); without JS the
- * :target rule below reveals it in flow, so the link stays reachable.
- * Both paths share this styling. See BaseLayout.astro.
+ * Connect panel. With JS it's opened via showModal(); without JS the :target
+ * rule below reveals it. Both paths share this styling. See BaseLayout.astro.
+ *
+ * width, not max-width: a <dialog> is width: fit-content in the UA stylesheet,
+ * so a max-width never binds and the panel collapses to its content. Setting
+ * max-width: none also drops Chrome's UA max-width guard on :modal, which is
+ * only safe because the width line below constrains against the viewport
+ * independently. Edit the two together.
  */
 .modal {
-	max-width: var(--measure);
+	width: min(var(--modal-width), 100% - 2 * var(--gutter));
+	max-width: none;
 	border: 1px solid var(--fg);
 	background: var(--bg);
 	color: var(--fg);
 	padding: var(--space-5);
 }
 
+/*
+ * The no-JS path. position: static is required: the UA gives a closed dialog
+ * position: absolute, which would render the panel over the header instead of
+ * in document flow. static also neutralises the UA's inset-inline. The panel
+ * sits after the footer, which is where it is in the document.
+ */
 .modal:target {
 	display: block;
+	position: static;
 	margin: 0 auto var(--space-7);
 }
 
@@ -198,9 +287,6 @@ main > * {
 }
 
 .modal ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
 	display: grid;
 	gap: var(--space-2);
 }
@@ -212,11 +298,9 @@ main > * {
 .modal-close {
 	display: inline-block;
 	margin-top: var(--space-4);
-	color: var(--muted);
-	font-size: var(--text-sm);
 }
 
 /* Shared by /404 and the /elements 404-preview specimen. */
 .not-found {
-	padding-block: var(--space-6) var(--space-8);
+	padding-block: var(--space-7) var(--space-8);
 }

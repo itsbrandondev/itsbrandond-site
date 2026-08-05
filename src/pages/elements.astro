@@ -19,18 +19,21 @@ const workSpecimenIds = [
 	"hederacon-2025", // 2 links
 	"hashgraph-enthusiasts-show", // 4 links
 ];
+// find() is total for these ids; the fallback is what tells the type checker so.
 const workSpecimens = workSpecimenIds.map(
 	(id) => workItems.find((item) => item.id === id) ?? workItems[0],
 );
 
-const pastStreams = (streams[1] ? [streams[1], streams[2]] : [streams[0]])
-	.filter(Boolean)
-	.slice(0, 2);
+const pastStreams = streams.slice(1);
+
+// Container widths the ramp renders each component at, so the sandbox can show
+// container-driven layout without resizing the window.
+const rampWidths = [320, 480, 720, 912];
 ---
 
 <BaseLayout title={title} description={description} noindex={true}>
 	<h1>Elements</h1>
-	<p class="intro">
+	<p class="lede">
 		Every UI pattern the site uses, in one place: a sandbox to iterate fonts,
 		spacing, and layout against before touching a real page.
 	</p>
@@ -55,15 +58,9 @@ const pastStreams = (streams[1] ? [streams[1], streams[2]] : [streams[0]])
 		</p>
 	</section>
 
-	<section>
-		<h2>Call to action</h2>
-		<p><a class="cta-link" href="/meet">A cta-link anchor</a></p>
-		<p><button type="button" class="cta-link">A cta-link button</button></p>
-	</section>
-
 	<section class="cooking">
 		<h2>List</h2>
-		<ul>
+		<ul class="bullet-list">
 			<li>An example list item.</li>
 			<li>Another example list item.</li>
 		</ul>
@@ -76,7 +73,7 @@ const pastStreams = (streams[1] ? [streams[1], streams[2]] : [streams[0]])
 
 	<section>
 		<h2>Work list item</h2>
-		<ul class="specimen-list">
+		<ul class="specimen-list list-reset">
 			{workSpecimens.map((item) => <WorkListItem item={item} />)}
 		</ul>
 	</section>
@@ -88,7 +85,7 @@ const pastStreams = (streams[1] ? [streams[1], streams[2]] : [streams[0]])
 
 	<section>
 		<h2>Stream thumbnail</h2>
-		<ul class="specimen-list">
+		<ul class="specimen-list list-reset">
 			{pastStreams.map((stream) => <StreamThumbnail stream={stream} />)}
 		</ul>
 	</section>
@@ -114,28 +111,75 @@ const pastStreams = (streams[1] ? [streams[1], streams[2]] : [streams[0]])
 			<h2>A modal h2</h2>
 		</div>
 	</section>
+
+	<section>
+		<h2>Tokens</h2>
+		<p class="meta">
+			The type scale, each step against its leading. Sizes are fixed, not fluid.
+		</p>
+		<ul class="specimen-list list-reset">
+			<li>
+				<span class="swatch-lg">Aa</span>
+				<span class="meta">--text-lg</span>
+			</li>
+			<li>
+				<span class="swatch-md">Aa</span>
+				<span class="meta">--text-md</span>
+			</li>
+			<li><span>Aa</span> <span class="meta">--text-base</span></li>
+			<li><span class="meta">Aa &mdash; --text-sm</span></li>
+		</ul>
+		<p class="meta">
+			The spacing tiers used for page rhythm: 64 between sections, 48 between
+			blocks, 24 between elements.
+		</p>
+		<ul class="specimen-list list-reset">
+			<li>
+				<span class="bar bar-8"></span>
+				<span class="meta">--space-8, 64</span>
+			</li>
+			<li>
+				<span class="bar bar-7"></span>
+				<span class="meta">--space-7, 48</span>
+			</li>
+			<li>
+				<span class="bar bar-5"></span>
+				<span class="meta">--space-5, 24</span>
+			</li>
+		</ul>
+	</section>
+
+	<section>
+		<h2>Container width ramp</h2>
+		<p class="meta">
+			The archive grid rendered at four fixed container widths. Column count
+			follows the container, so these stay put while the window resizes. This is
+			the case a single full-width column cannot show.
+		</p>
+		{
+			rampWidths.map((w) => (
+				<div class="ramp-step">
+					<span class="meta">{w}px</span>
+					<div class="ramp-box" style={`width: ${w}px`}>
+						<ul class="list-reset card-grid">
+							{pastStreams.map((stream) => (
+								<StreamThumbnail stream={stream} />
+							))}
+						</ul>
+					</div>
+				</div>
+			))
+		}
+	</section>
 </BaseLayout>
 
 <style>
-	.intro {
-		margin-block: 0 var(--space-5);
-	}
-
 	section + section {
-		margin-top: var(--space-7);
+		margin-top: var(--space-8);
 	}
 
 	.meta {
 		margin: var(--space-3) 0 0;
-		color: var(--muted);
-		font-size: var(--text-sm);
-	}
-
-	.cooking ul {
-		margin: 0;
-		padding-left: var(--space-4);
-		display: grid;
-		gap: var(--space-1);
 	}
 
 	/*
@@ -150,20 +194,54 @@ const pastStreams = (streams[1] ? [streams[1], streams[2]] : [streams[0]])
 		margin-top: var(--space-4);
 	}
 
-	/*
-	 * Restores an intentional gap between adjacent bare <p> (e.g. the two
-	 * cta-link specimens), now that global.css resets <p> margin to 0.
-	 * Matches .meta's own top-margin value, the site's caption-gap distance.
-	 */
-	section p + p {
-		margin-top: var(--space-3);
-	}
-
 	.specimen-list {
-		margin: 0;
-		padding: 0;
-		list-style: none;
 		display: grid;
 		gap: var(--space-5);
+	}
+
+	.swatch-lg {
+		font-size: var(--text-lg);
+		line-height: var(--leading-tight);
+	}
+
+	.swatch-md {
+		font-size: var(--text-md);
+		line-height: var(--leading-snug);
+	}
+
+	.bar {
+		display: inline-block;
+		height: 0.5rem;
+		vertical-align: middle;
+		background: var(--rule);
+	}
+
+	.bar-8 {
+		width: var(--space-8);
+	}
+
+	.bar-7 {
+		width: var(--space-7);
+	}
+
+	.bar-5 {
+		width: var(--space-5);
+	}
+
+	.ramp-step + .ramp-step {
+		margin-top: var(--space-7);
+	}
+
+	/*
+	 * The ramp deliberately sets a fixed container width so the components
+	 * inside respond to it rather than to the window. max-width keeps a wide
+	 * step from overflowing the page on a narrow screen, which would otherwise
+	 * be the one place this sandbox breaks the rail.
+	 */
+	.ramp-box {
+		max-width: 100%;
+		margin-top: var(--space-2);
+		outline: 1px dashed var(--rule);
+		outline-offset: var(--space-2);
 	}
 </style>

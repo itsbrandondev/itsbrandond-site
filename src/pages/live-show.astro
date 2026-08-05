@@ -61,7 +61,7 @@ const video = {
 		pastStreams.length > 0 && (
 			<section class="archive">
 				<h2>Past streams</h2>
-				<ul>
+				<ul class="list-reset card-grid">
 					{pastStreams.map((stream) => (
 						<StreamThumbnail stream={stream} />
 					))}
@@ -91,34 +91,10 @@ const video = {
 	.about,
 	.archive,
 	.cta {
-		margin-top: var(--space-7);
-	}
-
-	.archive ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		display: grid;
-		gap: var(--space-5);
+		margin-top: var(--space-8);
 	}
 
 	.cta p {
 		margin: 0 0 var(--space-2);
-	}
-
-	@media (min-width: 48rem) {
-		.archive ul {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
-	@media (min-width: 64rem) {
-		.archive {
-			max-width: var(--measure-wide);
-		}
-
-		.archive ul {
-			grid-template-columns: repeat(3, 1fr);
-		}
 	}
 </style>
