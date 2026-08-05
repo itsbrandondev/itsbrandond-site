@@ -69,9 +69,9 @@ const workSchema = {
 
 <style>
 	.cta-top {
-		/* Matches .category + .category's 6rem, so the gap into the first
-		 * category reads the same as the gap between later ones. */
-		margin-block: 0 6rem;
+		/* Matches .cta's own margin-top, so both dividers sit the same
+		 * distance from the category grids they bracket. */
+		margin-block: 0 var(--space-8);
 		padding-bottom: var(--space-7);
 		border-bottom: 1px solid var(--rule);
 		display: flex;
