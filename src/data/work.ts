@@ -333,7 +333,7 @@ export const workItems: WorkItem[] = [
 		id: "music",
 		title: "Music",
 		description:
-			"Multi-instrumentalist in his indie/alt-rock band, active 2014-2020.",
+			"Multi-instrumentalist in my indie/alt-rock band, active 2014-2020.",
 		category: "Creative",
 		links: [
 			{
@@ -381,7 +381,7 @@ export const workItems: WorkItem[] = [
 		id: "dd-hello-future",
 		title: "Video and NFT collection: Hello Future",
 		description:
-			"Self-produced video and NFT collection from his creative agency's Hedera-adjacent work, pre-dating Hgraph.",
+			"Self-produced video and NFT collection from my creative agency's Hedera-adjacent work, pre-dating Hgraph.",
 		category: "Creative",
 		links: [
 			{ label: "Watch", url: "https://www.youtube.com/watch?v=Tz3r-dxYikA" },
