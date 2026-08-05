@@ -271,7 +271,7 @@ main :is(p, h1, h2, h3, blockquote) {
 
 .site-home {
 	font-weight: var(--weight-bold);
-	text-decoration: none;
+	text-decoration: underline;
 	color: var(--fg);
 }
 

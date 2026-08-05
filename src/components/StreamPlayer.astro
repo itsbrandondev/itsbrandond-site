@@ -20,7 +20,6 @@ const { stream, class: className } = Astro.props;
 			allowfullscreen
 			loading="lazy"></iframe>
 	</div>
-	<p class="latest-title">{stream.title}</p>
 	<p class="latest-meta meta">
 		<time datetime={stream.date}>{formatDate(stream.date)}</time>
 		{" "}&middot; {stream.duration} &middot;{" "}
@@ -45,18 +44,14 @@ const { stream, class: className } = Astro.props;
 	}
 
 	/*
-	 * main's prose-cap rule already limits these to --rail (they're <p>s), but
-	 * that alone left them flush against the wide breakout's own left edge.
-	 * Centering them lands that --rail box on the slim rail's actual position,
+	 * main's prose-cap rule already limits this to --rail (it's a <p>), but
+	 * that alone left it flush against the wide breakout's own left edge.
+	 * Centering it lands that --rail box on the slim rail's actual position,
 	 * since slim is centered inside wide by construction (global.css). A no-op
 	 * when the player isn't in a breakout, since --rail already fills the slim
 	 * track with nothing left to center.
 	 */
-	.latest-title {
-		margin: var(--space-5) auto 0;
-	}
-
 	.latest-meta {
-		margin: var(--space-1) auto 0;
+		margin: var(--space-5) auto 0;
 	}
 </style>
