@@ -84,9 +84,10 @@ const workSchema = {
 		margin-top: 6rem;
 	}
 
-	/* A little more room than the global h2 (--space-3) before the card grid. */
+	/* Matches .card-grid's row-gap, so heading-to-grid reads the same as the
+	 * gap between the items themselves. */
 	.category h2 {
-		margin-bottom: var(--space-5);
+		margin-bottom: var(--space-7);
 	}
 
 	/* Work items carry more text than a stream card, so they get a wider floor. */
