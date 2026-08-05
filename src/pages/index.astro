@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
-import headshot from "../assets/headshot.jpeg";
+import homeStudio from "../assets/home-studio.jpeg";
 import { lastmod } from "../data/pages";
 
 const title = "Brandon Davenport";
@@ -20,12 +20,12 @@ const profileDateModified = lastmod["/"];
 >
 	<h1 class="visually-hidden">Brandon Davenport</h1>
 	<Image
-		src={headshot}
-		alt="Brandon Davenport"
+		src={homeStudio}
+		alt="Brandon Davenport streaming from his home studio"
 		width={544}
-		height={544}
+		height={388}
 		sizes="(min-width: 592px) 544px, calc(100vw - 2 * 1.5rem)"
-		class="headshot"
+		class="hero-photo"
 	/>
 	<section class="intro">
 		<p>
@@ -99,17 +99,17 @@ const profileDateModified = lastmod["/"];
 
 <style>
 	/*
-	 * Portrait fills the slim rail above the copy, rather than sitting beside
-	 * it: at a 34rem rail there is no room for both. Declared at 544 to match
-	 * the rail, though the current 811px-square source caps the srcset at a
-	 * 750px candidate, about 1.4x. A replacement image is coming (HZN-12), so this
-	 * carries no crop or aspect-ratio of its own and follows whatever it gets.
+	 * Fills the slim rail above the copy, rather than sitting beside it: at a
+	 * 34rem rail there is no room for both. Declared at the source's own 544x388
+	 * aspect (1849x1320 native), so it carries no crop of its own and follows
+	 * whatever it gets; a differently-shaped photo needs its height recomputed
+	 * against the same 544 width, not forced back to a square.
 	 *
 	 * The explicit sizes replaces Astro's auto "(min-width: 544px) 544px, 100vw",
 	 * which measures the rail but not the gutter outside it and so over-fetches
 	 * below 592px. Same attribute and same reasoning as StreamThumbnail.astro.
 	 */
-	.headshot {
+	.hero-photo {
 		width: 100%;
 	}
 
