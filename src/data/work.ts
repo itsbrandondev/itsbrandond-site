@@ -228,7 +228,7 @@ export const workItems: WorkItem[] = [
 				url: "https://docs.hgraph.com/mcp-server/setup-chatgpt",
 			},
 			{
-				label: "Announcement on X",
+				label: "Announcement on 𝕏",
 				url: "https://x.com/itsbrandond/status/2002351777728114819",
 			},
 		],
