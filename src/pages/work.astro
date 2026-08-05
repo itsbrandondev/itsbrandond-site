@@ -31,9 +31,10 @@ const workSchema = {
 		and enterprise deals, and grew Hgraph from 0-1. I'm open for consulting
 		work: tell me what you're working on.
 	</p>
-	<p class="cta-top">
-		<a href="/meet">Book a call</a>
-	</p>
+	<section class="cta-top">
+		<p><a href="/meet">Book a call</a></p>
+		<p><a href="mailto:hey@itsbrandond.com?subject=Hello">Email me</a></p>
+	</section>
 
 	{
 		workCategories.map((category) => (
@@ -52,6 +53,7 @@ const workSchema = {
 
 	<section class="cta">
 		<p><a href="/meet">Book a call</a></p>
+		<p><a href="mailto:hey@itsbrandond.com?subject=Hello">Email me</a></p>
 	</section>
 
 	<script
@@ -66,6 +68,10 @@ const workSchema = {
 		margin-block: 0 var(--space-7);
 	}
 
+	.cta-top p {
+		margin: 0 0 var(--space-2);
+	}
+
 	/* Deliberately past --space-8 (the largest shared tier): these category
 	 * blocks are dense card grids, not short prose sections, and read as
 	 * cramped at the standard section gap. */
@@ -75,7 +81,7 @@ const workSchema = {
 
 	/* A little more room than the global h2 (--space-3) before the card grid. */
 	.category h2 {
-		margin-bottom: var(--space-4);
+		margin-bottom: var(--space-5);
 	}
 
 	/* Work items carry more text than a stream card, so they get a wider floor. */
@@ -88,6 +94,6 @@ const workSchema = {
 	}
 
 	.cta p {
-		margin: 0;
+		margin: 0 0 var(--space-2);
 	}
 </style>

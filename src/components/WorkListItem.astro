@@ -33,13 +33,16 @@ const { item } = Astro.props;
 	}
 
 	/*
-	 * The description is real content, not metadata, so it reads at the base
-	 * size rather than the small one. It keeps the muted colour for now; that
-	 * is a deliberate half-step, to be settled in the colour pass.
+	 * Reads at the same small size as the links list below it, so the card's
+	 * title is the only thing at body size. Reverses the earlier base-size
+	 * call (HZN-19 phase 1.7) on Brandon's 2026-08-05 review. Keeps the muted
+	 * colour for now; that is a deliberate half-step, to be settled in the
+	 * colour pass.
 	 */
 	p {
 		margin: var(--space-1) 0 0;
 		color: var(--muted);
+		font-size: var(--text-sm);
 	}
 
 	a {
