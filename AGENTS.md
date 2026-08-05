@@ -10,7 +10,7 @@ There are no framework integrations (no React, Vue or Svelte), no Tailwind or an
 
 **The site is slim by default and widens only where a section earns it.** `--rail` (34rem) is the slim reading column that the header, the footer and all prose sit on; `--rail-wide` (57rem) is the opt-in track. Both are content widths, and the page grid supplies the gutter, so neither has padding baked in.
 
-`main` is a five-column grid: gutter, breakout half, slim rail, breakout half, gutter. Every direct child spans `slim` unless it carries `class="breakout"`, which spans `wide`. Today the breakouts are the `/work` category sections, the `/live-show` player, and three `/elements` specimen sections. A page has exactly two possible left edges and both are declared in `global.css`, never per page.
+`main` is a five-column grid: gutter, breakout half, slim rail, breakout half, gutter. Every direct child spans `slim` unless it carries `class="breakout"`, which spans `wide`. Today the breakouts are the `/work` category sections and three `/elements` specimen sections; the `/live-show` player was one until 2026-08-05, when it moved to the slim rail to match the body. A page has exactly two possible left edges and both are declared in `global.css`, never per page.
 
 Three things there are load-bearing and easy to break:
 
