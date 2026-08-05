@@ -66,8 +66,11 @@ const workSchema = {
 		margin-block: 0 var(--space-7);
 	}
 
+	/* Deliberately past --space-8 (the largest shared tier): these category
+	 * blocks are dense card grids, not short prose sections, and read as
+	 * cramped at the standard section gap. */
 	.category + .category {
-		margin-top: var(--space-8);
+		margin-top: 6rem;
 	}
 
 	/* Work items carry more text than a stream card, so they get a wider floor. */
