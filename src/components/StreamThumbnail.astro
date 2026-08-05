@@ -12,7 +12,7 @@ const { stream } = Astro.props;
 ---
 
 <li>
-	<a href={broadcastUrl(stream.id)}>
+	<a href={broadcastUrl(stream.id)} target="_blank" rel="noopener noreferrer">
 		<Image
 			src={stream.thumbnail}
 			alt=""

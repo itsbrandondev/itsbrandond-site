@@ -23,7 +23,9 @@ const { stream, class: className } = Astro.props;
 	<p class="latest-meta meta">
 		<time datetime={stream.date}>{formatDate(stream.date)}</time>
 		{" "}&middot; {stream.duration} &middot;{" "}
-		<a href={broadcastUrl(stream.id)}>Watch on 𝕏</a>
+		<a href={broadcastUrl(stream.id)} target="_blank" rel="noopener noreferrer"
+			>Watch on 𝕏</a
+		>
 	</p>
 </section>
 
