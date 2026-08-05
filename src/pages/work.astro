@@ -65,7 +65,9 @@ const workSchema = {
 
 <style>
 	.cta-top {
-		margin-block: 0 var(--space-7);
+		/* Matches .category + .category's 6rem, so the gap into the first
+		 * category reads the same as the gap between later ones. */
+		margin-block: 0 6rem;
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--space-2) var(--space-5);
