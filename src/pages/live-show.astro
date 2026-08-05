@@ -79,10 +79,14 @@ const video = {
 	<section class="cta-bottom">
 		<ul class="list-reset">
 			<li>
-				<a href="https://forms.gle/CN7kAXNFPosXUE397">Get clips &amp; more</a>
+				<a href="https://forms.gle/CN7kAXNFPosXUE397"
+					>Get clips &amp; more via email</a
+				>
 			</li>
 			<li>
-				<a href="https://x.com/itsbrandond" rel="me">Follow on 𝕏</a>
+				<a href="https://x.com/itsbrandond" rel="me"
+					>Get notified on 𝕏 when I'm live</a
+				>
 			</li>
 		</ul>
 	</section>
@@ -123,8 +127,11 @@ const video = {
 		gap: var(--space-4);
 	}
 
+	/* Matches the lede-to-CTA gap on /work's header (--space-5), rather than
+	 * the standard section tier: this list follows straight on from the
+	 * paragraph above it, not a new section. */
 	.cta-bottom {
-		margin-top: var(--space-8);
+		margin-top: var(--space-5);
 	}
 
 	.cta-bottom ul {
