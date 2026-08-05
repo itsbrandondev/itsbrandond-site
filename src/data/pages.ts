@@ -10,7 +10,7 @@
  * astro:assets or an image asset breaks config loading.
  */
 export const lastmod: Record<string, string> = {
-	"/": "2026-08-04",
-	"/live-show/": "2026-08-04",
-	"/work/": "2026-08-04",
+	"/": "2026-08-05",
+	"/live-show/": "2026-08-05",
+	"/work/": "2026-08-05",
 };
