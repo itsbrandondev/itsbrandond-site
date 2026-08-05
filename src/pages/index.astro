@@ -24,6 +24,7 @@ const profileDateModified = lastmod["/"];
 		alt="Brandon Davenport"
 		width={544}
 		height={544}
+		sizes="(min-width: 592px) 544px, calc(100vw - 2 * 1.5rem)"
 		class="headshot"
 	/>
 	<section class="intro">
@@ -103,6 +104,10 @@ const profileDateModified = lastmod["/"];
 	 * the rail, though the current 811px-square source caps the srcset at a
 	 * 750px candidate, about 1.4x. A replacement image is coming (HZN-12), so this
 	 * carries no crop or aspect-ratio of its own and follows whatever it gets.
+	 *
+	 * The explicit sizes replaces Astro's auto "(min-width: 544px) 544px, 100vw",
+	 * which measures the rail but not the gutter outside it and so over-fetches
+	 * below 592px. Same attribute and same reasoning as StreamThumbnail.astro.
 	 */
 	.headshot {
 		width: 100%;

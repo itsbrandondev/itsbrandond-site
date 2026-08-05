@@ -210,13 +210,14 @@ img {
  * The sizing keeps the page from ever overflowing without a media query. The
  * overhang tracks have a min of 0, so they collapse first; the slim track is
  * capped at the space left after the gutters; the gutters themselves have a
- * hard minimum and give way last. Below roughly 592px every breakout has
- * quietly become a full-width block, which is the correct answer anyway.
+ * hard minimum and give way last. At and below --rail + 2 * --gutter (592px
+ * today) every breakout has already become a full-width block, which is the
+ * correct answer anyway.
  *
  * Placement lives on the grid, never a max-width on the children. That is
  * deliberate: a child-level width rule can be outranked by the prose cap below
- * (specificity 0,0,2 against 0,0,1), which is exactly how a 34rem box ended up
- * centred beside 60rem sections and misaligned by (wide - rail) / 2.
+ * (specificity 0,0,2 against 0,0,1), which is exactly how a slim box ended up
+ * centred beside wide sections and misaligned by (wide - rail) / 2.
  */
 main {
 	display: grid;
