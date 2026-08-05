@@ -44,7 +44,6 @@ const video = {
 
 <BaseLayout title={title} description={description} video={video}>
 	<h1 class="visually-hidden">Recent Live Streams on X</h1>
-	<StreamPlayer stream={latestStream} class="breakout" />
 
 	<section class="cta">
 		<p>
@@ -57,11 +56,13 @@ const video = {
 		</p>
 	</section>
 
+	<StreamPlayer stream={latestStream} class="breakout" />
+
 	{
 		pastStreams.length > 0 && (
 			<section class="archive">
 				<h2>Past streams</h2>
-				<ul class="list-reset card-grid">
+				<ul class="list-reset stream-list">
 					{pastStreams.map((stream) => (
 						<StreamThumbnail stream={stream} />
 					))}
@@ -89,12 +90,28 @@ const video = {
 
 <style>
 	.about,
-	.archive,
-	.cta {
+	.archive {
 		margin-top: var(--space-8);
+	}
+
+	/*
+	 * First section under the hidden h1, matching the homepage's .intro gap.
+	 * margin-bottom (not the player's own margin-top) sets the gap to the
+	 * player below, since the player's <section> is rendered by StreamPlayer,
+	 * a different component whose scoped styles this file can't reach.
+	 */
+	.cta {
+		margin-top: var(--space-5);
+		margin-bottom: var(--space-8);
 	}
 
 	.cta p {
 		margin: 0 0 var(--space-2);
+	}
+
+	.stream-list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
 	}
 </style>

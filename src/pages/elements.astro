@@ -152,9 +152,11 @@ const rampWidths = [320, 480, 720, 912];
 	<section class="breakout">
 		<h2>Container width ramp</h2>
 		<p class="meta">
-			The archive grid rendered at four fixed container widths. Column count
-			follows the container, so these stay put while the window resizes. This is
-			the case a single full-width column cannot show.
+			The card grid rendered at four fixed container widths, using work list
+			items as example content (the archive switched to a compact row list and
+			no longer uses this pattern). Column count follows the container, so these
+			stay put while the window resizes. This is the case a single full-width
+			column cannot show.
 		</p>
 		{
 			rampWidths.map((w) => (
@@ -162,8 +164,8 @@ const rampWidths = [320, 480, 720, 912];
 					<span class="meta">{w}px</span>
 					<div class="ramp-box" style={`width: ${w}px`}>
 						<ul class="list-reset card-grid">
-							{pastStreams.map((stream) => (
-								<StreamThumbnail stream={stream} />
+							{workSpecimens.map((item) => (
+								<WorkListItem item={item} />
 							))}
 						</ul>
 					</div>

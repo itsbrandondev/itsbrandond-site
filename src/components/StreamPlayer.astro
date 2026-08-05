@@ -44,11 +44,19 @@ const { stream, class: className } = Astro.props;
 		border: 0;
 	}
 
+	/*
+	 * main's prose-cap rule already limits these to --rail (they're <p>s), but
+	 * that alone left them flush against the wide breakout's own left edge.
+	 * Centering them lands that --rail box on the slim rail's actual position,
+	 * since slim is centered inside wide by construction (global.css). A no-op
+	 * when the player isn't in a breakout, since --rail already fills the slim
+	 * track with nothing left to center.
+	 */
 	.latest-title {
-		margin: var(--space-3) 0 0;
+		margin: var(--space-3) auto 0;
 	}
 
 	.latest-meta {
-		margin: var(--space-1) 0 0;
+		margin: var(--space-1) auto 0;
 	}
 </style>

@@ -16,12 +16,12 @@ const { stream } = Astro.props;
 		<Image
 			src={stream.thumbnail}
 			alt=""
-			width={544}
-			height={306}
+			width={128}
+			height={72}
 			loading="lazy"
-			sizes="(min-width: 592px) 544px, calc(100vw - 2 * 1.5rem)"
+			sizes="128px"
 		/>
-		<span>
+		<span class="stream-info">
 			<span class="stream-title">{stream.title}</span>
 			<span class="stream-meta meta">
 				<time datetime={stream.date}>
@@ -36,28 +36,29 @@ const { stream } = Astro.props;
 
 <style>
 	/*
-	 * Poster card: still on top, text below, at every size. The card lives in
-	 * a grid track, so its width is set by its container rather than by the
-	 * window, and there is nothing left for a breakpoint to decide.
-	 *
-	 * The `sizes` attribute above is the one thing here that must name the
-	 * viewport: sizes is resolved before layout, so it cannot ask the
-	 * container. 544px is the widest this card ever renders, being the slim
-	 * rail it stacks 1-up on; below the rail it fills the viewport less the
-	 * two gutters. Move the archive into a breakout and this needs revisiting.
+	 * Compact row: a small fixed-width thumbnail on the left, title and meta
+	 * stacked to its right. The thumbnail is a fixed size rather than
+	 * container-relative on purpose (compactness is the point), so `sizes`
+	 * below is a literal pixel value rather than a viewport expression.
 	 */
 	a {
-		display: block;
+		display: flex;
+		gap: var(--space-4);
+		align-items: flex-start;
 		text-decoration: none;
 	}
 
 	img {
-		width: 100%;
+		width: 8rem;
+		flex-shrink: 0;
 		height: auto;
 		aspect-ratio: 16 / 9;
 		object-fit: cover;
-		margin-bottom: var(--space-3);
 		background: var(--rule);
+	}
+
+	.stream-info {
+		min-width: 0;
 	}
 
 	.stream-title {
