@@ -98,11 +98,13 @@ const video = {
 	 * First section under the hidden h1, matching the homepage's .intro gap.
 	 * margin-bottom (not the player's own margin-top) sets the gap to the
 	 * player below, since the player's <section> is rendered by StreamPlayer,
-	 * a different component whose scoped styles this file can't reach.
+	 * a different component whose scoped styles this file can't reach. Set to
+	 * --space-5 to match the player's own video-to-title gap (StreamPlayer.astro),
+	 * so the gap above the player and the gap below it read the same.
 	 */
 	.cta {
 		margin-top: var(--space-5);
-		margin-bottom: var(--space-8);
+		margin-bottom: var(--space-5);
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
