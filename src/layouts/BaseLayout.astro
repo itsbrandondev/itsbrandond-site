@@ -75,17 +75,32 @@ const schema = profileDateModified
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonicalURL} />
-		{noindex && <meta name="robots" content="noindex, nofollow" />}
+		<!--
+			One robots meta, two modes: excluded pages get noindex; public pages
+			opt into full-size image previews in search results (the default cap
+			can shrink them). Keep it a single tag so the modes can't stack.
+		-->
+		<meta
+			name="robots"
+			content={noindex ? "noindex, nofollow" : "max-image-preview:large"}
+		/>
 
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
 		<meta property="og:type" content={video ? "video.other" : "website"} />
+		<meta property="og:site_name" content="Brandon Davenport" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:image" content={ogImageURL} />
+		<meta property="og:image:width" content="1920" />
+		<meta property="og:image:height" content="1200" />
+		<meta
+			property="og:image:alt"
+			content="Line-art portrait of Brandon Davenport on a blue background"
+		/>
 		{
 			video && (
 				<>
@@ -101,6 +116,8 @@ const schema = profileDateModified
 			name="twitter:card"
 			content={video ? "player" : "summary_large_image"}
 		/>
+		<meta name="twitter:site" content="@itsbrandond" />
+		<meta name="twitter:creator" content="@itsbrandond" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={video ? video.posterUrl : ogImageURL} />
