@@ -14,13 +14,18 @@
 	--rule: #2e2e2e;
 
 	/*
-	 * Three separate jobs that were one token until now. --rail is the page
-	 * container, --measure caps prose for readability, --modal-width sizes the
-	 * Connect panel. Collapsing them is what made a page needing a wider rail
-	 * override the prose measure, breaking alignment by (rail - measure) / 2.
+	 * The site is slim by default and widens only where a section earns it.
+	 * --rail is that slim column, sized as a reading measure, and it is what
+	 * the header, the footer and all prose sit on. --rail-wide is the opt-in
+	 * track a .breakout section spans instead. Both are CONTENT widths: the
+	 * page grid supplies the gutter outside them, so no padding is baked in.
+	 *
+	 * --modal-width is a third, unrelated job. Keeping it separate is what
+	 * stops a page needing a wider container from dragging the prose measure
+	 * with it, which used to break alignment by (wide - rail) / 2.
 	 */
-	--rail: 60rem;
-	--measure: 34rem;
+	--rail: 34rem;
+	--rail-wide: 57rem;
 	--modal-width: 22rem;
 	--gutter: var(--space-5);
 
@@ -138,9 +143,9 @@ p {
 
 /*
  * Bulleted prose list, laid out intrinsically so it goes multi-column when its
- * container is wide enough and single-column when it isn't. The 20rem floor
- * holds it to two columns on a full-width rail: three would leave a stranded
- * item on the short lists this is used for.
+ * container is wide enough and single-column when it isn't. On the slim rail
+ * the 20rem floor resolves to one column, which is what these short lists want;
+ * the floor earns its keep if one ever lands in a breakout section.
  */
 .bullet-list {
 	margin: 0;
@@ -183,33 +188,67 @@ img {
 }
 
 /*
- * Shared page rail. Header, main and footer all sit on the same rail, so every
- * page has exactly one left edge.
- *
- * The rail is on `main` itself, not on `main > *`, and that is load-bearing.
- * With the rail on the children, the prose cap below (specificity 0,0,2) would
- * outrank it (0,0,1) for any text element that is a direct child of <main>,
- * leaving that element capped at --measure but still centred by the rail's
- * margin-inline: auto. A 34rem box centred in the viewport next to 60rem
- * sections centred in the viewport is the (rail - measure) / 2 misalignment
- * this whole change exists to remove. Rail on the parent, children in flow.
+ * Header and footer sit on the slim rail. --rail is a content width, so the
+ * gutter is added on top of it here, which is what keeps their content box the
+ * same width as the grid's slim track below and gives the page one left edge.
  */
 .site-header,
-.site-footer,
-main {
-	max-width: var(--rail);
+.site-footer {
+	max-width: calc(var(--rail) + 2 * var(--gutter));
 	margin-inline: auto;
 	padding-inline: var(--gutter);
 }
 
 /*
- * Prose caps at a readable measure and left-aligns against the rail.
+ * The page grid: slim by default, wide where a section asks for it.
+ *
+ * Five columns, symmetric: a flexible gutter, half the breakout overhang, the
+ * slim rail, the other half, another flexible gutter. A child spans `slim`
+ * unless it opts into `wide`, so the two left edges on a page are the only two
+ * that exist, and both are declared here rather than per page.
+ *
+ * The sizing keeps the page from ever overflowing without a media query. The
+ * overhang tracks have a min of 0, so they collapse first; the slim track is
+ * capped at the space left after the gutters; the gutters themselves have a
+ * hard minimum and give way last. Below roughly 592px every breakout has
+ * quietly become a full-width block, which is the correct answer anyway.
+ *
+ * Placement lives on the grid, never a max-width on the children. That is
+ * deliberate: a child-level width rule can be outranked by the prose cap below
+ * (specificity 0,0,2 against 0,0,1), which is exactly how a 34rem box ended up
+ * centred beside 60rem sections and misaligned by (wide - rail) / 2.
+ */
+main {
+	display: grid;
+	grid-template-columns:
+		minmax(var(--gutter), 1fr)
+		[wide-start] minmax(0, calc((var(--rail-wide) - var(--rail)) / 2))
+		[slim-start] min(var(--rail), 100% - 2 * var(--gutter)) [slim-end]
+		minmax(0, calc((var(--rail-wide) - var(--rail)) / 2)) [wide-end]
+		minmax(var(--gutter), 1fr);
+}
+
+main > * {
+	grid-column: slim;
+}
+
+/*
+ * The opt-in. Marks a direct child of <main> as one of the emphasized wide
+ * sections: the work grid, the stream player, the /elements specimens.
+ */
+.breakout {
+	grid-column: wide;
+}
+
+/*
+ * Prose stays at the reading measure even inside a breakout, so a wide section
+ * widens its layout without widening its sentences. A no-op in the slim track.
  * Deliberately excludes ul/ol/li: every list here is a card grid whose track
  * widths are already bounded, and capping them would silently collapse the
  * multi-column layouts. A prose list should cap its own container instead.
  */
 main :is(p, h1, h2, h3, blockquote) {
-	max-width: var(--measure);
+	max-width: var(--rail);
 }
 
 .site-header {

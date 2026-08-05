@@ -8,9 +8,14 @@ There are no framework integrations (no React, Vue or Svelte), no Tailwind or an
 
 `src/styles/global.css` holds the design tokens and every shared pattern. Read it before adding a rule anywhere else.
 
-Two things there are load-bearing and easy to break:
+**The site is slim by default and widens only where a section earns it.** `--rail` (34rem) is the slim reading column that the header, the footer and all prose sit on; `--rail-wide` (57rem) is the opt-in track. Both are content widths, and the page grid supplies the gutter, so neither has padding baked in.
 
-- **The rail lives on `main`, not on `main > *`.** The prose cap `main :is(p, h1, h2, h3, blockquote)` has higher specificity than a `main > *` rail would, so moving the rail back to the children silently re-creates a `(--rail - --measure) / 2` misalignment on any text element that is a direct child of `<main>`.
+`main` is a five-column grid: gutter, breakout half, slim rail, breakout half, gutter. Every direct child spans `slim` unless it carries `class="breakout"`, which spans `wide`. Today the breakouts are the `/work` category sections, the `/live-show` player, and three `/elements` specimen sections. A page has exactly two possible left edges and both are declared in `global.css`, never per page.
+
+Three things there are load-bearing and easy to break:
+
+- **Width belongs to the grid, never to a `max-width` on a child of `main`.** The prose cap `main :is(p, h1, h2, h3, blockquote)` is specificity (0,0,2) and outranks a `main > *` rule at (0,0,1), so a child-level width rule gets silently overridden on text elements and misaligns them by `(--rail-wide - --rail) / 2`. Place with `grid-column`.
+- **The grid's track sizing is what removes the need for media queries.** The breakout halves have a min of 0 and collapse first, the slim track is capped at what the gutters leave, and the gutters give way last. Below roughly 592px every breakout is already a full-width block. Change a track min and you can reintroduce horizontal overflow at 320px.
 - **`img { max-width: 100%; height: auto }`** is what makes `image.layout: "constrained"` safe while `responsiveStyles` stays off. Deleting it breaks every responsive image.
 
 Layout is container-relative or intrinsic. There are deliberately zero `@media` rules; `grep -rn "@media (" src/` returning nothing is the regression test. (Match on the open paren, not on `@media` alone: the policy comment at the top of `global.css` names the at-rule.) A genuine viewport dependency may add one, but it needs a comment saying why the viewport rather than the container is the thing being measured.

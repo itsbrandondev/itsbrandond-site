@@ -4,12 +4,15 @@ import { broadcastUrl, embedUrl, formatDate } from "../data/streams";
 
 interface Props {
 	stream: Stream;
+	// Lets the page decide whether this sits on the slim rail or breaks out
+	// wide. Layout placement belongs to the page, not to the component.
+	class?: string;
 }
 
-const { stream } = Astro.props;
+const { stream, class: className } = Astro.props;
 ---
 
-<section>
+<section class={className}>
 	<div class="player">
 		<iframe
 			src={embedUrl(stream.id)}

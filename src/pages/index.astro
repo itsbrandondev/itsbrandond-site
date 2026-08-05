@@ -19,14 +19,14 @@ const profileDateModified = lastmod["/"];
 	profileDateModified={profileDateModified}
 >
 	<h1 class="visually-hidden">Brandon Davenport</h1>
-	<section class="intro-row">
-		<Image
-			src={headshot}
-			alt="Brandon Davenport"
-			width={344}
-			height={344}
-			class="headshot"
-		/>
+	<Image
+		src={headshot}
+		alt="Brandon Davenport"
+		width={544}
+		height={544}
+		class="headshot"
+	/>
+	<section class="intro">
 		<p>
 			Hey, it's Brandon D here. I'm a tech evangelist who ships. For over ten
 			years I've worked both sides: architecting systems with engineers, then
@@ -98,26 +98,18 @@ const profileDateModified = lastmod["/"];
 
 <style>
 	/*
-	 * Portrait beside the lede, wrapping to stacked when the row runs out of
-	 * room. 21.5rem + 1.5rem gap + the 34rem prose measure is 57rem, exactly
-	 * the rail's content box, so the row reaches the rail's right edge with no
-	 * dead space and no width query.
+	 * Portrait fills the slim rail above the copy, rather than sitting beside
+	 * it: at a 34rem rail there is no room for both. Declared at 544 to match
+	 * the rail, though the current 811px-square source caps the srcset at a
+	 * 750px candidate, about 1.4x. A replacement image is coming (HZN-12), so this
+	 * carries no crop or aspect-ratio of its own and follows whatever it gets.
 	 */
-	.intro-row {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		gap: var(--space-5);
-	}
-
-	.intro-row p {
-		flex: 1 1 16rem;
-	}
-
 	.headshot {
-		flex: 0 0 auto;
-		width: 21.5rem;
-		aspect-ratio: 1 / 1;
+		width: 100%;
+	}
+
+	.intro {
+		margin-top: var(--space-5);
 	}
 
 	.prose p {

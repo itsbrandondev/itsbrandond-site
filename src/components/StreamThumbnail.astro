@@ -16,10 +16,10 @@ const { stream } = Astro.props;
 		<Image
 			src={stream.thumbnail}
 			alt=""
-			width={432}
-			height={243}
+			width={544}
+			height={306}
 			loading="lazy"
-			sizes="(min-width: 936px) 288px, (min-width: 632px) 45vw, 100vw"
+			sizes="(min-width: 592px) 544px, calc(100vw - 2 * 1.5rem)"
 		/>
 		<span>
 			<span class="stream-title">{stream.title}</span>
@@ -39,6 +39,12 @@ const { stream } = Astro.props;
 	 * Poster card: still on top, text below, at every size. The card lives in
 	 * a grid track, so its width is set by its container rather than by the
 	 * window, and there is nothing left for a breakpoint to decide.
+	 *
+	 * The `sizes` attribute above is the one thing here that must name the
+	 * viewport: sizes is resolved before layout, so it cannot ask the
+	 * container. 544px is the widest this card ever renders, being the slim
+	 * rail it stacks 1-up on; below the rail it fills the viewport less the
+	 * two gutters. Move the archive into a breakout and this needs revisiting.
 	 */
 	a {
 		display: block;

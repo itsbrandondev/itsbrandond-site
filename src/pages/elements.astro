@@ -71,14 +71,14 @@ const rampWidths = [320, 480, 720, 912];
 		<NotFoundContent />
 	</section>
 
-	<section>
+	<section class="breakout">
 		<h2>Work list item</h2>
 		<ul class="specimen-list list-reset">
 			{workSpecimens.map((item) => <WorkListItem item={item} />)}
 		</ul>
 	</section>
 
-	<section>
+	<section class="breakout">
 		<h2>Stream player</h2>
 		<StreamPlayer stream={latestStream} />
 	</section>
@@ -149,7 +149,7 @@ const rampWidths = [320, 480, 720, 912];
 		</ul>
 	</section>
 
-	<section>
+	<section class="breakout">
 		<h2>Container width ramp</h2>
 		<p class="meta">
 			The archive grid rendered at four fixed container widths. Column count
