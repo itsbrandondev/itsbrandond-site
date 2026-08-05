@@ -134,7 +134,8 @@ p {
 .card-grid {
 	--card-min: 17.5rem;
 	display: grid;
-	gap: var(--space-5);
+	row-gap: var(--space-7);
+	column-gap: var(--space-5);
 	grid-template-columns: repeat(
 		auto-fit,
 		minmax(min(var(--card-min), 100%), 1fr)
