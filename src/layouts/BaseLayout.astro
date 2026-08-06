@@ -57,6 +57,36 @@ const personSchema = {
 	},
 };
 
+/*
+ * GA4 measurement ID. Public by design (it ships in the page source), so it is
+ * a plain constant rather than an env var; there is nothing here to leak.
+ *
+ * import.meta.env.PROD is false only under `astro dev`, so local development
+ * never reaches the property. `astro preview` serves the production build and
+ * does report, which is what makes a pre-cutover smoke test possible.
+ *
+ * A measurement ID accepts hits from any hostname unless a filter says
+ * otherwise, so this reports from the workers.dev host too, not just
+ * itsbrandond.com. That is deliberate (it is how the install gets verified
+ * before the domain moves) but it does mean preview traffic lands in the same
+ * property until a hostname filter is added there.
+ */
+const GA_ID = "G-YXN019JBMQ";
+const analytics = import.meta.env.PROD;
+const gtagSrc = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+
+/*
+ * The init block is built here as a string and injected with set:html rather
+ * than written as script children, matching the JSON-LD block below. That is
+ * forced, not cosmetic: inside a JSX expression (which the `analytics &&`
+ * guard creates) the `{` opening gtag's function body parses as a JSX
+ * expression, not as JavaScript. Written inline it silently mangles.
+ */
+const gtagInit = `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_ID}');`;
+
 const schema = profileDateModified
 	? {
 			"@context": "https://schema.org",
@@ -144,6 +174,23 @@ const schema = profileDateModified
 			is:inline
 			set:html={JSON.stringify(schema)}
 		/>
+
+		{
+			/*
+			 * is:inline on both, and it is load-bearing rather than stylistic:
+			 * without it Astro bundles a <script> into a deferred ES module, which
+			 * would scope `gtag` and `dataLayer` to that module instead of window
+			 * and silently break the tag. The site's only other script (the dialog
+			 * wiring) is is:inline for the same reason, so this follows the file's
+			 * existing pattern rather than adding an exception.
+			 */
+			analytics && (
+				<>
+					<script is:inline async src={gtagSrc} />
+					<script is:inline set:html={gtagInit} />
+				</>
+			)
+		}
 	</head>
 	<body>
 		<a class="skip-link" href="#main">Skip to content</a>
