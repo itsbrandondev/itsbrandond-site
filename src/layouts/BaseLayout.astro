@@ -89,6 +89,14 @@ const schema = profileDateModified
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+		<!--
+			Tints the browser chrome to the page field, so the address bar and the
+			page stop disagreeing at the top edge. Honoured by Safari 15+ and by
+			Chrome on Android; Firefox ignores it and desktop Chrome applies it
+			only to installed apps. Keep it in step with --bg in global.css.
+		-->
+		<meta name="theme-color" content="#0000ff" />
+
 		<meta property="og:type" content={video ? "video.other" : "website"} />
 		<meta property="og:site_name" content="Brandon Davenport" />
 		<meta property="og:title" content={title} />
