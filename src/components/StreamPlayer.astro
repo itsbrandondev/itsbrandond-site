@@ -1,28 +1,48 @@
 ---
-import type { Stream } from "../data/streams";
-import { broadcastUrl, embedUrl, formatDate } from "../data/streams";
+import type { Stream, UpcomingStream } from "../data/streams";
+import {
+	broadcastUrl,
+	embedUrl,
+	formatDate,
+	formatStartsAt,
+} from "../data/streams";
 
 interface Props {
-	stream: Stream;
+	stream: Stream | UpcomingStream;
 	// Lets the page decide whether this sits on the slim rail or breaks out
 	// wide. Layout placement belongs to the page, not to the component.
 	class?: string;
 }
 
 const { stream, class: className } = Astro.props;
+
+// Narrows the union on the field only one of them has, so the branches below
+// are type-checked rather than trusting a caller-supplied flag.
+const upcoming = "startsAt" in stream;
 ---
 
 <section class={className}>
 	<div class="player">
 		<iframe
 			src={embedUrl(stream.id)}
-			title={`Replay: ${stream.title}`}
+			title={upcoming ? "Upcoming live stream" : `Replay: ${stream.title}`}
 			allowfullscreen
 			loading="lazy"></iframe>
 	</div>
 	<p class="latest-meta meta">
-		<time datetime={stream.date}>{formatDate(stream.date)}</time>
-		{" "}&middot; {stream.duration} &middot;{" "}
+		{
+			upcoming ? (
+				<time datetime={stream.startsAt}>
+					{formatStartsAt(stream.startsAt)}
+				</time>
+			) : (
+				<>
+					<time datetime={stream.date}>{formatDate(stream.date)}</time> &middot;{" "}
+					{stream.duration}
+				</>
+			)
+		}
+		{" "}&middot;{" "}
 		<a href={broadcastUrl(stream.id)} target="_blank" rel="noopener noreferrer"
 			>Watch on 𝕏</a
 		>

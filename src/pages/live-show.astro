@@ -8,18 +8,27 @@ import {
 	formatDate,
 	latestStream,
 	streams,
+	upcomingStream,
 } from "../data/streams";
 
 const title = "Live Stream | Brandon Davenport";
 const description =
-	"A live show on X: building in public, reacting to technology news, and working through problems on camera. Watch the latest replay and browse past streams.";
+	"A live show on X: building in public, reacting to technology news, and working through problems on camera. Watch the latest stream and browse past replays.";
 
-// Streams excludes the latest, which gets its own player above this list.
-const pastStreams = streams.slice(1);
+// A scheduled broadcast takes the player slot and pushes every replay into the
+// archive; with nothing scheduled the newest replay takes it back and the
+// archive is everything below it, as before.
+const featured = upcomingStream ?? latestStream;
+const pastStreams = upcomingStream ? streams : streams.slice(1);
 
 // VideoObject requires name, thumbnailUrl and uploadDate; duration and
 // embedUrl are the recommended extras. Google retired podcast rich results,
 // so there is deliberately no PodcastSeries here.
+//
+// Covers the replays only. A scheduled broadcast gets no VideoObject: it has
+// no runtime, no thumbnail and no upload date, and three of those are required
+// properties, so the only way to emit one is to invent them. Live-stream markup
+// is a real option once it has aired and has a thumbnail.
 const videoSchema = streams.map((stream) => ({
 	"@context": "https://schema.org",
 	"@type": "VideoObject",
@@ -33,7 +42,11 @@ const videoSchema = streams.map((stream) => ({
 }));
 
 // Drives BaseLayout's og:video / Twitter Player Card tags, scoped to this
-// page only. Same embed URL already rendered as the visible player's src.
+// page only. Deliberately the newest REPLAY even while a scheduled broadcast
+// holds the player slot above: a player card needs a poster frame, and a
+// stream that has not aired has none. The replay is still on this page, in the
+// archive, so the card keeps pointing at real video rather than at a countdown
+// with no thumbnail.
 const video = {
 	embedUrl: embedUrl(latestStream.id),
 	width: 1280,
@@ -55,7 +68,7 @@ const video = {
 		</p>
 	</section>
 
-	<StreamPlayer stream={latestStream} />
+	<StreamPlayer stream={featured} />
 
 	{
 		pastStreams.length > 0 && (

@@ -21,6 +21,39 @@ export interface Stream {
 }
 
 /**
+ * A broadcast that is scheduled but has not aired, so it has no runtime and no
+ * replay frame to crop a thumbnail from. Deliberately not a Stream with three
+ * optional fields: the two are different things, and the type is what stops a
+ * page rendering "undefined" where a duration should be.
+ */
+export interface UpcomingStream {
+	/** X broadcast ID, same as a Stream's. */
+	id: string;
+	/**
+	 * Scheduled start as an absolute instant, ISO 8601 with an offset. The
+	 * embed draws its own countdown and start time from this, localized to the
+	 * viewer, so the offset here is what keeps the page's own rendering of it
+	 * in agreement with the card for a reader in another timezone.
+	 */
+	startsAt: string;
+}
+
+/**
+ * The next scheduled broadcast, or null when nothing is scheduled. When set it
+ * takes the player slot on /live-show and every entry in `streams` below moves
+ * into the archive.
+ *
+ * After it airs: clear this back to null and add it to `streams` with its real
+ * runtime and a thumbnail. The broadcast ID does not change when a stream goes
+ * from scheduled to live to replay, so the embed follows it through all three
+ * states on its own and nothing breaks in the window before that edit lands.
+ */
+export const upcomingStream: UpcomingStream | null = {
+	id: "1DGLddznbmoGm",
+	startsAt: "2026-08-06T14:00:00-04:00",
+};
+
+/**
  * Every stream, newest first. This array is the only thing to edit when a new
  * stream airs: add an entry at the top and drop its thumbnail in
  * src/assets/streams/. The page picks up the newest one automatically.
@@ -86,6 +119,34 @@ export const formatDate = (iso: string): string =>
 		day: "numeric",
 		timeZone: "UTC",
 	});
+
+/**
+ * Aug 6, 2026 at 2:00 PM EDT. For a scheduled start, where the clock time is
+ * the point and a bare date is not actionable.
+ *
+ * Rendered in the show's own timezone with the zone named, not in the reader's:
+ * this is built once at deploy time, so it cannot know who is reading, and an
+ * unlabeled time would be read as local and be wrong for most people. The
+ * embed's card localizes properly on its own; this is the honest static
+ * fallback for when that third-party iframe is blocked or slow.
+ */
+export const formatStartsAt = (iso: string): string => {
+	const at = new Date(iso);
+	const zone = "America/Toronto";
+	const date = at.toLocaleDateString("en-US", {
+		year: "numeric",
+		month: "short",
+		day: "numeric",
+		timeZone: zone,
+	});
+	const time = at.toLocaleTimeString("en-US", {
+		hour: "numeric",
+		minute: "2-digit",
+		timeZone: zone,
+		timeZoneName: "short",
+	});
+	return `${date} at ${time}`;
+};
 
 /*
  * Thumbnails: the full 1920x1080 replay frame, screen share and webcam inset
