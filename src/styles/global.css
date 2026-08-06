@@ -8,10 +8,24 @@
 
 :root {
 	color-scheme: dark;
-	--bg: #000000;
+
+	/*
+	 * One field colour, one ink, and two tiers derived from the ink rather than
+	 * picked against the field. --muted and --rule are translucent white, so
+	 * they composite against whatever sits behind them and stay in relation to
+	 * the field if it ever moves again; a fixed grey does not, which is how the
+	 * old #a5a5a5 ended up at 3.49:1 the moment the field stopped being black.
+	 * The working bar is WCAG 2.2 AA, so any text tier must clear 4.5:1 on the
+	 * field: white is 8.59:1 and --muted is 5.58:1. --rule is not text; at 30%
+	 * it lands on 1.55:1, the same weight the old hairline had against black.
+	 *
+	 * color-scheme stays dark: the field's relative luminance is 0.0722, so the
+	 * user agent is right to render scrollbars and form chrome dark.
+	 */
+	--bg: #0000ff;
 	--fg: #ffffff;
-	--muted: #a5a5a5;
-	--rule: #2e2e2e;
+	--muted: rgb(255 255 255 / 80%);
+	--rule: rgb(255 255 255 / 30%);
 
 	/*
 	 * The site is slim by default and widens only where a section earns it.
@@ -332,8 +346,15 @@ main :is(p, h1, h2, h3, blockquote) {
 	gap: var(--space-2);
 }
 
+/*
+ * Deepens the field behind the panel rather than dimming it neutrally. A black
+ * scrim was a no-op on a black field: it only ever dimmed the content, never
+ * the page. Against blue it would read as navy, so the scrim is field-hued and
+ * deliberately shallow, leaving the panel at 1.35:1 over #0000c6. Only the
+ * showModal() path paints a backdrop; the no-JS :target path below has none.
+ */
 .modal::backdrop {
-	background: rgb(0 0 0 / 45%);
+	background: rgb(0 0 128 / 45%);
 }
 
 .modal-close {
