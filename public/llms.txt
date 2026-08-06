@@ -14,7 +14,7 @@ Brandon Davenport works both sides of technology and audience: architecting syst
 
 ## Live show
 
-- [/live-show](https://itsbrandond.com/live-show): a live show on X. Explaining what's being built, reacting to the day's technology news, digging into things that don't add up, and taking questions from chat. Still being built together in public; open source, so anyone can share clips freely.
+- [/live](https://itsbrandond.com/live): a live show on X. Explaining what's being built, reacting to the day's technology news, digging into things that don't add up, and taking questions from chat. Still being built together in public; open source, so anyone can share clips freely.
 - Replays are on X at `x.com/i/broadcasts/<broadcast id>`.
 
 ## Media

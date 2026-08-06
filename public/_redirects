@@ -3,3 +3,18 @@
 /governance https://hiero.org/tsc 301
 /analytics https://hgraph.com/blog/hedera-stats-analytics-dashboard-api 301
 /panel https://www.youtube.com/watch?v=FTXUdQ6dTf8 301
+
+# Paths the old Squarespace site served that this one does not. Only the ones
+# with a real equivalent here are forwarded; the rest (the 59
+# /hashgraph-enthusiasts episode pages, /blog-1-1, /home-old, /new-page) are
+# deliberately left to the branded 404, which links to /work for exactly that
+# reason.
+/show /live 301
+/home / 301
+/contact / 301
+
+# This page was /live-show until the 2026-08 cutover. It never resolved on
+# itsbrandond.com (that domain served Squarespace until then), so this covers
+# the workers.dev host and anywhere the old path was shared during the build.
+/live-show /live 301
+/live-show/ /live 301

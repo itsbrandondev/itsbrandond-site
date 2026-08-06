@@ -40,7 +40,7 @@ export interface UpcomingStream {
 
 /**
  * The next scheduled broadcast, or null when nothing is scheduled. When set it
- * takes the player slot on /live-show and every entry in `streams` below moves
+ * takes the player slot on /live and every entry in `streams` below moves
  * into the archive.
  *
  * After it airs: clear this back to null and add it to `streams` with its real
