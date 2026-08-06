@@ -147,6 +147,36 @@ const rampWidths = [320, 480, 720, 912];
 				<span class="meta">--space-5, 24</span>
 			</li>
 		</ul>
+		<p class="meta">
+			The palette. --muted and --rule are translucent white, so each chip shows
+			what that token composites to over the field, not a fixed value.
+		</p>
+		<ul class="specimen-list list-reset">
+			<li>
+				<span class="chip chip-bg"></span>
+				<span class="meta">--bg, the field</span>
+			</li>
+			<li>
+				<span class="chip chip-fg"></span>
+				<span class="meta">--fg, body text at 8.59:1</span>
+			</li>
+			<li>
+				<span class="chip chip-muted"></span>
+				<span class="meta">--muted, secondary text at 5.58:1</span>
+			</li>
+			<li>
+				<span class="chip chip-rule"></span>
+				<span class="meta">--rule, hairlines and fills</span>
+			</li>
+		</ul>
+		<p class="meta">
+			The two patterns the field forces, neither of which shows in a static
+			screenshot: select the line below, and tab to the link.
+		</p>
+		<ul class="specimen-list list-reset">
+			<li>Select this line to see the ::selection treatment.</li>
+			<li><a href="/work">Tab to this link to see the focus ring</a></li>
+		</ul>
 	</section>
 
 	<section class="breakout">
@@ -215,6 +245,35 @@ const rampWidths = [320, 480, 720, 912];
 		display: inline-block;
 		height: 0.5rem;
 		vertical-align: middle;
+		background: var(--rule);
+	}
+
+	/*
+	 * Same inline-block shape as .bar, given height so a colour reads as an
+	 * area rather than a line. The border is what makes the --bg chip visible
+	 * at all, since it is the field the page is already painted in.
+	 */
+	.chip {
+		display: inline-block;
+		width: var(--space-8);
+		height: var(--space-5);
+		vertical-align: middle;
+		border: 1px solid var(--fg);
+	}
+
+	.chip-bg {
+		background: var(--bg);
+	}
+
+	.chip-fg {
+		background: var(--fg);
+	}
+
+	.chip-muted {
+		background: var(--muted);
+	}
+
+	.chip-rule {
 		background: var(--rule);
 	}
 
