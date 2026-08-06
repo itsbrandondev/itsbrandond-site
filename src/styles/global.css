@@ -101,6 +101,34 @@ a {
 	text-underline-offset: 2px;
 }
 
+/*
+ * Both of these exist because the field is a saturated blue, not for style.
+ *
+ * Every engine's default selection highlight is itself a blue, so on this
+ * field the highlight all but disappears: Chrome's is around #3297fd, which
+ * is 2.86:1 against the page with the selected text at 3.01:1. Inverting to
+ * ink-on-field puts both at 8.59:1. background-color, not the background
+ * shorthand: the shorthand is outside the property set ::selection allows.
+ */
+::selection {
+	background-color: var(--fg);
+	color: var(--bg);
+}
+
+/*
+ * Same problem for keyboard focus: Safari's default ring is the system accent,
+ * blue by default, so it would ring blue on blue. Overriding a default ring
+ * takes on a 3:1 obligation, which white clears at 8.59:1. Scoped to links
+ * because links are every focusable element the site owns (no buttons, no form
+ * controls, no tabindex anywhere), and showModal() focuses the dialog's first
+ * focusable descendant, a link, rather than the dialog itself. A button or
+ * input added later needs this selector widened.
+ */
+a:focus-visible {
+	outline: 2px solid var(--fg);
+	outline-offset: 2px;
+}
+
 h1 {
 	font-size: var(--text-lg);
 	line-height: var(--leading-tight);
