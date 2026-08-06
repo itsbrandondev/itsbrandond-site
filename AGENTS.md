@@ -26,13 +26,19 @@ Shared patterns to reuse rather than re-declare: `.meta` (secondary text), `.led
 
 ## Colour
 
-Four tokens: `--bg` (`#0000ff`, the field), `--fg` (white), `--muted` and `--rule`. The working bar is WCAG 2.2 AA, so any text tier must clear 4.5:1 against the field; white is 8.59:1 and `--muted` is 5.58:1.
+Four tokens: `--bg` (`#0000cc`, the field), `--fg` (white), `--muted` and `--rule`. The working bar is WCAG 2.2 AA, so any text tier must clear 4.5:1 against the field; white is 11.22:1 and `--muted` is 7.22:1.
 
-**`--muted` and `--rule` are translucent white, not fixed greys.** They composite against whatever sits behind them, which is the field almost everywhere but is not guaranteed to be. Putting `.meta` text on a surface that is not `--bg` gives a different colour than the numbers above, so check the contrast there rather than assuming it. This is also what keeps them in relation to the field: the old fixed `#a5a5a5` fell to 3.49:1 the moment the field stopped being black.
+**`--muted` and `--rule` are translucent white, not fixed greys.** They composite against whatever sits behind them, which is the field almost everywhere but is not guaranteed to be. Putting `.meta` text on a surface that is not `--bg` gives a different colour than the numbers above, so check the contrast there rather than assuming it. This is also what lets them follow the field: the old fixed `#a5a5a5` fell to 3.49:1 the moment the field stopped being black, whereas the move from `#0000ff` to `#0000cc` needed no change to either tier.
+
+**The alpha is fixed and the contrast floats.** Do not re-tune an alpha to hit a target ratio after a field change; that is the fixed-value habit these tokens exist to avoid. Check that the tiers still clear their bar, and leave them alone if they do.
 
 `--rule` does two jobs, hairline borders and fill areas (the player letterbox, the thumbnail placeholder). Both want the same value, so it stays one token.
 
-`::selection` and `a:focus-visible` are set explicitly rather than left to the user agent. Every engine's default selection highlight is a blue, so on this field it all but disappears; Safari draws its focus ring in the system accent, blue by default, and the other engines vary. Overriding a default focus ring takes on a 3:1 contrast obligation, which white clears at 8.59:1. The ring is scoped to links because links are every focusable element the site owns; adding a button or a form control means widening that selector.
+**`.modal::backdrop` is the exception and needs re-checking by hand.** It is a fixed colour rather than a tier of the ink, so it only separates the panel while it stays meaningfully darker than the field. It had to darken with the field to hold its 1.35:1.
+
+`::selection` and `a:focus-visible` are set explicitly rather than left to the user agent. Every engine's default selection highlight is a blue, so it lands on a blue page: the highlight itself stays visible here (Chrome's is 3.73:1) but the selected text on it sits at 3.01:1, under the bar the rest of the site clears. Safari draws its focus ring in the system accent, blue by default, and the other engines vary; overriding a default ring takes on a 3:1 obligation, which white clears at 11.22:1. The ring is scoped to links because links are every focusable element the site owns; adding a button or a form control means widening that selector.
+
+The `og-image.jpg` field and the favicon marks are still `#0000ff`, one field-change behind ✓ Brandon 2026-08-05 (leave the art alone for now). They are not page-composited, so nothing renders wrong; the site and its own social card simply no longer agree on the blue.
 
 ## Links
 

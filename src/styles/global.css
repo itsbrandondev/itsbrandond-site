@@ -12,17 +12,23 @@
 	/*
 	 * One field colour, one ink, and two tiers derived from the ink rather than
 	 * picked against the field. --muted and --rule are translucent white, so
-	 * they composite against whatever sits behind them and stay in relation to
-	 * the field if it ever moves again; a fixed grey does not, which is how the
-	 * old #a5a5a5 ended up at 3.49:1 the moment the field stopped being black.
-	 * The working bar is WCAG 2.2 AA, so any text tier must clear 4.5:1 on the
-	 * field: white is 8.59:1 and --muted is 5.58:1. --rule is not text; at 30%
-	 * it lands on 1.55:1, the same weight the old hairline had against black.
+	 * they composite against whatever sits behind them and follow the field
+	 * wherever it goes; a fixed grey does not, which is how the old #a5a5a5
+	 * ended up at 3.49:1 the moment the field stopped being black.
 	 *
-	 * color-scheme stays dark: the field's relative luminance is 0.0722, so the
+	 * The alpha is the fixed thing and the contrast floats. That is deliberate:
+	 * re-tuning the alpha to hit a target ratio every time the field moves is
+	 * the fixed-value habit again in a new costume. The field went from #0000ff
+	 * to #0000cc without either tier being touched, and both got better for it.
+	 *
+	 * The working bar is WCAG 2.2 AA, so any text tier must clear 4.5:1 on the
+	 * field: white is 11.22:1 and --muted is 7.22:1. --rule is not text; it
+	 * lands on 1.80:1, a little stronger than the 1.55:1 it read on #0000ff.
+	 *
+	 * color-scheme stays dark: the field's relative luminance is 0.0436, so the
 	 * user agent is right to render scrollbars and form chrome dark.
 	 */
-	--bg: #0000ff;
+	--bg: #0000cc;
 	--fg: #ffffff;
 	--muted: rgb(255 255 255 / 80%);
 	--rule: rgb(255 255 255 / 30%);
@@ -104,11 +110,13 @@ a {
 /*
  * Both of these exist because the field is a saturated blue, not for style.
  *
- * Every engine's default selection highlight is itself a blue, so on this
- * field the highlight all but disappears: Chrome's is around #3297fd, which
- * is 2.86:1 against the page with the selected text at 3.01:1. Inverting to
- * ink-on-field puts both at 8.59:1. background-color, not the background
- * shorthand: the shorthand is outside the property set ::selection allows.
+ * Every engine's default selection highlight is itself a blue, so it lands on
+ * a blue page. The real cost is legibility rather than visibility: Chrome's
+ * highlight is around #3297fd, which is a readable 3.73:1 against this field,
+ * but the selected text sitting on it is 3.01:1, under the AA bar the rest of
+ * the site clears. Inverting to ink-on-field puts both at 11.22:1.
+ * background-color, not the background shorthand: the shorthand is outside
+ * the property set ::selection allows.
  */
 ::selection {
 	background-color: var(--fg);
@@ -118,7 +126,7 @@ a {
 /*
  * Same problem for keyboard focus: Safari's default ring is the system accent,
  * blue by default, so it would ring blue on blue. Overriding a default ring
- * takes on a 3:1 obligation, which white clears at 8.59:1. Scoped to links
+ * takes on a 3:1 obligation, which white clears at 11.22:1. Scoped to links
  * because links are every focusable element the site owns (no buttons, no form
  * controls, no tabindex anywhere), and showModal() focuses the dialog's first
  * focusable descendant, a link, rather than the dialog itself. A button or
@@ -378,11 +386,20 @@ main :is(p, h1, h2, h3, blockquote) {
  * Deepens the field behind the panel rather than dimming it neutrally. A black
  * scrim was a no-op on a black field: it only ever dimmed the content, never
  * the page. Against blue it would read as navy, so the scrim is field-hued and
- * deliberately shallow, leaving the panel at 1.35:1 over #0000c6. Only the
- * showModal() path paints a backdrop; the no-JS :target path below has none.
+ * deliberately shallow, leaving the panel at 1.35:1 over #00008d.
+ *
+ * Unlike --muted and --rule this does NOT follow the field on its own: it is a
+ * fixed colour composited against the field, so it only separates while it
+ * stays meaningfully darker than what it covers. It was rgb(0 0 128 / 45%) on
+ * #0000ff and had to darken to keep the same 1.35:1 when the field moved to
+ * #0000cc, which at the old value had collapsed to 1.18:1. Re-check this
+ * number on any future field change; the two tiers above will take care of
+ * themselves and this one will not.
+ *
+ * Only the showModal() path paints a backdrop; the no-JS :target path has none.
  */
 .modal::backdrop {
-	background: rgb(0 0 128 / 45%);
+	background: rgb(0 0 64 / 45%);
 }
 
 .modal-close {
