@@ -24,9 +24,27 @@ Shared patterns to reuse rather than re-declare: `.meta` (secondary text), `.led
 
 `/elements` is a `noindex` sandbox rendering every pattern, including a container width ramp that shows column counts changing without the window moving. Add a specimen there when adding a pattern.
 
+## Colour
+
+Four tokens: `--bg` (`#0000ff`, the field), `--fg` (white), `--muted` and `--rule`. The working bar is WCAG 2.2 AA, so any text tier must clear 4.5:1 against the field; white is 8.59:1 and `--muted` is 5.58:1.
+
+**`--muted` and `--rule` are translucent white, not fixed greys.** They composite against whatever sits behind them, which is the field almost everywhere but is not guaranteed to be. Putting `.meta` text on a surface that is not `--bg` gives a different colour than the numbers above, so check the contrast there rather than assuming it. This is also what keeps them in relation to the field: the old fixed `#a5a5a5` fell to 3.49:1 the moment the field stopped being black.
+
+`--rule` does two jobs, hairline borders and fill areas (the player letterbox, the thumbnail placeholder). Both want the same value, so it stays one token.
+
+`::selection` and `a:focus-visible` are set explicitly rather than left to the user agent. Every engine's default selection highlight is a blue, so on this field it all but disappears; Safari draws its focus ring in the system accent, blue by default, and the other engines vary. Overriding a default focus ring takes on a 3:1 contrast obligation, which white clears at 8.59:1. The ring is scoped to links because links are every focusable element the site owns; adding a button or a form control means widening that selector.
+
+## Links
+
+Off-site links carry `target="_blank" rel="noopener noreferrer"` (social links additionally keep `rel="me"` for IndieAuth). Internal pages and `mailto:` links stay same-tab.
+
+Check this on every new outbound link. It is easy to miss and has been: the Connect modal's social links, the Google Form and X-follow CTAs, and the stream replay links in `StreamPlayer.astro` and `StreamThumbnail.astro` all shipped same-tab before being brought into line.
+
 ## Data
 
 `src/data/work.ts` and `src/data/streams.ts` are hand-maintained typed literals. `src/data/pages.ts` holds each page's last-content-change date and is imported by both `astro.config.mjs` (sitemap lastmod) and the homepage (ProfilePage `dateModified`); keep it import-free, since config loads before the Astro runtime exists.
+
+**Bump a page's `lastmod` in the same commit as the content edit.** Nothing computes it and nothing checks it, so it silently goes stale, which it has done before.
 
 ## Commands
 
