@@ -153,9 +153,9 @@ export const workItems: WorkItem[] = [
 	},
 	{
 		id: "hol-founding-member",
-		title: "Hashgraph Online founding member",
+		title: "Hashgraph Online member",
 		description:
-			"Founding member of Hashgraph Online (HOL), now a current member as the org repositions toward AI-agent infrastructure, registries, and payments.",
+			"Founding-era member of Hashgraph Online (HOL) through Hgraph, now a member in his own right as the org repositions toward AI-agent infrastructure, registries, and payments.",
 		category: "Evangelizing & Communicating",
 		links: [{ label: "hol.org", url: "https://hol.org" }],
 	},

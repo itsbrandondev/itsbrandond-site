@@ -1,14 +1,14 @@
 # Brandon Davenport
 
-> Tech evangelist who ships: AI and data tooling at Hgraph, elected member of the Hiero Technical Steering Committee, and creator of the Hashgraph Enthusiasts Show.
+> Tech evangelist who ships: built Hgraph's AI and data tooling, elected member of the Hiero Technical Steering Committee, and creator of the Hashgraph Enthusiasts Show.
 
 Brandon Davenport works both sides of technology and audience: architecting systems with engineers, then presenting on stage, on camera, and on the timeline to build interest and adoption around them.
 
 ## Work
 
 - [/work](https://itsbrandond.com/work): a fuller look at what's been built, shipped, and closed, grouped into evangelizing and communicating, building and shipping, and creative (earlier-career design, video, and music work).
-- [Hgraph](https://hgraph.com): advises on AI product and go-to-market. Previously built the AI and data tooling with the team, including a [Model Context Protocol server and an AI data agent](https://docs.hgraph.com/mcp-server/setup-chatgpt) that answer plain-English questions about Hedera Stats' ecosystem metrics.
-- [Hgraph's 2026 platform recap](https://hgraph.com/blog/hgraph-in-2026-the-full-stack-onchain-data-platform): most recently authored piece.
+- [Hgraph](https://hgraph.com): built the AI and data tooling with the team, including a [Model Context Protocol server and an AI data agent](https://docs.hgraph.com/mcp-server/setup-chatgpt) that answer plain-English questions about Hedera Stats' ecosystem metrics.
+- [Hgraph's 2026 platform recap](https://hgraph.com/blog/hgraph-in-2026-the-full-stack-onchain-data-platform): authored piece, the company's mid-2026 recap of what shipped.
 - [Hiero Technical Steering Committee](https://hiero.org/tsc): elected member, under the Linux Foundation.
 - [HIP-920](https://hips.hedera.com/hip/hip-920): authored Informational-track proposal for NFT music metadata that reached Active status.
 

@@ -48,10 +48,7 @@ export interface UpcomingStream {
  * from scheduled to live to replay, so the embed follows it through all three
  * states on its own and nothing breaks in the window before that edit lands.
  */
-export const upcomingStream: UpcomingStream | null = {
-	id: "1DGLddznbmoGm",
-	startsAt: "2026-08-06T14:00:00-04:00",
-};
+export const upcomingStream: UpcomingStream | null = null;
 
 /**
  * Every stream, newest first. This array is the only thing to edit when a new
