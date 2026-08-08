@@ -4,6 +4,7 @@ import thumb0726 from "../assets/streams/2026-07-26-1kKzDDXkmarJv.jpg";
 import thumb0727 from "../assets/streams/2026-07-27-1XxyggvvPOgGM.jpg";
 import thumb0729 from "../assets/streams/2026-07-29-1oJMvvwDlXWxQ.jpg";
 import thumb0731 from "../assets/streams/2026-07-31-1RKZzzdjaDwKB.jpg";
+import thumb0806 from "../assets/streams/2026-08-06-1DGLddznbmoGm.jpg";
 
 export interface Stream {
 	/** X broadcast ID: the last path segment of x.com/i/broadcasts/<id>. */
@@ -56,6 +57,14 @@ export const upcomingStream: UpcomingStream | null = null;
  * src/assets/streams/. The page picks up the newest one automatically.
  */
 export const streams: Stream[] = [
+	{
+		id: "1DGLddznbmoGm",
+		date: "2026-08-06",
+		title: "I TRY EVERY HEDERA APP",
+		duration: "2h 07m",
+		durationIso: "PT2H7M8S",
+		thumbnail: thumb0806,
+	},
 	{
 		id: "1RKZzzdjaDwKB",
 		date: "2026-07-31",
