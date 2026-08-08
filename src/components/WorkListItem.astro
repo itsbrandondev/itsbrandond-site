@@ -13,7 +13,7 @@ const { item } = Astro.props;
 	<p>{item.description}</p>
 	{
 		item.links?.length ? (
-			<ul class="item-links list-reset">
+			<ul class="item-links list-reset" role="list">
 				{item.links.map((link) => (
 					<li>
 						<a href={link.url} target="_blank" rel="noopener noreferrer">

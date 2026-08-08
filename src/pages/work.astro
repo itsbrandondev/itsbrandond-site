@@ -40,7 +40,7 @@ const workSchema = {
 		workCategories.map((category) => (
 			<section class="category breakout">
 				<h2>{category}</h2>
-				<ul class="list-reset card-grid">
+				<ul class="list-reset card-grid" role="list">
 					{workItems
 						.filter((item) => item.category === category)
 						.map((item) => (

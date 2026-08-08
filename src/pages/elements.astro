@@ -73,7 +73,7 @@ const rampWidths = [320, 480, 720, 912];
 
 	<section class="breakout">
 		<h2>Work list item</h2>
-		<ul class="specimen-list list-reset">
+		<ul class="specimen-list list-reset" role="list">
 			{workSpecimens.map((item) => <WorkListItem item={item} />)}
 		</ul>
 	</section>
@@ -85,7 +85,7 @@ const rampWidths = [320, 480, 720, 912];
 
 	<section>
 		<h2>Stream thumbnail</h2>
-		<ul class="specimen-list list-reset">
+		<ul class="specimen-list list-reset" role="list">
 			{pastStreams.map((stream) => <StreamThumbnail stream={stream} />)}
 		</ul>
 	</section>
@@ -117,7 +117,7 @@ const rampWidths = [320, 480, 720, 912];
 		<p class="meta">
 			The type scale, each step against its leading. Sizes are fixed, not fluid.
 		</p>
-		<ul class="specimen-list list-reset">
+		<ul class="specimen-list list-reset" role="list">
 			<li>
 				<span class="swatch-lg">Aa</span>
 				<span class="meta">--text-lg</span>
@@ -133,7 +133,7 @@ const rampWidths = [320, 480, 720, 912];
 			The spacing tiers used for page rhythm: 64 between sections, 48 between
 			blocks, 24 between elements.
 		</p>
-		<ul class="specimen-list list-reset">
+		<ul class="specimen-list list-reset" role="list">
 			<li>
 				<span class="bar bar-8"></span>
 				<span class="meta">--space-8, 64</span>
@@ -151,7 +151,7 @@ const rampWidths = [320, 480, 720, 912];
 			The palette. --muted and --rule are translucent white, so each chip shows
 			what that token composites to over the field, not a fixed value.
 		</p>
-		<ul class="specimen-list list-reset">
+		<ul class="specimen-list list-reset" role="list">
 			<li>
 				<span class="chip chip-bg"></span>
 				<span class="meta">--bg, the field</span>
@@ -173,7 +173,7 @@ const rampWidths = [320, 480, 720, 912];
 			The two patterns the field forces, neither of which shows in a static
 			screenshot: select the line below, and tab to the link.
 		</p>
-		<ul class="specimen-list list-reset">
+		<ul class="specimen-list list-reset" role="list">
 			<li>Select this line to see the ::selection treatment.</li>
 			<li><a href="/work">Tab to this link to see the focus ring</a></li>
 		</ul>
@@ -193,7 +193,7 @@ const rampWidths = [320, 480, 720, 912];
 				<div class="ramp-step">
 					<span class="meta">{w}px</span>
 					<div class="ramp-box" style={`width: ${w}px`}>
-						<ul class="list-reset card-grid">
+						<ul class="list-reset card-grid" role="list">
 							{workSpecimens.map((item) => (
 								<WorkListItem item={item} />
 							))}

@@ -74,7 +74,7 @@ const video = {
 		pastStreams.length > 0 && (
 			<section class="archive">
 				<h2>Past streams</h2>
-				<ul class="list-reset stream-list">
+				<ul class="list-reset stream-list" role="list">
 					{pastStreams.map((stream) => (
 						<StreamThumbnail stream={stream} />
 					))}
@@ -94,7 +94,7 @@ const video = {
 	</section>
 
 	<section class="cta-bottom">
-		<ul class="list-reset">
+		<ul class="list-reset" role="list">
 			<li>
 				<a
 					href="https://forms.gle/CN7kAXNFPosXUE397"
