@@ -6,6 +6,8 @@ import thumb0729 from "../assets/streams/2026-07-29-1oJMvvwDlXWxQ.jpg";
 import thumb0731 from "../assets/streams/2026-07-31-1RKZzzdjaDwKB.jpg";
 import thumb0806 from "../assets/streams/2026-08-06-1DGLddznbmoGm.jpg";
 import thumb0812 from "../assets/streams/2026-08-12-1nxnRBRAVVwxO.jpg";
+import thumb0816 from "../assets/streams/2026-08-16-1mxPaZWeQZYKN.jpg";
+import thumb0818 from "../assets/streams/2026-08-18-1qKVmyvoMyPxB.jpg";
 
 export interface Stream {
 	/** X broadcast ID: the last path segment of x.com/i/broadcasts/<id>. */
@@ -58,6 +60,22 @@ export const upcomingStream: UpcomingStream | null = null;
  * src/assets/streams/. The page picks up the newest one automatically.
  */
 export const streams: Stream[] = [
+	{
+		id: "1qKVmyvoMyPxB",
+		date: "2026-08-18",
+		title: "KING SOLOMON CHATS + HBAR NEWS + AI BUILDING",
+		duration: "2h 07m",
+		durationIso: "PT2H7M53S",
+		thumbnail: thumb0818,
+	},
+	{
+		id: "1mxPaZWeQZYKN",
+		date: "2026-08-16",
+		title: "HEDERA REDDIT TRENCHES + AI BUILDING",
+		duration: "1h 52m",
+		durationIso: "PT1H52M47S",
+		thumbnail: thumb0816,
+	},
 	{
 		id: "1nxnRBRAVVwxO",
 		date: "2026-08-12",
