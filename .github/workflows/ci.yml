@@ -32,8 +32,8 @@ jobs:
       #      src/data/work.ts) returns HTTP 403 to automated requests whatever
       #      user agent they send. Confirmed 2026-08-04 against both a lychee
       #      and a browser user agent; the page loads fine in a real browser.
-      #   3. /meet is a Cloudflare edge redirect declared in public/_redirects,
-      #      so no file for it is ever emitted into dist/.
+      #   3. /meet and /hotline are Cloudflare edge redirects declared in
+      #      public/_redirects, so no file for either is ever emitted into dist/.
       # A fourth entry excluding the whole https://itsbrandond.com/ origin
       # (pre-cutover, when the domain still served the old site) was removed
       # 2026-08-08 (HZN-28): the domain now serves this Worker, so canonicals,
