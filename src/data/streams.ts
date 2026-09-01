@@ -66,6 +66,8 @@ export const streams: Stream[] = [
 	{
 		id: "1AKEmvndoqYKL",
 		date: "2026-08-31",
+		// Normalized from a stray double space in X's own title ("MINT  + HBAR"),
+		// the one exception to the field's "never reworded" rule above.
 		title: "DEAD PIXELS NEON MINT + HBAR NEWS + AI SLOP",
 		duration: "2h 38m",
 		durationIso: "PT2H38M31S",
