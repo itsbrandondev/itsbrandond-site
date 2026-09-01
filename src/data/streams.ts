@@ -8,6 +8,9 @@ import thumb0806 from "../assets/streams/2026-08-06-1DGLddznbmoGm.jpg";
 import thumb0812 from "../assets/streams/2026-08-12-1nxnRBRAVVwxO.jpg";
 import thumb0816 from "../assets/streams/2026-08-16-1mxPaZWeQZYKN.jpg";
 import thumb0818 from "../assets/streams/2026-08-18-1qKVmyvoMyPxB.jpg";
+import thumb0821 from "../assets/streams/2026-08-21-1MJgNbzEDpkGL.jpg";
+import thumb0825 from "../assets/streams/2026-08-25-1XxygwnOgEkGM.jpg";
+import thumb0831 from "../assets/streams/2026-08-31-1AKEmvndoqYKL.jpg";
 
 export interface Stream {
 	/** X broadcast ID: the last path segment of x.com/i/broadcasts/<id>. */
@@ -60,6 +63,30 @@ export const upcomingStream: UpcomingStream | null = null;
  * src/assets/streams/. The page picks up the newest one automatically.
  */
 export const streams: Stream[] = [
+	{
+		id: "1AKEmvndoqYKL",
+		date: "2026-08-31",
+		title: "DEAD PIXELS NEON MINT + HBAR NEWS + AI SLOP",
+		duration: "2h 38m",
+		durationIso: "PT2H38M31S",
+		thumbnail: thumb0831,
+	},
+	{
+		id: "1XxygwnOgEkGM",
+		date: "2026-08-25",
+		title: "HEDERA GC MEMBER TIER LIST (RANKING) + AI BUILDING",
+		duration: "2h 36m",
+		durationIso: "PT2H36M3S",
+		thumbnail: thumb0825,
+	},
+	{
+		id: "1MJgNbzEDpkGL",
+		date: "2026-08-21",
+		title: "HBAR MARKETING WAR ROOM",
+		duration: "3h 09m",
+		durationIso: "PT3H9M52S",
+		thumbnail: thumb0821,
+	},
 	{
 		id: "1qKVmyvoMyPxB",
 		date: "2026-08-18",
