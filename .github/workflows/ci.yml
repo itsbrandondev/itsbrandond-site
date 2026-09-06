@@ -35,6 +35,9 @@ jobs:
       #      and a browser user agent; the page loads fine in a real browser.
       #   3. /meet and /hotline are Cloudflare edge redirects declared in
       #      public/_redirects, so no file for either is ever emitted into dist/.
+      #   4. x.com (the footer profile link in src/layouts/BaseLayout.astro)
+      #      returns HTTP 403 to automated requests; it failed the 2026-09-06
+      #      run on both attempts and loads fine in a real browser.
       # A fourth entry excluding the whole https://itsbrandond.com/ origin
       # (pre-cutover, when the domain still served the old site) was removed
       # 2026-08-08 (HZN-28): the domain now serves this Worker, so canonicals,
