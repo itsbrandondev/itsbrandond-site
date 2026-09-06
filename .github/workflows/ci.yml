@@ -19,6 +19,7 @@ jobs:
       - run: npm run lint
       - run: npm run format:check
       - run: npm run build
+      - run: npm run check:lastmod
       # --root-dir must be an absolute path. Without it, every root-relative
       # link (/, /favicon.ico, ...) fails as "cannot resolve"; with it, they
       # resolve against the built output. lychee-action is a composite action

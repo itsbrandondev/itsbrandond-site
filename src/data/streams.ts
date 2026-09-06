@@ -1,29 +1,43 @@
 import type { ImageMetadata } from "astro";
 
-import thumb0726 from "../assets/streams/2026-07-26-1kKzDDXkmarJv.jpg";
-import thumb0727 from "../assets/streams/2026-07-27-1XxyggvvPOgGM.jpg";
-import thumb0729 from "../assets/streams/2026-07-29-1oJMvvwDlXWxQ.jpg";
-import thumb0731 from "../assets/streams/2026-07-31-1RKZzzdjaDwKB.jpg";
-import thumb0806 from "../assets/streams/2026-08-06-1DGLddznbmoGm.jpg";
-import thumb0812 from "../assets/streams/2026-08-12-1nxnRBRAVVwxO.jpg";
-import thumb0816 from "../assets/streams/2026-08-16-1mxPaZWeQZYKN.jpg";
-import thumb0818 from "../assets/streams/2026-08-18-1qKVmyvoMyPxB.jpg";
-import thumb0821 from "../assets/streams/2026-08-21-1MJgNbzEDpkGL.jpg";
-import thumb0825 from "../assets/streams/2026-08-25-1XxygwnOgEkGM.jpg";
-import thumb0831 from "../assets/streams/2026-08-31-1AKEmvndoqYKL.jpg";
+import thumb20260726 from "../assets/streams/2026-07-26-1kKzDDXkmarJv.jpg";
+import thumb20260727 from "../assets/streams/2026-07-27-1XxyggvvPOgGM.jpg";
+import thumb20260729 from "../assets/streams/2026-07-29-1oJMvvwDlXWxQ.jpg";
+import thumb20260731 from "../assets/streams/2026-07-31-1RKZzzdjaDwKB.jpg";
+import thumb20260806 from "../assets/streams/2026-08-06-1DGLddznbmoGm.jpg";
+import thumb20260812 from "../assets/streams/2026-08-12-1nxnRBRAVVwxO.jpg";
+import thumb20260816 from "../assets/streams/2026-08-16-1mxPaZWeQZYKN.jpg";
+import thumb20260818 from "../assets/streams/2026-08-18-1qKVmyvoMyPxB.jpg";
+import thumb20260821 from "../assets/streams/2026-08-21-1MJgNbzEDpkGL.jpg";
+import thumb20260825 from "../assets/streams/2026-08-25-1XxygwnOgEkGM.jpg";
+import thumb20260831 from "../assets/streams/2026-08-31-1AKEmvndoqYKL.jpg";
 
 export interface Stream {
 	/** X broadcast ID: the last path segment of x.com/i/broadcasts/<id>. */
 	id: string;
 	/** Broadcast date, ISO 8601. Also the VideoObject uploadDate. */
 	date: string;
-	/** Title exactly as published on X, emoji included. Never reworded. */
+	/**
+	 * Title as published on X, emoji included, with runs of whitespace
+	 * collapsed to one space. Never reworded.
+	 */
 	title: string;
-	/** Runtime as X reports it, for readers. */
+	/**
+	 * Replay runtime for readers: the archived master's decoded length,
+	 * floored to the second, as "2h 04m", or "35m" under an hour.
+	 */
 	duration: string;
-	/** The same runtime in ISO 8601, for VideoObject. */
+	/**
+	 * The same runtime in ISO 8601 for VideoObject, hours omitted when zero:
+	 * "PT2H4M52S", "PT35M43S".
+	 */
 	durationIso: string;
-	/** Webcam crop from the replay. See the note at the bottom of this file. */
+	/**
+	 * Display name of a live guest as the show's own record states it. Absent
+	 * when there was none.
+	 */
+	guest?: string;
+	/** Full replay frame. See the note at the bottom of this file. */
 	thumbnail: ImageMetadata;
 }
 
@@ -58,20 +72,20 @@ export interface UpcomingStream {
 export const upcomingStream: UpcomingStream | null = null;
 
 /**
- * Every stream, newest first. This array is the only thing to edit when a new
- * stream airs: add an entry at the top and drop its thumbnail in
- * src/assets/streams/. The page picks up the newest one automatically.
+ * Every stream, newest first. The show pipeline adds each entry at the top,
+ * with its thumbnail in src/assets/streams/ and the /live/ lastmod bump in
+ * pages.ts, from its own record of the broadcast; nothing here is typed by
+ * hand. The page picks up the newest one automatically.
  */
 export const streams: Stream[] = [
 	{
 		id: "1AKEmvndoqYKL",
 		date: "2026-08-31",
-		// Normalized from a stray double space in X's own title ("MINT  + HBAR"),
-		// the one exception to the field's "never reworded" rule above.
 		title: "DEAD PIXELS NEON MINT + HBAR NEWS + AI SLOP",
-		duration: "2h 38m",
-		durationIso: "PT2H38M31S",
-		thumbnail: thumb0831,
+		duration: "2h 34m",
+		durationIso: "PT2H34M49S",
+		guest: "The founders of Dead Pixels",
+		thumbnail: thumb20260831,
 	},
 	{
 		id: "1XxygwnOgEkGM",
@@ -79,7 +93,7 @@ export const streams: Stream[] = [
 		title: "HEDERA GC MEMBER TIER LIST (RANKING) + AI BUILDING",
 		duration: "2h 36m",
 		durationIso: "PT2H36M3S",
-		thumbnail: thumb0825,
+		thumbnail: thumb20260825,
 	},
 	{
 		id: "1MJgNbzEDpkGL",
@@ -87,7 +101,7 @@ export const streams: Stream[] = [
 		title: "HBAR MARKETING WAR ROOM",
 		duration: "3h 09m",
 		durationIso: "PT3H9M52S",
-		thumbnail: thumb0821,
+		thumbnail: thumb20260821,
 	},
 	{
 		id: "1qKVmyvoMyPxB",
@@ -95,7 +109,8 @@ export const streams: Stream[] = [
 		title: "KING SOLOMON CHATS + HBAR NEWS + AI BUILDING",
 		duration: "2h 07m",
 		durationIso: "PT2H7M53S",
-		thumbnail: thumb0818,
+		guest: "Ryan Solomon",
+		thumbnail: thumb20260818,
 	},
 	{
 		id: "1mxPaZWeQZYKN",
@@ -103,7 +118,8 @@ export const streams: Stream[] = [
 		title: "HEDERA REDDIT TRENCHES + AI BUILDING",
 		duration: "1h 52m",
 		durationIso: "PT1H52M47S",
-		thumbnail: thumb0816,
+		guest: "Rob Allen",
+		thumbnail: thumb20260816,
 	},
 	{
 		id: "1nxnRBRAVVwxO",
@@ -111,7 +127,7 @@ export const streams: Stream[] = [
 		title: "BULLISH ON HBAR + BEARISH ON HEDERA",
 		duration: "2h 35m",
 		durationIso: "PT2H35M9S",
-		thumbnail: thumb0812,
+		thumbnail: thumb20260812,
 	},
 	{
 		id: "1DGLddznbmoGm",
@@ -119,7 +135,7 @@ export const streams: Stream[] = [
 		title: "I TRY EVERY HEDERA APP",
 		duration: "2h 07m",
 		durationIso: "PT2H7M8S",
-		thumbnail: thumb0806,
+		thumbnail: thumb20260806,
 	},
 	{
 		id: "1RKZzzdjaDwKB",
@@ -127,7 +143,7 @@ export const streams: Stream[] = [
 		title: "🫪 AI NEWS, BUILDING, CRYPTO, SLOPWATCH, HBAR 🫪",
 		duration: "2h 40m",
 		durationIso: "PT2H40M20S",
-		thumbnail: thumb0731,
+		thumbnail: thumb20260731,
 	},
 	{
 		id: "1oJMvvwDlXWxQ",
@@ -135,7 +151,7 @@ export const streams: Stream[] = [
 		title: "MONITORING THE SITUATION (AND BUILDING)",
 		duration: "2h 15m",
 		durationIso: "PT2H15M54S",
-		thumbnail: thumb0729,
+		thumbnail: thumb20260729,
 	},
 	{
 		id: "1XxyggvvPOgGM",
@@ -143,7 +159,7 @@ export const streams: Stream[] = [
 		title: "LO-FI SLOP TO GET ANXIOUS TO",
 		duration: "2h 07m",
 		durationIso: "PT2H7M56S",
-		thumbnail: thumb0727,
+		thumbnail: thumb20260727,
 	},
 	{
 		id: "1kKzDDXkmarJv",
@@ -151,7 +167,7 @@ export const streams: Stream[] = [
 		title: "IF YOURE READING THIS ITS TOO EARLY",
 		duration: "35m",
 		durationIso: "PT35M43S",
-		thumbnail: thumb0726,
+		thumbnail: thumb20260726,
 	},
 ];
 
@@ -212,10 +228,9 @@ export const formatStartsAt = (iso: string): string => {
 
 /*
  * Thumbnails: the full 1920x1080 replay frame, screen share and webcam inset
- * both included. Supersedes the 2026-08-01 webcam-only crop (which existed
- * specifically to keep browser tabs and editor output off the page) per
- * Brandon's explicit 2026-08-02 call, made after that tradeoff was restated.
- * Extract with `ffmpeg -ss <t> -i <source mp4> -frames:v 1 <out>.jpg`, a few
- * minutes into the stream to skip any intro slate; there is no fixed offset
- * to reuse since the whole frame ships as-is.
+ * both included, taken at the midpoint of the stream's second chapter (the
+ * first chapter is the pre-show). The show pipeline extracts it from the
+ * archived master with `ffmpeg -ss <t> -i <master> -frames:v 1 -q:v 2
+ * <date>-<id>.jpg`; a different frame is chosen at that step, never by
+ * re-cutting here.
  */

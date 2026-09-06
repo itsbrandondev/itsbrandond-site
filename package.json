@@ -13,7 +13,8 @@
 		"typecheck": "astro check",
 		"lint": "eslint .",
 		"format": "prettier --write .",
-		"format:check": "prettier --check ."
+		"format:check": "prettier --check .",
+		"check:lastmod": "node scripts/check-lastmod.mjs"
 	},
 	"dependencies": {
 		"@astrojs/sitemap": "^3.7.3",

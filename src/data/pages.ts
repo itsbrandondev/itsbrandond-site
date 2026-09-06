@@ -1,5 +1,8 @@
 /**
- * When each page's content last changed, bumped by hand alongside the edit.
+ * When each page's content last changed, bumped alongside the edit. The show
+ * pipeline bumps "/live/" when it adds a stream, and `npm run check:lastmod`
+ * fails the build when that date is older than the newest stream; the other
+ * pages are bumped by hand and nothing checks them.
  *
  * One map, two consumers: the sitemap's lastmod (astro.config.mjs) and the
  * homepage's ProfilePage dateModified (src/pages/index.astro). These used to be
@@ -11,6 +14,6 @@
  */
 export const lastmod: Record<string, string> = {
 	"/": "2026-08-07",
-	"/live/": "2026-08-08",
+	"/live/": "2026-09-06",
 	"/work/": "2026-08-07",
 };

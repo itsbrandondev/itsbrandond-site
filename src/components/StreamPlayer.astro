@@ -39,6 +39,7 @@ const upcoming = "startsAt" in stream;
 				<>
 					<time datetime={stream.date}>{formatDate(stream.date)}</time> &middot;{" "}
 					{stream.duration}
+					{stream.guest && ` · with ${stream.guest}`}
 				</>
 			)
 		}

@@ -48,15 +48,15 @@ Check this on every new outbound link. It is easy to miss and has been: the Conn
 
 ## Data
 
-`src/data/work.ts` and `src/data/streams.ts` are hand-maintained typed literals. `src/data/pages.ts` holds each page's last-content-change date and is imported by both `astro.config.mjs` (sitemap lastmod) and the homepage (ProfilePage `dateModified`); keep it import-free, since config loads before the Astro runtime exists.
+`src/data/work.ts` is a hand-maintained typed literal. `src/data/streams.ts` is written by the show pipeline in Brandon's assistant workspace: each entry, its thumbnail, and the `/live/` lastmod bump come from the pipeline's own record of the broadcast, and the file itself documents the runtime, title, guest, and thumbnail rules. Edit an entry by hand only to correct a published fact. `src/data/pages.ts` holds each page's last-content-change date and is imported by both `astro.config.mjs` (sitemap lastmod) and the homepage (ProfilePage `dateModified`); keep it import-free, since config loads before the Astro runtime exists.
 
-**Bump a page's `lastmod` in the same commit as the content edit.** Nothing computes it and nothing checks it, so it silently goes stale, which it has done before.
+**Bump a page's `lastmod` in the same commit as the content edit.** Nothing computes it. `npm run check:lastmod` (CI runs it after the build) fails when `/live/` is older than the newest stream; nothing checks the other pages, so those still go stale silently, which they have done before.
 
 ## Commands
 
 `npm run dev`, `npm run build`, `npm run typecheck`, `npm run lint`, `npm run format`.
 
-CI runs typecheck, lint, `format:check`, build, and a lychee link check. Run `npm run format` before committing: `format:check` covers Markdown too.
+CI runs typecheck, lint, `format:check`, build, `check:lastmod`, and a lychee link check. Run `npm run format` before committing: `format:check` covers Markdown too.
 
 ## Documentation
 
