@@ -11,6 +11,7 @@ import thumb20260818 from "../assets/streams/2026-08-18-1qKVmyvoMyPxB.jpg";
 import thumb20260821 from "../assets/streams/2026-08-21-1MJgNbzEDpkGL.jpg";
 import thumb20260825 from "../assets/streams/2026-08-25-1XxygwnOgEkGM.jpg";
 import thumb20260831 from "../assets/streams/2026-08-31-1AKEmvndoqYKL.jpg";
+import thumb20260905 from "../assets/streams/2026-09-05-1XGygwLwRodxM.jpg";
 
 export interface Stream {
 	/** X broadcast ID: the last path segment of x.com/i/broadcasts/<id>. */
@@ -78,6 +79,14 @@ export const upcomingStream: UpcomingStream | null = null;
  * hand. The page picks up the newest one automatically.
  */
 export const streams: Stream[] = [
+	{
+		id: "1XGygwLwRodxM",
+		date: "2026-09-05",
+		title: "HEDERA 🫪 ALL HYPE & NO SUBSTANCE?",
+		duration: "2h 04m",
+		durationIso: "PT2H4M52S",
+		thumbnail: thumb20260905,
+	},
 	{
 		id: "1AKEmvndoqYKL",
 		date: "2026-08-31",
