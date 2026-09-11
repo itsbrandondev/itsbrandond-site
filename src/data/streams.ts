@@ -12,6 +12,7 @@ import thumb20260821 from "../assets/streams/2026-08-21-1MJgNbzEDpkGL.jpg";
 import thumb20260825 from "../assets/streams/2026-08-25-1XxygwnOgEkGM.jpg";
 import thumb20260831 from "../assets/streams/2026-08-31-1AKEmvndoqYKL.jpg";
 import thumb20260905 from "../assets/streams/2026-09-05-1XGygwLwRodxM.jpg";
+import thumb20260910 from "../assets/streams/2026-09-10-1qKVmyWnVdMxB.jpg";
 
 export interface Stream {
 	/** X broadcast ID: the last path segment of x.com/i/broadcasts/<id>. */
@@ -79,6 +80,14 @@ export const upcomingStream: UpcomingStream | null = null;
  * hand. The page picks up the newest one automatically.
  */
 export const streams: Stream[] = [
+	{
+		id: "1qKVmyWnVdMxB",
+		date: "2026-09-10",
+		title: "HBAR BUILDERS ARE UNSTOPPABLE + APPLE COULD WIN AI",
+		duration: "1h 55m",
+		durationIso: "PT1H55M52S",
+		thumbnail: thumb20260910,
+	},
 	{
 		id: "1XGygwLwRodxM",
 		date: "2026-09-05",
