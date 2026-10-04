@@ -14,6 +14,7 @@ import thumb20260831 from "../assets/streams/2026-08-31-1AKEmvndoqYKL.jpg";
 import thumb20260905 from "../assets/streams/2026-09-05-1XGygwLwRodxM.jpg";
 import thumb20260910 from "../assets/streams/2026-09-10-1qKVmyWnVdMxB.jpg";
 import thumb20260925 from "../assets/streams/2026-09-25-1dGYlaoXpdLKX.jpg";
+import thumb20261003 from "../assets/streams/2026-10-03-1yGBePAXpOnKN.jpg";
 
 export interface Stream {
 	/** X broadcast ID: the last path segment of x.com/i/broadcasts/<id>. */
@@ -81,6 +82,15 @@ export const upcomingStream: UpcomingStream | null = null;
  * hand. The page picks up the newest one automatically.
  */
 export const streams: Stream[] = [
+	{
+		id: "1yGBePAXpOnKN",
+		date: "2026-10-03",
+		title: "HBARBARIANS MAD AT ME 🫪 AI ASSISTANTS SUCK",
+		duration: "3h 17m",
+		durationIso: "PT3H17M39S",
+		guest: "Ken Anderson",
+		thumbnail: thumb20261003,
+	},
 	{
 		id: "1dGYlaoXpdLKX",
 		date: "2026-09-25",
