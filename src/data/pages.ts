@@ -14,6 +14,6 @@
  */
 export const lastmod: Record<string, string> = {
 	"/": "2026-08-07",
-	"/live/": "2026-10-04",
+	"/live/": "2026-10-10",
 	"/work/": "2026-08-07",
 };

@@ -15,6 +15,7 @@ import thumb20260905 from "../assets/streams/2026-09-05-1XGygwLwRodxM.jpg";
 import thumb20260910 from "../assets/streams/2026-09-10-1qKVmyWnVdMxB.jpg";
 import thumb20260925 from "../assets/streams/2026-09-25-1dGYlaoXpdLKX.jpg";
 import thumb20261003 from "../assets/streams/2026-10-03-1yGBePAXpOnKN.jpg";
+import thumb20261009 from "../assets/streams/2026-10-09-1nJOLQqwDqkxR.jpg";
 
 export interface Stream {
 	/** X broadcast ID: the last path segment of x.com/i/broadcasts/<id>. */
@@ -82,6 +83,15 @@ export const upcomingStream: UpcomingStream | null = null;
  * hand. The page picks up the newest one automatically.
  */
 export const streams: Stream[] = [
+	{
+		id: "1nJOLQqwDqkxR",
+		date: "2026-10-09",
+		title:
+			"BREAKING: CRYPTO 🥤 SUPER DUPER INTELLIGENCE 🥤 SITUATION MONITORING",
+		duration: "2h 26m",
+		durationIso: "PT2H26M32S",
+		thumbnail: thumb20261009,
+	},
 	{
 		id: "1yGBePAXpOnKN",
 		date: "2026-10-03",
