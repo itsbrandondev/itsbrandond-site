@@ -16,6 +16,7 @@ import thumb20260910 from "../assets/streams/2026-09-10-1qKVmyWnVdMxB.jpg";
 import thumb20260925 from "../assets/streams/2026-09-25-1dGYlaoXpdLKX.jpg";
 import thumb20261003 from "../assets/streams/2026-10-03-1yGBePAXpOnKN.jpg";
 import thumb20261009 from "../assets/streams/2026-10-09-1nJOLQqwDqkxR.jpg";
+import thumb20261012 from "../assets/streams/2026-10-12-1dKrPrBEpoYJX.jpg";
 
 export interface Stream {
 	/** X broadcast ID: the last path segment of x.com/i/broadcasts/<id>. */
@@ -83,6 +84,14 @@ export const upcomingStream: UpcomingStream | null = null;
  * hand. The page picks up the newest one automatically.
  */
 export const streams: Stream[] = [
+	{
+		id: "1dKrPrBEpoYJX",
+		date: "2026-10-12",
+		title: "HEDERA LAWSUITS + BUILDERS STARVING + HBAR HEALING NEEDED",
+		duration: "1h 48m",
+		durationIso: "PT1H48M24S",
+		thumbnail: thumb20261012,
+	},
 	{
 		id: "1nJOLQqwDqkxR",
 		date: "2026-10-09",
