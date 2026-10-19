@@ -200,6 +200,19 @@ export const workItems: WorkItem[] = [
 
 	// Building & Shipping
 	{
+		id: "ai-video-clipping-workflow",
+		title: "AI Video Clipping Workflow",
+		description:
+			"Off-the-shelf AI clippers fell short, so I built my own agentic workflow to turn each livestream on X into finished clips. It saves me 15+ hours a week.",
+		category: "Building & Shipping",
+		links: [
+			{
+				label: "Watch: how it works",
+				url: "https://x.com/itsbrandond/status/2109468305480151135",
+			},
+		],
+	},
+	{
 		id: "mcp-server",
 		title: "MCP server for Hedera network data",
 		description:
