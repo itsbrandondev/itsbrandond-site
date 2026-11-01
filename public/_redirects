@@ -19,3 +19,6 @@
 # the workers.dev host and anywhere the old path was shared during the build.
 /live-show /live 301
 /live-show/ /live 301
+
+/canton https://x.com/i/lists/2091915562355945905 301
+/canton/ https://x.com/i/lists/2091915562355945905 301
