@@ -17,6 +17,7 @@ import thumb20260925 from "../assets/streams/2026-09-25-1dGYlaoXpdLKX.jpg";
 import thumb20261003 from "../assets/streams/2026-10-03-1yGBePAXpOnKN.jpg";
 import thumb20261009 from "../assets/streams/2026-10-09-1nJOLQqwDqkxR.jpg";
 import thumb20261012 from "../assets/streams/2026-10-12-1dKrPrBEpoYJX.jpg";
+import thumb20261106 from "../assets/streams/2026-11-06-2KoXXMrbYNAryo.jpg";
 
 export interface Stream {
 	/** X broadcast ID: the last path segment of x.com/i/broadcasts/<id>. */
@@ -84,6 +85,14 @@ export const upcomingStream: UpcomingStream | null = null;
  * hand. The page picks up the newest one automatically.
  */
 export const streams: Stream[] = [
+	{
+		id: "2KoXXMrbYNAryo",
+		date: "2026-11-06",
+		title: "HELP I AM CANTON PILLED 💊",
+		duration: "2h 35m",
+		durationIso: "PT2H35M38S",
+		thumbnail: thumb20261106,
+	},
 	{
 		id: "1dKrPrBEpoYJX",
 		date: "2026-10-12",
